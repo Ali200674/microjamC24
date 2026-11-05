@@ -1,5 +1,4 @@
-#ifndef AUB_PLAYER_H // Include guard must start with the 3-letter id
-#define AUB_PLAYER_H
+#pragma once
 
 #include <bn_fixed_point.h>
 #include <bn_sprite_ptr.h>
@@ -62,4 +61,3 @@ class player {
 
 }
 
-#endif

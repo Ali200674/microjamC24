@@ -114,9 +114,9 @@ Follow the instructions in the [Git Branching Cheatsheet](./gitBranchingCheatshe
 ### Creating a game header
 In this section we will be making a header file that holds the class declaration for your game. I STRONGLY recommend looking at ```include/mj/mj_game.h``` for reference and ```include/aub/aub_test_game.h``` for an example.
 1. In the `include/xxx` directory (where xxx is your 3 letter identifier) make a file ```xxx_game_name.h``` (where xxx and game_name are replaced with your identifier and what you want to call the game).
-1. Add an include guard with the name `XXX_GAME_NAME_H`
+1. Add a `#pragma once`
 1. Include `mj/mj_game.h`
-1. Make a namespace with your 3 letter identifier after the include statement for `mj_game.h`, but still within your include guard.
+1. Make a namespace with your 3 letter identifier after the include statement for `mj_game.h`
 1. Inside your namespace, make a class ```xxx_game_name``` that publicly extends ```mj::game```.
 1. Add declarations (BUT NOT IMPLEMENTATIONS) for the following public member functions. Their signatures must match EXACTLY what is required, overriding the superclass. `aub_test_game` is a useful example to follow!
     1. Constructor that takes `(int completed_games, const mj::game_data& data)` as arguments
@@ -177,7 +177,7 @@ Begin implementing your game! By the end of this wave you do NOT need to have a 
 - YOU MUST ONLY MAKE CHANGES IN DIRECTORIES WITH YOUR THREE LETTER IDENTIFIERS
 - YOU MUST NOT COMMIT DIRECTLY TO MAIN
 - ALL NEW CODE MUST BE IN YOUR GROUP'S NAMESPACE
-- New headers must have include guards.
+- New headers must have pragma once.
 - You MUST NOT read keypad input in `fade_in`/`fade_out`
 - You MUST NOT call `bn::core::update()`
 - Any sounds/music must ONLY be played using member functions from the `mj::game` superclass: `play_music`, `play_sound`, or `play_jingle`
