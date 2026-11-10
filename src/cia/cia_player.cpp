@@ -22,10 +22,12 @@ namespace cia
     {
         if (bn::keypad::left_held())
         {
+            _sprite.set_horizontal_flip(true);
             _sprite.set_x(_sprite.x() - _speed);
         }
         if (bn::keypad::right_held())
         {
+            _sprite.set_horizontal_flip(false);
             _sprite.set_x(_sprite.x() + _speed);
         }
         if (bn::keypad::up_held())
