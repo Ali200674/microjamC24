@@ -24,7 +24,7 @@ namespace cia
 
     bn::string<16> cia_oceandive::title() const
     {
-        return "Dive!";
+        return "Shark Attack!";
     }
 
     int cia_oceandive::total_frames() const
@@ -35,12 +35,15 @@ namespace cia
     mj::game_result cia_oceandive::play(const mj::game_data &)
     {
         _player.update();
-        return mj::game_result();
+
+        // If the player goes out of bounds, they loose
+        return mj::game_result(_player.is_out_of_bounds(), false);
     }
 
     bool cia_oceandive::victory() const
     {
-        return false;
+        // For now, this will be true. Later, it will change
+        return true;
     }
 
     void cia_oceandive::fade_in(const mj::game_data &)
