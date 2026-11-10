@@ -4,7 +4,7 @@
 
 namespace cia
 {
-    shark::shark()(bn::fixed_point:: starting_position, bn::fixed speed) :
+    shark::shark(bn::fixed_point starting_position, bn::fixed speed) :
     _sprite(bn::sprite_items::cia_shark.create_sprite(starting_position)),
     _speed(speed)
     {
@@ -13,22 +13,16 @@ namespace cia
 
     void shark::update()
     {
-        _update_position();
-    }
-
-//move the shark left by one
-    void shark::_update_position() {
     _sprite.set_x(_sprite.x() - _speed);
 
     if(_sprite.x() < MIN_X) {
         _sprite.set_x(MAX_X);
     }
-
+    }
 
 
     bn::fixed_rect shark::rect() const {
     return bn::fixed_rect(_sprite.position(), bn::fixed_size(24, 12));
-}
+    }
 }
 
-}
