@@ -8,6 +8,7 @@ namespace cia
 
     class cia_oceandive : public mj::game
     {
+        public:
         cia_oceandive(int completed_games, const mj::game_data& data);
 
 
