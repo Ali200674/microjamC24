@@ -1,5 +1,7 @@
 #include "cia_oceandive.h"
 #include "mj/mj_game_list.h"
+#include "cia/cia_shark.h"
+
 
 namespace
 {
@@ -18,7 +20,9 @@ MJ_GAME_LIST_ADD_SFX_CREDITS(sfx_credits)
 namespace cia
 {
     cia_oceandive::cia_oceandive([[maybe_unused]] int completed_game, [[maybe_unused]] const mj::game_data &data) : mj::game("cia"),
-                                                                                                                    _player(player({0, 20}, 1))
+                                                                                                                    _player(player({0, 20}, 1)),
+                                                                                                                    _shark(shark({130, 20}, 1)),
+                                                                                                                    _hit(false)
     {
     }
 
@@ -35,15 +39,19 @@ namespace cia
     mj::game_result cia_oceandive::play(const mj::game_data &)
     {
         _player.update();
-
+         _shark.update();
         // If the player goes out of bounds, they loose
-        return mj::game_result(_player.is_out_of_bounds(), false);
+        if(_player.is_out_of_bounds() || _player.rect().intersects(_shark.rect()))
+        {
+            _hit = true;
+        }
+
+        return mj::game_result(_hit, false);
     }
 
     bool cia_oceandive::victory() const
     {
-        // For now, this will be true. Later, it will change
-        return true;
+        return !_hit;
     }
 
     void cia_oceandive::fade_in(const mj::game_data &)
