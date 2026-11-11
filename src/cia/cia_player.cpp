@@ -6,6 +6,7 @@
 #include <bn_fixed.h>
 #include <bn_keypad.h>
 
+
 namespace cia
 {
     player::player(bn::fixed_point starting_position, bn::fixed speed) : _sprite(bn::sprite_items::cia_scuba_player.create_sprite(starting_position)),
