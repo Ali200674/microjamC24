@@ -22,10 +22,10 @@ namespace cia
 
     private:
         // Sprites
-        shark _shark;
         player _player;
+        shark _shark;
 
-        // true once the shark hits the player
+        // True once the shark hits the player
         bool _hit;
     };
 

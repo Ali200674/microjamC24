@@ -27,7 +27,7 @@ namespace cia
 
     bn::string<16> cia_oceandive::title() const
     {
-        return "Shark Attack!";
+        return "Avoid The Shark!";
     }
 
     int cia_oceandive::total_frames() const
