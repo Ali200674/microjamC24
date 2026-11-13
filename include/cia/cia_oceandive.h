@@ -19,13 +19,13 @@ namespace cia
         bool victory() const override;
         void fade_in(const mj::game_data &data) override;
         void fade_out(const mj::game_data &data) override;
-        
+
     private:
+        // Sprites
+        shark _shark;
         player _player;
-        // shark _shark;
 
         // true once the shark hits the player
-        shark _shark;
         bool _hit;
     };
 
