@@ -39,8 +39,9 @@ namespace cia
     {
         _player.update();
         _shark.update();
-        // If the player goes out of bounds, they loose
-        if (_player.is_out_of_bounds() || _player.rect().intersects(_shark.rect()))
+
+        // If the player intersects with the shark, the player loses.
+        if (_player.rect().intersects(_shark.rect()))
         {
             _hit = true;
         }
