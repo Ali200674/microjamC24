@@ -8,4 +8,5 @@ namespace ugb {
         public:
             Hook(bn::fixed_point spawn_position);
     };
+    
 }

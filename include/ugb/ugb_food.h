@@ -8,4 +8,5 @@ namespace ugb {
         public:
             Food(bn::fixed_point spawn_position);
     };
+    
 }

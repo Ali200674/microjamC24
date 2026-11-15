@@ -1,7 +1,7 @@
 #include <bn_math.h>
 
-#include "ugb/ugb_entity_manager.h"
 #include "ugb/ugb_constants.h"
+#include "ugb/ugb_entity_manager.h"
 
 namespace ugb {
 

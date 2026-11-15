@@ -1,4 +1,5 @@
 #include "bn_sprite_items_ugb_food.h"
+
 #include "ugb/ugb_food.h"
 
 namespace ugb {
