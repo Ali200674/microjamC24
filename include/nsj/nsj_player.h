@@ -1,6 +1,7 @@
 #pragma once
 #include <bn_fixed_point.h>
 #include <bn_sprite_ptr.h>
+#include <bn_rect.h>
 #include <bn_display.h>
 #include <bn_sprite_animate_actions.h>
 
@@ -52,6 +53,9 @@ class player {
          * Reads from the d-pad and moves the player by one frame accordingly.
          */
         void _update_position();
+
+    public:
+    bn::sprite_ptr get_sprite();
       
         
 };
