@@ -31,7 +31,7 @@ namespace ugb {
         update_score(data.text_generator);
         bn::fixed_point spawn_location;
         // Spawn food
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < constants::spawn::FOOD; i++) {
             spawn_location = get_safe_spawn_loc(data.random, _state);
             if (spawn_location.x() == constants::MAX_X) {
                 continue; // Couldn't find a safe location
@@ -39,7 +39,7 @@ namespace ugb {
             _state.food.emplace_back(spawn_location);
         }
         // Spawn hooks
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < constants::spawn::HOOKS; i++) {
             spawn_location = get_safe_spawn_loc(data.random, _state);
             if (spawn_location.x() == constants::MAX_X) {
                 continue; // Couldn't find a safe location

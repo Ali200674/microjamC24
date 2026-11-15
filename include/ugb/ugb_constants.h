@@ -24,6 +24,9 @@ namespace ugb {
             static constexpr int MAX_Y = constants::MAX_Y - PADDING;
             static constexpr int MIN_X = constants::MIN_X + PADDING;
             static constexpr int MAX_X = constants::MAX_X - PADDING;
+
+            static constexpr int HOOKS = 2;
+            static constexpr int FOOD = 3;
         }
 
         namespace score {
