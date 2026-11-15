@@ -4,6 +4,7 @@
 #include "luv/luv_player.h"
 #include "luv/luv_anemone.h"
 #include "luv/luv_trap.h"
+#include <bn_vector.h>
 #include <bn_regular_bg_ptr.h>
 
 // Create a namespace for Hide and Sea-k Game.
@@ -73,12 +74,15 @@ namespace luv
         //Get the trap anemone
         luv_trap get_trap() const;
 
+        //Returns number of traps to spawn based on level of difficulty
+        int _recommended_trap_spawn(mj::difficulty_level difficulty);
+
     private:
+        static constexpr int MAX_TRAPS = 6;
         luv_player _player;
         luv_anemone _anemone;
         luv_trap _trap;
         bn::regular_bg_ptr _background;
-        bn::vector<luv_trap, difficulty> _traps; 
-        int _recommended_trap_spawn(mj::difficulty_level difficulty);
+        bn::vector<luv_trap, MAX_TRAPS> _traps; 
     };
 };

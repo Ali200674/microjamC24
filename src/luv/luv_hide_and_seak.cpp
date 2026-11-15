@@ -27,10 +27,12 @@ namespace luv
         _anemone({data.random.get_fixed(MIN_X,MAX_X), 
             data.random.get_fixed(0,MAX_Y)}),
         _trap({data.random.get_fixed(MIN_X,MAX_X), 
-            data.random.get_fixed(0,MAX_Y)}),
-        _traps,    
+            data.random.get_fixed(0,MAX_Y)}),    
         _background(bn::regular_bg_items::luv_seafloor.create_bg(0, 0))
     {
+        for(int i = 0; i < _recommended_trap_spawn(recommended_difficulty_level(completed_games,data)); i++){
+            _traps.push_back(luv_trap({data.random.get_fixed(MIN_X,MAX_X),data.random.get_fixed(0,MAX_Y)}));
+        }
     }
 
     bn::string<16> luv_hide_and_seak::title() const
@@ -81,7 +83,7 @@ namespace luv
         return false;
     }
 
-    int luv_hide_and_seak::recommended_trap_spawn(mj::difficulty_level difficulty){
+    int luv_hide_and_seak::_recommended_trap_spawn(mj::difficulty_level difficulty){
         if(difficulty == mj::difficulty_level::EASY){
             return 2;
         } else if (difficulty == mj::difficulty_level::NORMAL){
