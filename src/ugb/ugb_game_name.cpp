@@ -12,8 +12,8 @@ namespace
 {
     constexpr bn::string_view code_credits[] = { "Nick B and Colin R" };
     constexpr bn::string_view graphics_credits[] = { "Nick B and Colin R" };
-    constexpr bn::string_view sfx_credits[] = { "" };
-    constexpr bn::string_view music_credits[] = { "" };
+    constexpr bn::string_view sfx_credits[] = {""};
+    constexpr bn::string_view music_credits[] = {""};
 }
 
     // Macros used to add game to game list
@@ -55,7 +55,7 @@ namespace ugb {
     }
 
     bn::string<16> ugb_game_name::title() const {
-        return "UGB_Game";
+        return "Eat the food";
     }
 
     int ugb_game_name::total_frames() const {
