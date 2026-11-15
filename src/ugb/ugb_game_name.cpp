@@ -27,7 +27,25 @@ namespace ugb {
     ugb_game_name::ugb_game_name([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data& data) : 
     mj::game("ugb"), _player(constants::player::INITIAL_X, constants::player::INITIAL_Y, constants::player::SPEED) 
     {
-
+        // Initialize score
+        update_score(data.text_generator);
+        bn::fixed_point spawn_location;
+        // Spawn food
+        for (int i = 0; i < 3; i++) {
+            spawn_location = get_safe_spawn_loc(data.random, _state);
+            if (spawn_location.x() == constants::MAX_X) {
+                continue; // Couldn't find a safe location
+            }
+            _state.food.emplace_back(spawn_location);
+        }
+        // Spawn hooks
+        for (int i = 0; i < 2; i++) {
+            spawn_location = get_safe_spawn_loc(data.random, _state);
+            if (spawn_location.x() == constants::MAX_X) {
+                continue; // Couldn't find a safe location
+            }
+            _state.hooks.emplace_back(spawn_location);
+        }
     }
 
     void ugb_game_name::update_score(const bn::sprite_text_generator& text_generator) {
@@ -49,27 +67,6 @@ namespace ugb {
     }
 
     mj::game_result ugb_game_name::play([[maybe_unused]] const mj::game_data& data) {
-        if (data.pending_frames == 600) { // Respawn everything once the game starts
-            // Initialize score
-            update_score(data.text_generator);
-            bn::fixed_point spawn_location;
-            // Spawn food
-            for (int i = 0; i < 3; i++) {
-                spawn_location = get_safe_spawn_loc(data.random, _state);
-                if (spawn_location.x() == constants::MAX_X) {
-                    continue; // Couldn't find a safe location
-                }
-                _state.food.emplace_back(spawn_location);
-            }
-            // Spawn hooks
-            for (int i = 0; i < 2; i++) {
-                spawn_location = get_safe_spawn_loc(data.random, _state);
-                if (spawn_location.x() == constants::MAX_X) {
-                    continue; // Couldn't find a safe location
-                }
-                _state.hooks.emplace_back(spawn_location);
-            }
-        }
 
         //GAME LOOP STUFF
         _player.update();
