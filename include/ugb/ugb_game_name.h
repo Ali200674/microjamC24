@@ -1,8 +1,11 @@
 #pragma once
 
+#include <bn_string.h>
+
 #include "mj/mj_game.h"
 #include "mj/mj_game_data.h"
-#include <bn_string.h>
+
+#include "ugb/ugb_game_state.h"
 #include "ugb/ugb_player.h"
 
 namespace ugb {
@@ -31,8 +34,8 @@ namespace ugb {
             void fade_out(const mj::game_data& data) override;
 
         private:
-            bool _victory_achieved = false;
-            //EVERYTHING THAT NEEDS TO BE DECLARED PRE LOOP NEEDS TO LIVE HERE??
+            bool _victory_achieved = false; // todo: move to state
             Player _player;
+            GameState _state;
     };
 }

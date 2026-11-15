@@ -2,7 +2,6 @@
 
 #include "ugb/ugb_entity_manager.h"
 #include "ugb/ugb_constants.h"
-#include "ugb/ugb_state.h"
 
 namespace ugb {
 
@@ -15,7 +14,7 @@ namespace ugb {
         return true;
     }
 
-    bn::fixed_point get_safe_spawn_loc(bn::random& random) {
+    bn::fixed_point get_safe_spawn_loc(bn::random& random, GameState& state) {
         bn::fixed spawn_x, spawn_y;
         bn::fixed_point spawn_point(constants::MAX_X, 0);
         bool safe;
@@ -26,7 +25,13 @@ namespace ugb {
             spawn_x = random.get_unbiased_int(constants::spawn::MIN_X, constants::spawn::MAX_X);
             spawn_y = random.get_unbiased_int(constants::spawn::MIN_Y, constants::spawn::MAX_Y);
 
-            for (Entity& entity : state::entities) {
+            for (Entity& entity : state.hooks) {
+                safe = _check_if_safe(spawn_x, spawn_y, entity);
+            }
+            for (Entity& entity : state.food) {
+                safe = _check_if_safe(spawn_x, spawn_y, entity);
+            }
+            for (Entity& entity : state.other_entities) {
                 safe = _check_if_safe(spawn_x, spawn_y, entity);
             }
 
