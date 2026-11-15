@@ -12,8 +12,8 @@ namespace
 {
     constexpr bn::string_view code_credits[] = { "Nick B and Colin R" };
     constexpr bn::string_view graphics_credits[] = { "Nick B and Colin R" };
-    constexpr bn::string_view sfx_credits[] = {" NA"};
-    constexpr bn::string_view music_credits[] = {" NA"};
+    constexpr bn::string_view sfx_credits[] = { "" };
+    constexpr bn::string_view music_credits[] = { "" };
 }
 
     // Macros used to add game to game list

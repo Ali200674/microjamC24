@@ -34,7 +34,6 @@ namespace ugb {
             void fade_out(const mj::game_data& data) override;
 
         private:
-            bool _victory_achieved = false; // todo: move to state
             Player _player;
             GameState _state;
     };
