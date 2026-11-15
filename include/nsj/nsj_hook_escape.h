@@ -3,6 +3,7 @@
 #include <bn_regular_bg_ptr.h>
 #include <bn_sprite_ptr.h>
 #include "nsj_player.h"
+#include "nsj_Enemy.h"
 
 
 namespace nsj
@@ -73,6 +74,7 @@ namespace nsj
          private:
         // The character that the player can move
         player _player;
+        Enemy _enemy;
 
     };
 }

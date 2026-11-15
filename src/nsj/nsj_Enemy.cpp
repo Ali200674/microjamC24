@@ -13,7 +13,7 @@ Enemy::Enemy(bn::fixed x_start, bn::fixed y_start,bn::fixed speed) : sprite(bn::
                                                    x_speed(speed), y_speed(speed),
                                                    size(ENEMY_SIZE)
     {
-        create_bounding_box(sprite, size);
+        bounding_box=create_bounding_box(sprite, size);
     }
 
    

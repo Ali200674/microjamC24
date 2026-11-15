@@ -1,6 +1,6 @@
 #include "nsj_hook_escape.h" 
 #include "mj/mj_game_list.h"
-
+#include "nsj_Enemy.h"
 
 namespace
 {
@@ -20,7 +20,8 @@ namespace nsj{
    
      nsj_hook_escape::nsj_hook_escape([[maybe_unused]]int completed_games,[[maybe_unused]] const mj::game_data& data):
          mj::game("nsj"),
-         _player({0,0},2)
+         _player({0,0},2),
+         _enemy(30,-30,1)
         {
 
         }
@@ -37,6 +38,7 @@ namespace nsj{
 
     
           _player.update();
+           _enemy.update(_player);
 
         // Creates a game result indicating whether the game is finished and whether the title should be hidden early
         // For this game the game should end early if the player has won (if victory returns true)
