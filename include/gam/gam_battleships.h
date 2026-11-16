@@ -54,8 +54,8 @@ class gam_battleships : public mj::game
 
 
     private:
-    gam_grid game_grid;
-    gam_selector game_selector;
-    bn::regular_bg_ptr game_background;
+    gam_grid _game_grid;
+    gam_selector _game_selector;
+    bn::regular_bg_ptr _game_background;
     };
 }

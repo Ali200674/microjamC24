@@ -41,8 +41,8 @@ namespace gam {
       void fire(int column, int row);
 
     private:
-      int grid_columns;
-      int grid_rows;
-      bn::vector<gam::gam_ship, MAX_SHIPS> ships;
+      int _grid_columns;
+      int _grid_rows;
+      bn::vector<gam::gam_ship, MAX_SHIPS> _ships;
   };
 }

@@ -8,7 +8,7 @@ namespace gam {
        * @param rows number of grid rows
        */
       gam_grid::gam_grid(int columns, int rows) :
-      grid_columns(columns), grid_rows(rows) {
+      _grid_columns(columns), _grid_rows(rows) {
 
       }
 
@@ -18,8 +18,8 @@ namespace gam {
        * @param size number of grid areas ship occupies
        */
       void gam_grid::new_ship(int size, bn::random& rng) {
-        if (ships.size() < MAX_SHIPS) {
-          ships.push_back(
+        if (_ships.size() < MAX_SHIPS) {
+          _ships.push_back(
             gam::gam_ship(size,
             rng.get_bool(),
             rng.get_int(columns()),
@@ -34,7 +34,7 @@ namespace gam {
       int gam_grid::ships_left() const {
         int ships_remaining = 0;
 
-        for (const gam_ship& ship : ships) {
+        for (const gam_ship& ship : _ships) {
           if(!ship.is_hit()) {
             ships_remaining++;
           }
@@ -46,19 +46,19 @@ namespace gam {
        * @return number of grid columns
        */
       int gam_grid::columns() {
-        return grid_columns;
+        return _grid_columns;
       }
 
       /**
        * @return number of grid rows
        */
       int gam_grid::rows() {
-        return grid_rows;
+        return _grid_rows;
       }
 
 
       void gam_grid::fire(int column, int row) {
-        for (gam_ship& ship : ships) {
+        for (gam_ship& ship : _ships) {
           ship.try_to_hit(column, row);
         }
       }

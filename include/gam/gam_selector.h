@@ -28,8 +28,8 @@ namespace gam {
       int row();
 
     private:
-      int grid_column;
-      int grid_row;
-      bn::sprite_ptr selector_sprite;
+      int _grid_column;
+      int _grid_row;
+      bn::sprite_ptr _selector_sprite;
   };
 }

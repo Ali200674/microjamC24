@@ -46,11 +46,11 @@ namespace gam {
             bn::vector<int, MAX_SIZE> y_coords();
 
         private:
-          int ship_size;
-          bool ship_horizontal;
-          bool ship_hit = false;
-          bn::vector<int, MAX_SIZE> ship_x_coords;
-          bn::vector<int, MAX_SIZE> ship_y_coords;
-          bn::vector<bn::sprite_ptr, MAX_SIZE> ship_sprites;
+          int _ship_size;
+          bool _ship_horizontal;
+          bool _ship_hit = false;
+          bn::vector<int, MAX_SIZE> _ship_x_coords;
+          bn::vector<int, MAX_SIZE> _ship_y_coords;
+          bn::vector<bn::sprite_ptr, MAX_SIZE> _ship_sprites;
     };
 }

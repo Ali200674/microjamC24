@@ -11,33 +11,33 @@ namespace gam {
    * @param grid_row selector's row position on the grid
    */
   gam_selector::gam_selector(int start_column, int start_row) : 
-  grid_column(start_column), 
-  grid_row(start_row),
-  selector_sprite(bn::sprite_items::gam_player.create_sprite(
+  _grid_column(start_column), 
+  _grid_row(start_row),
+  _selector_sprite(bn::sprite_items::gam_player.create_sprite(
     First_Square_X + start_column * Square_Size, First_Square_Y + start_row * Square_Size))
   
   {
-    selector_sprite.set_scale(0.5);
+    _selector_sprite.set_scale(0.5);
   };
 
   /**
    * Checks player's input for movement and fire
    */
   void gam_selector::update(int columns, int rows) {
-    if (bn::keypad::left_pressed() && grid_column > 0) {
-      grid_column--;
+    if (bn::keypad::left_pressed() && _grid_column > 0) {
+      _grid_column--;
     }
-    if (bn::keypad::right_pressed() && grid_column < (columns -1)) {
-      grid_column++;
+    if (bn::keypad::right_pressed() && _grid_column < (columns -1)) {
+      _grid_column++;
     }
-    if (bn::keypad::up_pressed() && grid_row > 0) {
-      grid_row--;
+    if (bn::keypad::up_pressed() && _grid_row > 0) {
+      _grid_row--;
     }
-    if (bn::keypad::down_pressed() && grid_row < rows - 1) {
-      grid_row++;
+    if (bn::keypad::down_pressed() && _grid_row < rows - 1) {
+      _grid_row++;
     }
 
-    selector_sprite.set_position(First_Square_X + grid_column * Square_Size, First_Square_Y + grid_row * Square_Size);
+    _selector_sprite.set_position(First_Square_X + _grid_column * Square_Size, First_Square_Y + _grid_row * Square_Size);
 
   }
 
@@ -45,13 +45,13 @@ namespace gam {
    * @return selector's column position on the grid
    */
   int gam_selector::column() {
-    return grid_column;
+    return _grid_column;
   }
 
   /**
    * @return selector's row position on the grid
    */
   int gam_selector::row() {
-    return grid_row;
+    return _grid_row;
   }
 }

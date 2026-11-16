@@ -27,13 +27,13 @@ namespace gam {
     [[maybe_unused]] int completed_games, 
     const mj::game_data& data) : 
     mj::game("gam"),
-    game_grid(5, 5),
-    game_selector(0, 0),
-    game_background(bn::regular_bg_items::gam_grid.create_bg(0, 0))
+    _game_grid(5, 5),
+    _game_selector(0, 0),
+    _game_background(bn::regular_bg_items::gam_grid.create_bg(0, 0))
   {
-    game_grid.new_ship(2, data.random);
-    game_grid.new_ship(3, data.random);
-    game_grid.new_ship(4, data.random);
+    _game_grid.new_ship(2, data.random);
+    _game_grid.new_ship(3, data.random);
+    _game_grid.new_ship(4, data.random);
   }
 
   /**
@@ -66,10 +66,10 @@ namespace gam {
    */
   mj::game_result gam_battleships::play([[maybe_unused]] const mj::game_data& data)
   {
-      game_selector.update(game_grid.columns(), game_grid.rows());
+      _game_selector.update(_game_grid.columns(), _game_grid.rows());
 
       if(bn::keypad::a_pressed()) {
-        game_grid.fire(game_selector.column(), game_selector.row());
+        _game_grid.fire(_game_selector.column(), _game_selector.row());
       }
 
       mj::game_result result(victory(), false);
@@ -82,7 +82,7 @@ namespace gam {
    * In this particular microgame the player wins if all ships are destroyed.
    */
   bool gam_battleships::victory() const {
-      return game_grid.ships_left() == 0;
+      return _game_grid.ships_left() == 0;
   }
 
   /**
