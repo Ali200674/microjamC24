@@ -27,9 +27,6 @@ namespace cia
         player _player;
         shark _shark;
 
-        // Vector to hold all enemies.
-        bn::vector<shark, 15> sharkPool;
-
         // True once the shark hits the player
         bool _hit;
     };
