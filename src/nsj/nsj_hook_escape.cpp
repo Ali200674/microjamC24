@@ -34,11 +34,11 @@ namespace nsj{
 
      bn::fixed nsj_hook_escape::_recommended_hook_speed(mj::difficulty_level difficulty){
      if(difficulty == mj::difficulty_level::EASY){
-      return 2;
+      return 1.5;
      }else if(difficulty == mj::difficulty_level::NORMAL){
-      return 4;
+      return 2.5;
      }
-     return 5;
+     return 3.5;
     }
 
 
