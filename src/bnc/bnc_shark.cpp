@@ -1,5 +1,5 @@
 #include "bnc/bnc_shark.h"
-#include "bn_sprite_items_shark.h"
+#include "bn_sprite_items_bnc_shark.h"
 #include "mj/mj_game_result.h"
 #include <bn_log.h>
 #include "bnc/bnc_minnow.h"
@@ -11,7 +11,7 @@
 namespace bnc{
 
     Shark::Shark(bn::fixed x, bn::fixed y, bn::fixed speed) :
-    _shark(bn::sprite_items::shark.create_sprite(x, y)),
+    _shark(bn::sprite_items::bnc_shark.create_sprite(x, y)),
     _shark_size(SHARK_SIZE),
     _shark_hit_box(create_bounding_box(_shark, _shark_size)),
     _shark_speed(speed)

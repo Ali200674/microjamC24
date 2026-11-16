@@ -1,10 +1,10 @@
 #include "bnc/bnc_minnow.h"
 
 #include <bn_keypad.h>
-#include "bn_sprite_items_minnow_right.h"
-#include "bn_sprite_items_minnow_left.h"
-#include "bn_sprite_items_minnow_up.h"
-#include "bn_sprite_items_minnow_down.h"
+#include "bn_sprite_items_bnc_minnow_right.h"
+#include "bn_sprite_items_bnc_minnow_left.h"
+#include "bn_sprite_items_bnc_minnow_up.h"
+#include "bn_sprite_items_bnc_minnow_down.h"
 
 
 
@@ -16,7 +16,7 @@ namespace bnc {
     //player constructor
 
     Minnow::Minnow(bn::fixed_point starting_position, bn::fixed speed) :
-        _sprite(bn::sprite_items::minnow_right.create_sprite(starting_position)),
+        _sprite(bn::sprite_items::bnc_minnow_right.create_sprite(starting_position)),
         _speed(speed)
         {}
 
@@ -70,7 +70,7 @@ void bnc::Minnow::_update_position() {
         //direction change
         //add direction checker
         if (direction != 1){
-            _sprite = bn::sprite_items::minnow_left.create_sprite(_sprite.x(), _sprite.y());
+            _sprite = bn::sprite_items::bnc_minnow_left.create_sprite(_sprite.x(), _sprite.y());
             direction = 1;
         }
 
@@ -79,7 +79,7 @@ void bnc::Minnow::_update_position() {
     if(bn::keypad::right_held()) {
 
         if (direction != 0){
-            _sprite = bn::sprite_items::minnow_right.create_sprite(_sprite.x(), _sprite.y());
+            _sprite = bn::sprite_items::bnc_minnow_right.create_sprite(_sprite.x(), _sprite.y());
             direction = 0;
         }
         _sprite.set_x(_sprite.x() + _speed);
@@ -87,7 +87,7 @@ void bnc::Minnow::_update_position() {
     if(bn::keypad::up_held()) {
 
         if (direction != 2){
-            _sprite = bn::sprite_items::minnow_up.create_sprite(_sprite.x(), _sprite.y());
+            _sprite = bn::sprite_items::bnc_minnow_up.create_sprite(_sprite.x(), _sprite.y());
             direction = 2;
         }
         _sprite.set_y(_sprite.y() - _speed);
@@ -95,7 +95,7 @@ void bnc::Minnow::_update_position() {
     if(bn::keypad::down_held()) {
 
         if (direction != 4){
-            _sprite = bn::sprite_items::minnow_down.create_sprite(_sprite.x(), _sprite.y());
+            _sprite = bn::sprite_items::bnc_minnow_down.create_sprite(_sprite.x(), _sprite.y());
             direction = 4;
         }
         _sprite.set_y(_sprite.y() + _speed);
