@@ -27,9 +27,8 @@ namespace bar
 
             void fade_out(const mj::game_data& data) override;
         private:
-            bar_player _player;
-            // bar_bouncer _bouncer;
-            bn::vector<bar_bouncer, bar_player::get_max_bouncers()> _bouncers;
+        bn::vector<bar_player, 2> _player_arms;
+        bn::vector<bar_bouncer, bar_player::get_max_bouncers()> _bouncers;
             bn::fixed _recommended_bounce_speed(mj::difficulty_level difficulty);
 
     };

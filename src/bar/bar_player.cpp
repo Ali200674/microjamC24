@@ -12,32 +12,15 @@ namespace bar
 
     void bar_player::update(bar_bouncer &bouncer)
     {
-        //_update_animation();
-
-       // for (bar_bouncer &bouncer : bouncers)
-       // {
-            if (bn::keypad::l_pressed() && _bounding_box.intersects(bouncer.get_bounding_box())) {
-                bouncer.set_collided(true);
-                bouncer.set_hit(true);
-            }
-       // }
+        if (bn::keypad::l_pressed() && _bounding_box.intersects(bouncer.get_bounding_box()))
+        {
+            bouncer.set_collided(true);
+            bouncer.set_hit(true);
+        }
         _bounding_box = bar_create_bounding_box(_sprite, _size);
     }
 
     void bar::bar_player::_update_animation()
     {
-        
-
-        // if (bn::keypad::a_pressed())
-        // {
-        // }
-
-        // if (bn::keypad::b_pressed())
-        // {
-        // }
     }
-
-   // bool bar::bar_player::intercepted_bounce() {
-   //     return is_hit;
-   // }
 }

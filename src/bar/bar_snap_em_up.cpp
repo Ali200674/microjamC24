@@ -5,6 +5,7 @@
 
 #define FLOOR (80 - 16)
 #define CEILING (-72 - 8)
+#define TARGET_COUNT (3)
 
 namespace
 {
@@ -23,25 +24,36 @@ MJ_GAME_LIST_ADD_SFX_CREDITS(sfx_credits)
 
 namespace bar
 {
-   bn::fixed player_position_x = bn::display::width() / 20;
+   bn::fixed position_left = bn::display::width() / 20;
+   bn::fixed position_right = bn::display::width() / -20;
+
    bn::fixed player_position_y = FLOOR;
    bn::size player_size = {64, 64};
 
-   bn::fixed bounce_position_x = bn::display::width() / 20;
    bn::fixed bounce_position_y = CEILING;
    bn::size bounce_size = {8, 8};
 
    // bn::vector<bar_bouncer, bar_player::get_max_bouncers()> bouncer = {};
 
    int game_timer = 0;
+   int bouncer_hit_count = 0;
    int completed_games_global;
 
+   bool bouncer_target_reached = false;
+
    bar_snap_em_up::bar_snap_em_up([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data &data) : mj::game("bar"),
-                                                                                                                      _player(bar_player(player_position_x, player_position_y, player_size)),
+                                                                                                                      _player_arms(),
                                                                                                                       _bouncers()
    {
+      game_timer = 0;
+      bouncer_hit_count = 0;
+      bouncer_target_reached = false;
       completed_games_global = completed_games;
-      bar_spawn_bouncer(_bouncers, bounce_position_x, bounce_position_y, _recommended_bounce_speed(recommended_difficulty_level(completed_games, data)), bounce_size);
+
+      _player_arms.push_back(bar_player(position_left, player_position_y, player_size));
+      _player_arms.push_back(bar_player(position_right, player_position_y, player_size));
+
+      bar_spawn_bouncer(_bouncers, position_left, bounce_position_y, _recommended_bounce_speed(recommended_difficulty_level(completed_games, data)), bounce_size);
    }
 
    bn::string<16> bar_snap_em_up::title() const
@@ -72,22 +84,27 @@ namespace bar
       for (bar_bouncer &bouncer : _bouncers)
       {
          bouncer.update();
-         _player.update(bouncer);
+         _player_arms[0].update(bouncer);
+         _player_arms[1].update(bouncer);
       }
-
-      //BN_LOG("Hit! | ", _bouncer.is_hit());
 
       for (int i = _bouncers.size() - 1; i >= 0; i--)
       {
          if (_bouncers[i].is_collided())
+         {
             _bouncers.erase(_bouncers.begin() + i);
+            bouncer_hit_count++;
+         }
       }
 
       if (game_timer >= 60)
       {
          game_timer = 0;
-         bar_spawn_bouncer(_bouncers, bounce_position_x, bounce_position_y, _recommended_bounce_speed(recommended_difficulty_level(completed_games_global, data)), bounce_size);
+         bar_spawn_bouncer(_bouncers, position_right, bounce_position_y, _recommended_bounce_speed(recommended_difficulty_level(completed_games_global, data)), bounce_size);
       }
+
+      if (bouncer_hit_count == TARGET_COUNT)
+         bouncer_target_reached = true;
 
       game_timer++;
       mj::game_result result(victory(), false);
@@ -96,10 +113,7 @@ namespace bar
 
    bool bar_snap_em_up::victory() const
    {
-      for (bar_bouncer bouncer : _bouncers) {
-         if (bouncer.is_collided()) return bouncer.is_collided();
-      }
-      return false;
+      return bouncer_target_reached;
    }
 
    void bar_snap_em_up::fade_in([[maybe_unused]] const mj::game_data &data)
