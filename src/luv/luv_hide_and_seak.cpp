@@ -47,11 +47,11 @@ namespace luv
 
     mj::game_result luv_hide_and_seak::play([[maybe_unused]] const mj::game_data &data)
     {
-        mj::game_result result(victory());
+        mj::game_result result(victory(), false);
         _player.update();
         return result;
   
-    }
+    };
 
     // Get the player
     luv_player luv_hide_and_seak::get_player() const
@@ -77,16 +77,17 @@ namespace luv
         
         //For each trap within the traps, if the player touches them...
         for (luv_trap _trap_single : _traps) {
-            if(_trap_single.get_bounding_box().intersects(get_player().get_bounding_box())) {
+            //Return false
+            if(get_player().get_bounding_box().intersects(_trap_single.get_bounding_box())) {
                 BN_LOG("Trapped!");
-                
+                return true;
             }
-        }
+            //If the player reaches a safe anemone, return true
+            if (get_player().get_bounding_box().intersects(get_anemone().get_bounding_box()))
+            {
+                return true;
+            }
 
-        //If the player reaches a safe anemone, return true
-        if (get_player().get_bounding_box().intersects(get_anemone().get_bounding_box()))
-        {
-            return true;
         }
         //Else, return false.
         return false;
