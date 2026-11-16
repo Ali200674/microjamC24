@@ -57,7 +57,7 @@ namespace cia
     mj::game_result cia_oceandive::play(const mj::game_data &)
     {
         _player.update();
-        _shark.update();
+        _shark.update(_player);
 
         // If the player intersects with the shark, the player loses.
         if (_player.rect().intersects(_shark.rect()))

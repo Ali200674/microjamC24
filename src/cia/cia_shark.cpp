@@ -1,4 +1,5 @@
 #include "cia_shark.h"
+#include "cia_player.h"
 
 #include "bn_sprite_items_cia_shark.h"
 
@@ -12,7 +13,7 @@ namespace cia
         _sprite.set_horizontal_flip(true);
     }
 
-    void shark::update()
+    void shark::update(cia::player &player)
     {
         _sprite.set_x(_sprite.x() - _speed);
 

@@ -5,6 +5,8 @@
 #include <bn_sprite_ptr.h>
 #include <bn_display.h>
 
+#include "cia_player.h"
+
 namespace cia
 {
     class shark
@@ -15,7 +17,7 @@ namespace cia
 
     public:
         shark(bn::fixed_point starting_position, bn::fixed speed);
-        void update();
+        void update(cia::player &player);
         bn::fixed_rect rect() const;
 
     private:
