@@ -63,7 +63,7 @@ namespace bar
 
    int bar_snap_em_up::total_frames() const
    {
-      return 300;
+      return 450;
    }
 
    bn::fixed bar_snap_em_up::_recommended_bounce_speed(mj::difficulty_level difficulty)
