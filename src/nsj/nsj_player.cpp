@@ -43,9 +43,11 @@ void player::update() {
 void nsj::player::_update_position() {
     if(bn::keypad::left_held()) {
         _sprite.set_x(_sprite.x() - _speed);
+        _sprite.set_horizontal_flip(false);
     }
     if(bn::keypad::right_held()) {
         _sprite.set_x(_sprite.x() + _speed);
+         _sprite.set_horizontal_flip(true);
     }
     if(bn::keypad::up_held()) {
         _sprite.set_y(_sprite.y() - _speed);
