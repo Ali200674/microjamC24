@@ -3,6 +3,7 @@
 #include "nsj_Enemy.h"
 #include "nsj_boundingBox.h"
 
+
 namespace
 {
     constexpr bn::string_view code_credits[] = { "Necobi Williams, Samantha Jimenez" };
@@ -23,7 +24,8 @@ namespace nsj{
          mj::game("nsj"),
          _player({0,0},2),
          _enemy(30,-30, _recommended_hook_speed(recommended_difficulty_level(completed_games, data))),
-         _enemy2(-30,30, _recommended_hook_speed(recommended_difficulty_level(completed_games, data)))
+         _enemy2(-30,30, _recommended_hook_speed(recommended_difficulty_level(completed_games, data))),
+         _Shark(-80,-40,_recommended_shark_speed(recommended_difficulty_level(completed_games, data)))
         {
 
         }
@@ -37,12 +39,19 @@ namespace nsj{
      if(difficulty == mj::difficulty_level::EASY){
       return 1.5;
      }else if(difficulty == mj::difficulty_level::NORMAL){
-      return 2.5;
+      return 2;
      }
-     return 3.5;
+     return 2.5;
     }
 
-
+   bn::fixed nsj_hook_escape::_recommended_shark_speed(mj::difficulty_level difficulty){
+     if(difficulty == mj::difficulty_level::EASY){
+      return .5;
+     }else if(difficulty == mj::difficulty_level::NORMAL){
+      return .75;
+     }
+     return 1;
+    }
 
 
 
@@ -58,7 +67,11 @@ namespace nsj{
           _player.update();
            _enemy.update(_player);
            _enemy2.update(_player);
-            if (_enemy.bounding_box.intersects(_player.bounding_box) || _enemy2.bounding_box.intersects(_player.bounding_box))
+           _Shark.update(_player);
+            if (_enemy.bounding_box.intersects(_player.bounding_box) ||
+             _enemy2.bounding_box.intersects(_player.bounding_box) ||
+             _Shark.bounding_box.intersects(_player.bounding_box)
+            )
     {
         _hooked = true;
     }

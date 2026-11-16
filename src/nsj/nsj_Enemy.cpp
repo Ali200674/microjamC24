@@ -7,8 +7,7 @@
 #include "nsj_boundingBox.h"
 
 
-static constexpr bn::size ENEMY_SIZE = {8, 8};
-
+static constexpr bn::size ENEMY_SIZE = {16, 16};
 
 Enemy::Enemy(bn::fixed x_start, bn::fixed y_start,bn::fixed speed) : sprite(bn::sprite_items::nsj_hook.create_sprite(x_start, y_start)),
                                                    x_speed(speed), y_speed(speed),

@@ -4,6 +4,7 @@
 #include <bn_sprite_ptr.h>
 #include "nsj_player.h"
 #include "nsj_Enemy.h"
+#include "nsj_Shark.h"
  //static constexpr int MAX_ENEMIES = 10;
 
 namespace nsj
@@ -77,6 +78,8 @@ namespace nsj
         Enemy _enemy;
         Enemy _enemy2; 
         bool _hooked=false;
+        Shark _Shark;
         bn::fixed _recommended_hook_speed(mj::difficulty_level difficulty);
+         bn::fixed _recommended_shark_speed(mj::difficulty_level difficulty);
     };
-}
+};
