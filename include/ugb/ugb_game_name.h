@@ -8,6 +8,8 @@
 #include "ugb/ugb_game_state.h"
 #include "ugb/ugb_player.h"
 
+#include "ugb/ugb_food_manager.h"
+
 namespace ugb {
     class ugb_game_name : public mj::game {
         public:
@@ -36,5 +38,6 @@ namespace ugb {
         private:
             Player _player;
             GameState _state;
+            FoodManager _food_manager;
     };
 }

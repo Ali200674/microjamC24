@@ -55,7 +55,7 @@ namespace ugb {
     }
 
     bn::string<16> ugb_game_name::title() const {
-        return "Eat the food";
+        return "avoid hooks";
     }
 
     int ugb_game_name::total_frames() const {
@@ -72,17 +72,12 @@ namespace ugb {
         _player.update();
         
         bn::rect player_bounding_box = _player.bounding_box();
-        int food_ind = 0;
-        for (Food& food : _state.food) {
-            bn::rect food_bounding_box = food.bounding_box();
-            if (player_bounding_box.intersects(food_bounding_box)) {
-                _state.score += 1;
-                update_score(data.text_generator);
-                // Remove food from vector
-                _state.food.erase(_state.food.begin() + food_ind);
-                break;
-            }
-            food_ind++;
+
+        int points = _food_manager.collect_food(_state.food, player_bounding_box);
+
+        if (points > 0) {
+            _state.score += points;
+            update_score(data.text_generator);
         }
         
         //end
