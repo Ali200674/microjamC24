@@ -21,11 +21,15 @@ player::player(bn::fixed_point starting_position, bn::fixed speed) :
     _sprite_action(bn::create_sprite_animate_action_forever(_sprite, 16, bn::sprite_items::nsj_fish.tiles_item(), 0, 1, 2, 3)),
     _speed(speed)
     {
+        bounding_box = create_bounding_box(_sprite, {16, 16});
        
     }
 void player::update() {
     _update_position();
     //_update_animation();
+
+
+
 }
 
  bn::sprite_ptr nsj::player::get_sprite()
@@ -49,6 +53,25 @@ void nsj::player::_update_position() {
     if(bn::keypad::down_held()) {
         _sprite.set_y(_sprite.y() + _speed);
     }
+
+        if (_sprite.x() > MAX_X)
+        {
+        _sprite.set_x(MIN_X);
+        }
+        else if (_sprite.x() < MIN_X)
+        {
+        _sprite.set_x(MAX_X);
+        }
+
+        if (_sprite.y() > MAX_Y)
+        {
+        _sprite.set_y(MIN_Y);
+        }
+        else if (_sprite.y() < MIN_Y)
+        {
+        _sprite.set_y(MAX_Y);
+        }
+        bounding_box = create_bounding_box(_sprite, {16,16});
 }
 /**
  * Returns whether the player has left the screen

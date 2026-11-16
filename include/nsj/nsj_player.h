@@ -21,6 +21,7 @@ class player {
         static constexpr int MIN_Y = - bn::display::height() / 2;
 
     public:
+     bn::rect bounding_box;
         /**
          * player constructor
          * 

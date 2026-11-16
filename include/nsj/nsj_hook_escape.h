@@ -75,6 +75,6 @@ namespace nsj
         // The character that the player can move
         player _player;
         Enemy _enemy;
-
+        bool _hooked=false;
     };
 }

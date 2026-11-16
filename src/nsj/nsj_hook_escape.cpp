@@ -1,6 +1,7 @@
 #include "nsj_hook_escape.h" 
 #include "mj/mj_game_list.h"
 #include "nsj_Enemy.h"
+#include "nsj_boundingBox.h"
 
 namespace
 {
@@ -39,17 +40,20 @@ namespace nsj{
     
           _player.update();
            _enemy.update(_player);
+            if (_enemy.bounding_box.intersects(_player.bounding_box))
+    {
+        _hooked = true;
+    }
 
         // Creates a game result indicating whether the game is finished and whether the title should be hidden early
         // For this game the game should end early if the player has won (if victory returns true)
         // The title is not hidden early (false is passed), so the title disappears at the default time
-        mj::game_result result(victory(), false);
+        mj::game_result result(_hooked, false);
         return result;
      }
 
       bool nsj_hook_escape:: victory() const{
-        return _player.out_of_bounds();
-
+        return !_hooked;
       }
 
       void nsj_hook_escape:: fade_in([[maybe_unused]]const mj::game_data& data){
