@@ -55,7 +55,7 @@ namespace ugb {
     }
 
     bn::string<16> ugb_game_name::title() const {
-        return "avoid hooks";
+        return "eat little fish";
     }
 
     int ugb_game_name::total_frames() const {
@@ -73,7 +73,7 @@ namespace ugb {
         
         bn::rect player_bounding_box = _player.bounding_box();
 
-        int points = _food_manager.collect_food(_state.food, player_bounding_box);
+        int points = _state.food_manager.collect_food(_state.food, player_bounding_box);
 
         if (points > 0) {
             _state.score += points;

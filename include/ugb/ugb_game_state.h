@@ -7,6 +7,8 @@
 #include "ugb/ugb_hook.h"
 #include "ugb/ugb_food.h"
 
+#include "ugb/ugb_food_manager.h"
+
 namespace ugb {
 
     class GameState {
@@ -17,6 +19,7 @@ namespace ugb {
             bn::vector<Entity, constants::MAX_ENTITIES> other_entities;
             bn::vector<bn::sprite_ptr, constants::MAX_SCORE_CHARS> score_sprites;
             int score = 0;
+            FoodManager food_manager;
 
     };
 
