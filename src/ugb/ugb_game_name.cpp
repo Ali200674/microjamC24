@@ -47,12 +47,11 @@ namespace ugb {
         }
         // Spawn hooks
         // Add one hook on each side before adding the next pair
-        const int hook_x_positions[] = {-72, 72, -100, 100, -44, 44};
 
         for (int i = 0; i < _state.hook_count; i++) {
-            bn::fixed start_y = data.random.get_unbiased_int(-64, 64);
+            bn::fixed start_y = data.random.get_unbiased_int(constants::hook::INITIAL_Y_RANGE[0], constants::hook::INITIAL_Y_RANGE[1]);
 
-            bn::fixed_point hook_position(hook_x_positions[i], start_y);
+            bn::fixed_point hook_position(constants::hook::X_POSITIONS[i], start_y);
             _state.hooks.emplace_back(hook_position);
         }
     }

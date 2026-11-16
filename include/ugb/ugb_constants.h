@@ -44,6 +44,12 @@ namespace ugb {
             static constexpr int INITIAL_Y = 0;
             static constexpr int SPEED = 2;
         }
+
+        namespace hook {
+            static constexpr int INITIAL_Y_RANGE[] = {-64, 64};
+            static constexpr int X_POSITIONS[] = {-72, 72, -100, 100, -44, 44};
+        }
+        
     }
 
 }
