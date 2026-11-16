@@ -5,7 +5,6 @@
 
 #define FLOOR (80 - 16)
 #define CEILING (-72 - 8)
-#define TARGET_COUNT (5)
 
 namespace
 {
@@ -35,6 +34,9 @@ namespace bar
 
    // bn::vector<bar_bouncer, bar_player::get_max_bouncers()> bouncer = {};
 
+   int TARGET_COUNT = 5;
+
+
    int game_timer = 0;
    int bouncer_spawned_count = 0;
    int bouncer_hit_count = 0;
@@ -46,6 +48,7 @@ namespace bar
                                                                                                                       _player_arms(),
                                                                                                                       _bouncers()
    {
+      
       game_timer = 0;
       bouncer_hit_count = 0;
       bouncer_spawned_count = 1;
@@ -76,8 +79,10 @@ namespace bar
       }
       else if (difficulty == mj::difficulty_level::NORMAL)
       {
+         TARGET_COUNT = 6;
          return 2;
       }
+      TARGET_COUNT = 8;
       return 3;
    }
 
