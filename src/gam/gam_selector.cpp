@@ -1,6 +1,6 @@
 #include "gam_selector.h"
 #include <bn_keypad.h>
-#include "bn_sprite_items_player.h"
+#include "bn_sprite_items_gam_player.h"
 #include "gam_grid_layout.h"
 
 namespace gam {
@@ -13,7 +13,7 @@ namespace gam {
   gam_selector::gam_selector(int start_column, int start_row) : 
   grid_column(start_column), 
   grid_row(start_row),
-  selector_sprite(bn::sprite_items::player.create_sprite(
+  selector_sprite(bn::sprite_items::gam_player.create_sprite(
     First_Square_X + start_column * Square_Size, First_Square_Y + start_row * Square_Size))
   
   {

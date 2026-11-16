@@ -1,6 +1,6 @@
 #include "gam_battleships.h"
 #include "mj/mj_game_list.h"
-#include "bn_regular_bg_items_grid.h"
+#include "bn_regular_bg_items_gam_grid.h"
 #include "bn_keypad.h"
 
 namespace {
@@ -29,7 +29,7 @@ namespace gam {
     mj::game("gam"),
     game_grid(5, 5),
     game_selector(0, 0),
-    game_background(bn::regular_bg_items::grid.create_bg(0, 0))
+    game_background(bn::regular_bg_items::gam_grid.create_bg(0, 0))
   {
     game_grid.new_ship(2, data.random);
     game_grid.new_ship(3, data.random);

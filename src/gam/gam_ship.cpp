@@ -1,5 +1,5 @@
 #include "gam_ship.h"
-#include "bn_sprite_items_ship.h"
+#include "bn_sprite_items_gam_ship.h"
 #include "gam_grid_layout.h"
 
 namespace gam {
@@ -24,7 +24,7 @@ namespace gam {
             for(int i = 0; i < ship_size; i++) {
                 ship_x_coords.push_back(start_x + i);
 
-                ship_sprites.push_back(bn::sprite_items::ship.create_sprite(
+                ship_sprites.push_back(bn::sprite_items::gam_ship.create_sprite(
                   First_Square_X + (start_x + i) * Square_Size, First_Square_Y + start_y * Square_Size));
             }
             ship_y_coords.push_back(start_y);
@@ -33,7 +33,7 @@ namespace gam {
             for(int i = 0; i < ship_size; i++) {
                 ship_y_coords.push_back(start_y + i);
 
-                ship_sprites.push_back(bn::sprite_items::ship.create_sprite(
+                ship_sprites.push_back(bn::sprite_items::gam_ship.create_sprite(
                     First_Square_X + start_x * Square_Size, First_Square_Y + (start_y + i) * Square_Size));
             }
             ship_x_coords.push_back(start_x);
