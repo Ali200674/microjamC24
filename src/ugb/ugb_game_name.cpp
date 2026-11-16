@@ -80,6 +80,8 @@ namespace ugb {
         bn::rect player_bounding_box = _player.bounding_box();
 
         for (Hook& hook : _state.hooks) {
+            hook.update();
+
             if (player_bounding_box.intersects(hook.bounding_box())) {
                 _state.hit_hook = true;
                 return mj::game_result(true, false);
