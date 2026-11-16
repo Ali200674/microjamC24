@@ -65,7 +65,7 @@ namespace luv
         return _anemone;
     };
 
-        // Get the anemone
+    // Get the anemone
     luv_trap luv_hide_and_seak::get_trap() const
     {
         return _trap;
@@ -74,7 +74,16 @@ namespace luv
     //Method to test if the player has beaten the minigame or not.
     bool luv_hide_and_seak::victory() const
     {
-        //IF the player reaches a safe anemone, return true
+        
+        //For each trap within the traps, if the player touches them...
+        for (luv_trap _trap_single : _traps) {
+            if(_trap_single.get_bounding_box().intersects(get_player().get_bounding_box())) {
+                BN_LOG("Trapped!");
+                
+            }
+        }
+
+        //If the player reaches a safe anemone, return true
         if (get_player().get_bounding_box().intersects(get_anemone().get_bounding_box()))
         {
             return true;
