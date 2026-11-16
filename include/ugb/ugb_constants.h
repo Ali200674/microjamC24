@@ -48,7 +48,8 @@ namespace ugb {
         }
 
         namespace hook {
-            static constexpr int INITIAL_Y_RANGE[] = {-64, 64};
+            static constexpr int MIN_Y = -64;
+            static constexpr int MAX_Y = 64;
             static constexpr int X_POSITIONS[] = {-72, 72, -100, 100, -44, 44};
         }
         

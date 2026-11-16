@@ -51,7 +51,7 @@ namespace ugb {
         // Add one hook on each side before adding the next pair
 
         for (int i = 0; i < _state.hook_count; i++) {
-            bn::fixed start_y = data.random.get_unbiased_int(constants::hook::INITIAL_Y_RANGE[0], constants::hook::INITIAL_Y_RANGE[1]);
+            bn::fixed start_y = data.random.get_unbiased_int(constants::hook::MIN_Y, constants::hook::MAX_Y);
 
             bn::fixed_point hook_position(constants::hook::X_POSITIONS[i], start_y);
             _state.hooks.emplace_back(hook_position, constants::difficulty::HOOK_SPEED[difficulty_ind]);
