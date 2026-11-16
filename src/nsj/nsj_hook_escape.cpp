@@ -22,7 +22,8 @@ namespace nsj{
      nsj_hook_escape::nsj_hook_escape([[maybe_unused]]int completed_games,[[maybe_unused]] const mj::game_data& data):
          mj::game("nsj"),
          _player({0,0},2),
-         _enemy(30,-30, _recommended_hook_speed(recommended_difficulty_level(completed_games, data)))
+         _enemy(30,-30, _recommended_hook_speed(recommended_difficulty_level(completed_games, data))),
+         _enemy2(-30,30, _recommended_hook_speed(recommended_difficulty_level(completed_games, data)))
         {
 
         }
@@ -56,7 +57,8 @@ namespace nsj{
     
           _player.update();
            _enemy.update(_player);
-            if (_enemy.bounding_box.intersects(_player.bounding_box))
+           _enemy2.update(_player);
+            if (_enemy.bounding_box.intersects(_player.bounding_box) || _enemy2.bounding_box.intersects(_player.bounding_box))
     {
         _hooked = true;
     }

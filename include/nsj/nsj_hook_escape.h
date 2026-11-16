@@ -4,7 +4,7 @@
 #include <bn_sprite_ptr.h>
 #include "nsj_player.h"
 #include "nsj_Enemy.h"
-
+ //static constexpr int MAX_ENEMIES = 10;
 
 namespace nsj
 {
@@ -75,6 +75,7 @@ namespace nsj
         // The character that the player can move
         player _player;
         Enemy _enemy;
+        Enemy _enemy2; 
         bool _hooked=false;
         bn::fixed _recommended_hook_speed(mj::difficulty_level difficulty);
     };
