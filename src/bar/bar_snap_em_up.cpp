@@ -12,7 +12,7 @@ namespace
    constexpr bn::string_view graphics_credits[] = {""};
    constexpr bn::string_view sfx_credits[] = {""};
    constexpr bn::string_view music_credits[] = {""};
-}
+} 
 
 // Macros used to add game to game list
 MJ_GAME_LIST_ADD(bar::bar_snap_em_up) // The class of the game is used here
@@ -30,7 +30,6 @@ namespace bar
    bn::fixed bounce_position_x = bn::display::width() / 20;
    bn::fixed bounce_position_y = CEILING;
    bn::size bounce_size = {8, 8};
-   bn::fixed bounce_speed;
 
    bn::vector<bar_bouncer, bar_player::MAX_BOUNCERS> bouncer = {};
 
@@ -40,7 +39,6 @@ namespace bar
                                                                                                                       _player(bar_player(player_position_x, player_position_y, player_size)),
                                                                                                                       _bouncer(bar_bouncer(bounce_position_x, bounce_position_y, _recommended_bounce_speed(recommended_difficulty_level(completed_games, data)), bounce_size))
    {
-      bn::fixed bounce_speed = _recommended_bounce_speed(recommended_difficulty_level(completed_games, data));
    }
 
    bn::string<16> bar_snap_em_up::title() const
@@ -72,7 +70,7 @@ namespace bar
       _bouncer.update();
       _player.update(_bouncer);
 
-      BN_LOG("Hit! | ", _bouncer._is_hit);
+      BN_LOG("Hit! | ", _bouncer.is_hit());
 
       /*for (int i = bouncer.size() - 1; i >= 0; i--)
       {
@@ -93,7 +91,7 @@ namespace bar
 
    bool bar_snap_em_up::victory() const
    {
-      return _bouncer._is_collided;
+      return _bouncer.is_collided();
    }
 
    void bar_snap_em_up::fade_in([[maybe_unused]] const mj::game_data &data)

@@ -16,9 +16,9 @@ namespace bar
 
        // for (bar_bouncer &bouncer : bouncers)
        // {
-            if (bn::keypad::l_pressed() && _bounding_box.intersects(bouncer._bounding_box)) {
-                bouncer._is_collided = true;
-                is_hit = true;
+            if (bn::keypad::l_pressed() && _bounding_box.intersects(bouncer.get_bounding_box())) {
+                bouncer.set_collided(true);
+                bouncer.set_hit(true);
             }
        // }
         _bounding_box = bar_create_bounding_box(_sprite, _size);
