@@ -40,7 +40,14 @@ namespace bnc
     bnc_fish_escape::bnc_fish_escape([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data& data) :
     mj::game("bnc"), 
     _minnow(bn::fixed_point(X_START, Y_START), SPEED), _shark(_shark.random_X_Point(MIN_X, MAX_Y), _shark.random_Y_Point(MIN_Y, MAX_Y), SHARK_SPEED) 
-    {}
+    {
+
+        //add the random object
+
+        while(_shark_vector.size() < _shark_increase(recommended_difficulty_level(completed_games * 9, data))) {
+            //add more sharks and randomly spawn them on the screen
+        }
+    }
 
     /**
  * The instructions given to the player at the beginning of the microgame.
