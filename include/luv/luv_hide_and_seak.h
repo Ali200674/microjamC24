@@ -71,9 +71,6 @@ namespace luv
         //Get the anemone
         luv_anemone get_anemone() const;
 
-        //Get the trap anemone
-        luv_trap get_trap() const;
-
         //Returns number of traps to spawn based on level of difficulty
         int _recommended_trap_spawn(mj::difficulty_level difficulty);
 
@@ -81,7 +78,6 @@ namespace luv
         static constexpr int MAX_TRAPS = 6;
         luv_player _player;
         luv_anemone _anemone;
-        luv_trap _trap;
         bn::regular_bg_ptr _background;
         bn::vector<luv_trap, MAX_TRAPS> _traps; 
     };

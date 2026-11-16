@@ -23,11 +23,9 @@ MJ_GAME_LIST_ADD_SFX_CREDITS(sfx_credits)
 namespace luv
 {
     luv_hide_and_seak::luv_hide_and_seak([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data &data) : mj::game("luv"),
-        _player({20, 20}, 2),
+        _player({20, -10}, 2),
         _anemone({data.random.get_fixed(MIN_X,MAX_X), 
-            data.random.get_fixed(0,MAX_Y)}),
-        _trap({data.random.get_fixed(MIN_X,MAX_X), 
-            data.random.get_fixed(0,MAX_Y)}),    
+            data.random.get_fixed(0,MAX_Y)}),  
         _background(bn::regular_bg_items::luv_seafloor.create_bg(0, 0))
     {
         for(int i = 0; i < _recommended_trap_spawn(recommended_difficulty_level(completed_games,data)); i++){
@@ -49,6 +47,14 @@ namespace luv
     {
         mj::game_result result(victory(), false);
         _player.update();
+        for(luv_trap _trap_single : _traps){
+            if (get_player().get_bounding_box().intersects(_trap_single.get_bounding_box()))
+            {
+                BN_LOG("Trapped!");
+                _player.set_speed(0.5);
+            }
+        }
+        
         return result;
   
     };
@@ -65,33 +71,13 @@ namespace luv
         return _anemone;
     };
 
-    // Get the anemone
-    luv_trap luv_hide_and_seak::get_trap() const
-    {
-        return _trap;
-    };
-
     //Method to test if the player has beaten the minigame or not.
     bool luv_hide_and_seak::victory() const
     {
-        
-        //For each trap within the traps, if the player touches them...
-        for (luv_trap _trap_single : _traps) {
-            //Return false
-            if(get_player().get_bounding_box().intersects(_trap_single.get_bounding_box())) {
-                BN_LOG("Trapped!");
-<<<<<<< HEAD
-                return false;
-=======
-                return true;
-            }
-            //If the player reaches a safe anemone, return true
-            if (get_player().get_bounding_box().intersects(get_anemone().get_bounding_box()))
-            {
-                return true;
->>>>>>> 8d1e1d9532e0a1c1813c9cbf5cad071f7a6df752
-            }
-
+        //If the player reaches a safe anemone, return true
+        if (get_player().get_bounding_box().intersects(get_anemone().get_bounding_box()))
+        {
+            return true;
         }
         //Else, return false.
         return false;
