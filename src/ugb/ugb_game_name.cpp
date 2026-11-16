@@ -31,13 +31,15 @@ namespace ugb {
         mj::difficulty_level difficulty = recommended_difficulty_level(completed_games, data);
         // Convert it to an int for array indexing
         int difficulty_ind = static_cast<int>(difficulty);
+        // Tune some things for this difficulty level
         _state.required_score = constants::difficulty::REQUIRED_SCORE[difficulty_ind];
         _state.hook_count = constants::difficulty::HOOK_SPAWNS[difficulty_ind];
 
         // Initialize score
         update_score(data.text_generator);
-        bn::fixed_point spawn_location;
+
         // Spawn food
+        bn::fixed_point spawn_location;
         for (int i = 0; i < _state.required_score; i++) {
             spawn_location = get_safe_spawn_loc(data.random, _state);
             if (spawn_location.x() == constants::MAX_X) {
@@ -52,7 +54,7 @@ namespace ugb {
             bn::fixed start_y = data.random.get_unbiased_int(constants::hook::INITIAL_Y_RANGE[0], constants::hook::INITIAL_Y_RANGE[1]);
 
             bn::fixed_point hook_position(constants::hook::X_POSITIONS[i], start_y);
-            _state.hooks.emplace_back(hook_position);
+            _state.hooks.emplace_back(hook_position, constants::difficulty::HOOK_SPEED[difficulty_ind]);
         }
     }
 
@@ -63,7 +65,7 @@ namespace ugb {
     }
 
     bn::string<16> ugb_game_name::title() const {
-        return "eat little fish";
+        return "Eat little fish";
     }
 
     int ugb_game_name::total_frames() const {

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <bn_display.h>
+#include <bn_fixed.h>
 
 namespace ugb {
 
@@ -18,8 +19,9 @@ namespace ugb {
         // Things that can change with difficulty
         // Array values are in the order [easy, normal, hard]
         namespace difficulty {
-            static constexpr int REQUIRED_SCORE[] = {3, 5, 5};
-            static constexpr int HOOK_SPAWNS[] = {2, 4, 6};
+            static constexpr int REQUIRED_SCORE[3] = {3, 5, 5};
+            static constexpr int HOOK_SPAWNS[3] = {2, 4, 6};
+            static constexpr bn::fixed HOOK_SPEED[3] = {1, 1.5, 2};
         }
 
         namespace spawn {
