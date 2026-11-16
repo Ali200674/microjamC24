@@ -77,15 +77,19 @@ namespace bar
    {
       if (difficulty == mj::difficulty_level::EASY)
       {
-         return 1;
-      }
-      else if (difficulty == mj::difficulty_level::NORMAL)
-      {
          TARGET_COUNT = 6;
          return 2;
       }
-      TARGET_COUNT = 8;
-      return 3;
+      else if (difficulty == mj::difficulty_level::NORMAL)
+      {
+         TARGET_COUNT = 7;
+         return 2.5;
+      }
+      else if (difficulty == mj::difficulty_level::HARD) {
+         TARGET_COUNT = 8;
+         return 3.2;
+      }
+      return 1;
    }
 
    bn::fixed bar_snap_em_up::_recommended_spawn_speed(mj::difficulty_level difficulty)
