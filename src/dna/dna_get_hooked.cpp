@@ -6,7 +6,7 @@
 
 namespace
 {
-    constexpr bn::string_view code_credits[] = { "" };
+    constexpr bn::string_view code_credits[] = { "kohumukini" };
     constexpr bn::string_view graphics_credits[] = { "" };
     constexpr bn::string_view sfx_credits[] = {""};
     constexpr bn::string_view music_credits[] = {""};
@@ -24,7 +24,7 @@ namespace dna
     mj::game("dna") {}
 
     bn::string<16> dna_get_hooked::title() const {
-        return "Harvest the fish!";
+        return "Harvest Fish!";
     }
 
     int dna_get_hooked::total_frames() const {
