@@ -1,5 +1,7 @@
 #pragma once
 
+#include <bn_vector.h>
+
 #include "mj/mj_game.h"
 #include "bar/bar_player.h"
 #include "bar/bar_bouncer.h"
@@ -26,7 +28,8 @@ namespace bar
             void fade_out(const mj::game_data& data) override;
         private:
             bar_player _player;
-            bar_bouncer _bouncer;
+            // bar_bouncer _bouncer;
+            bn::vector<bar_bouncer, bar_player::get_max_bouncers()> _bouncers;
             bn::fixed _recommended_bounce_speed(mj::difficulty_level difficulty);
 
     };

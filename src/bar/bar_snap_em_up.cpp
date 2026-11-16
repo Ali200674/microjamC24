@@ -12,7 +12,7 @@ namespace
    constexpr bn::string_view graphics_credits[] = {""};
    constexpr bn::string_view sfx_credits[] = {""};
    constexpr bn::string_view music_credits[] = {""};
-} 
+}
 
 // Macros used to add game to game list
 MJ_GAME_LIST_ADD(bar::bar_snap_em_up) // The class of the game is used here
@@ -31,14 +31,17 @@ namespace bar
    bn::fixed bounce_position_y = CEILING;
    bn::size bounce_size = {8, 8};
 
-   bn::vector<bar_bouncer, bar_player::MAX_BOUNCERS> bouncer = {};
+   // bn::vector<bar_bouncer, bar_player::get_max_bouncers()> bouncer = {};
 
    int game_timer = 0;
+   int completed_games_global;
 
    bar_snap_em_up::bar_snap_em_up([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data &data) : mj::game("bar"),
                                                                                                                       _player(bar_player(player_position_x, player_position_y, player_size)),
-                                                                                                                      _bouncer(bar_bouncer(bounce_position_x, bounce_position_y, _recommended_bounce_speed(recommended_difficulty_level(completed_games, data)), bounce_size))
+                                                                                                                      _bouncers()
    {
+      completed_games_global = completed_games;
+      bar_spawn_bouncer(_bouncers, bounce_position_x, bounce_position_y, _recommended_bounce_speed(recommended_difficulty_level(completed_games, data)), bounce_size);
    }
 
    bn::string<16> bar_snap_em_up::title() const
@@ -66,22 +69,24 @@ namespace bar
 
    mj::game_result bar_snap_em_up::play([[maybe_unused]] const mj::game_data &data)
    {
-      // for (bar_bouncer &bouncers : bouncer)
-      _bouncer.update();
-      _player.update(_bouncer);
-
-      BN_LOG("Hit! | ", _bouncer.is_hit());
-
-      /*for (int i = bouncer.size() - 1; i >= 0; i--)
+      for (bar_bouncer &bouncer : _bouncers)
       {
-         if (bouncer[i]._is_collided)
-            bouncer.erase(bouncer.begin() + i);
-      }*/
+         bouncer.update();
+         _player.update(bouncer);
+      }
+
+      //BN_LOG("Hit! | ", _bouncer.is_hit());
+
+      for (int i = _bouncers.size() - 1; i >= 0; i--)
+      {
+         if (_bouncers[i].is_collided())
+            _bouncers.erase(_bouncers.begin() + i);
+      }
 
       if (game_timer >= 60)
       {
          game_timer = 0;
-         // bouncer.push_back(_bouncer);
+         bar_spawn_bouncer(_bouncers, bounce_position_x, bounce_position_y, _recommended_bounce_speed(recommended_difficulty_level(completed_games_global, data)), bounce_size);
       }
 
       game_timer++;
@@ -91,7 +96,10 @@ namespace bar
 
    bool bar_snap_em_up::victory() const
    {
-      return _bouncer.is_collided();
+      for (bar_bouncer bouncer : _bouncers) {
+         if (bouncer.is_collided()) return bouncer.is_collided();
+      }
+      return false;
    }
 
    void bar_snap_em_up::fade_in([[maybe_unused]] const mj::game_data &data)
@@ -100,7 +108,7 @@ namespace bar
 
    void bar_snap_em_up::fade_out([[maybe_unused]] const mj::game_data &data)
    {
-      bouncer.clear();
+      _bouncers.clear();
    }
 
 }

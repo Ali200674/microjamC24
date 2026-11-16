@@ -19,8 +19,6 @@ namespace bar
     {
 
     public:
-        static constexpr int MAX_BOUNCERS = 5;
-
         /**
          * @param player_position_x where the player is spawned on the x axis. The character will be static.
          * @param player_position_y where the player is spawned on the y axis.
@@ -32,9 +30,13 @@ namespace bar
          */
         void update(bar_bouncer &bouncer);
 
-        //bool intercepted_bounce();
+        static constexpr int get_max_bouncers() {
+            return MAX_BOUNCERS;
+        }
 
     private:
+        static constexpr int MAX_BOUNCERS = 5;
+
         // The sprite to display the player
         bn::sprite_ptr _sprite;
         bn::sprite_animate_action<4> _sprite_action;
