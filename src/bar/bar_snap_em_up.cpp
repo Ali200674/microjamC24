@@ -1,8 +1,6 @@
 #include "bar_snap_em_up.h"
 #include "mj/mj_game_list.h"
 
-#include <bn_log.h>
-
 #define FLOOR (80 - 16)
 #define CEILING (-72 - 8)
 
@@ -132,7 +130,6 @@ namespace bar
             bar_spawn_bouncer(_bouncers, position_right, bounce_position_y, _recommended_bounce_speed(recommended_difficulty_level(completed_games_global, data)), bounce_size);
          bouncer_spawned_count++;
          rng_spawn = data.random;
-         BN_LOG("Difficulty speed is ", _recommended_bounce_speed(recommended_difficulty_level(completed_games_global, data)));
       }
 
       if (bouncer_hit_count == TARGET_COUNT)
