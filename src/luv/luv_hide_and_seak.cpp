@@ -79,7 +79,7 @@ namespace luv
         for (luv_trap _trap_single : _traps) {
             if(_trap_single.get_bounding_box().intersects(get_player().get_bounding_box())) {
                 BN_LOG("Trapped!");
-                
+                return false;
             }
         }
 
