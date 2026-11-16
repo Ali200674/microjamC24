@@ -1,6 +1,5 @@
 #include "dna_get_hooked.h"
-
-#include "bn_keypad.h"
+#include "dna_player.h"
 
 #include "mj/mj_game_list.h"
 
@@ -21,7 +20,8 @@ MJ_GAME_LIST_ADD_SFX_CREDITS(sfx_credits)
 namespace dna
 {
     dna_get_hooked::dna_get_hooked([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data& data) :
-    mj::game("dna") {}
+    mj::game("dna"), 
+    _player(Player({20, 0}, 2, PLAYER_SIZE)) {}
 
     bn::string<16> dna_get_hooked::title() const {
         return "Harvest Fish!";
@@ -32,6 +32,8 @@ namespace dna
     }
 
     mj::game_result dna_get_hooked::play([[maybe_unused]] const mj::game_data& data) {
+        _player.update(); 
+        
         mj::game_result result(victory(), false); 
         return result; 
     }

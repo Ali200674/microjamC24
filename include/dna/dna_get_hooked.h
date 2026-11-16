@@ -3,6 +3,8 @@
 
 #include "mj/mj_game.h"
 
+#include "dna/dna_player.h"
+
 namespace dna {
     class dna_get_hooked : public mj::game {
         public: 
@@ -18,6 +20,9 @@ namespace dna {
 
             void fade_in(const mj::game_data& data) override; 
             void fade_out(const mj::game_data& data) override; 
+        private: 
+            Player _player;
+            bn::fixed _recommend_enemy_speed(mj::difficulty_level difficulty);
     };
 }
 

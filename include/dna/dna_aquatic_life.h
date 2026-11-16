@@ -1,0 +1,29 @@
+#ifndef DNA_AQUATIC_LIFE_H
+#define DNA_AQUATIC_LIFE_H
+
+#include "dna/dna_player.h"
+
+#include <bn_fixed.h>
+#include <bn_random.h>
+
+namespace dna {
+    class AquaticLife {
+        static constexpr int MAX_X = bn::display::width() / 2;
+        static constexpr int MIN_X = - bn::display::width() / 2;
+        static constexpr int MAX_Y = bn::display::height() / 2;
+        static constexpr int MIN_Y = - bn::display::height() / 2;
+        
+        public: 
+            AquaticLife(bn::random &random, bn::fixed speed, bn::size size); 
+            
+            void update();
+        
+            bn::fixed_point getStartPosition(bn::random &random); 
+        private: 
+            bn::sprite_ptr _sprite;  
+            bn::fixed _speed; 
+            bn::rect _hitbox;
+    };
+}
+
+#endif

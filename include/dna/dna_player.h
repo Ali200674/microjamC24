@@ -20,21 +20,16 @@ namespace dna {
         public:
             Player(bn::fixed_point starting_pos, bn::fixed speed, bn::size size);
             void update(); 
-            void player_hit();             
+            void player_hit();           
 
         private: 
             bn::sprite_ptr _sprite; 
             bn::fixed _speed; 
-            bn::size _size;
+            bn::rect _hitbox; 
 
             bool _hit = false; 
 
             void _update_position(); 
-
-            bn::rect create_bounding_box(bn::sprite_ptr sprite, bn::size sprite_size);
-
-            bn::fixed get_x(); 
-            bn::fixed get_y();
     };
 }
 
