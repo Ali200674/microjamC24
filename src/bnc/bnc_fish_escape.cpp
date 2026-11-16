@@ -1,13 +1,10 @@
 #include "bnc_fish_escape.h"
-
 #include "bn_keypad.h"
 #include "bn_display.h"
 #include "bn_sprite_ptr.h"
-
 #include "mj/mj_game_list.h"
 #include "bnc/bnc_minnow.h"
 #include "bnc/bnc_shark.h"
-
 
 // String arrays for the credits can go in an anonymous namespace
 namespace
@@ -25,10 +22,8 @@ MJ_GAME_LIST_ADD_GRAPHICS_CREDITS(graphics_credits)
 MJ_GAME_LIST_ADD_MUSIC_CREDITS(music_credits)
 MJ_GAME_LIST_ADD_SFX_CREDITS(sfx_credits)
 
-
 namespace bnc
 {
-
     /**
  * Constructor for an instance of an bnc_fish_escape
  * 

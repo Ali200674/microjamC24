@@ -6,14 +6,12 @@
 #include <bn_vector.h>
 #include <bn_rect.h>
 
-
 namespace bnc{
-
     Shark::Shark(bn::fixed x, bn::fixed y, bn::fixed speed) :
     _shark(bn::sprite_items::bnc_shark.create_sprite(x, y)),
-    _shark_size(SHARK_SIZE),
     _shark_hit_box(create_bounding_box(_shark, _shark_size)),
-    _shark_speed(speed)
+    _shark_speed(speed),
+    _shark_size(SHARK_SIZE)
     {}
 
     void Shark::update(Minnow& minnow) {
@@ -21,25 +19,19 @@ namespace bnc{
         if(_shark.x() < minnow._sprite.x()){
             _shark.set_x(_shark.x() + _shark_speed);
         }
-
         if(_shark.x() > minnow._sprite.x()){
             _shark.set_x(_shark.x() - _shark_speed);
         }
-
         if(_shark.y() > minnow._sprite.y()){
             _shark.set_y(_shark.y() - _shark_speed);
         }
-
         if(_shark.y() < minnow._sprite.y()){
             _shark.set_y(_shark.y() + _shark_speed);
         }
-
         _shark_hit_box = create_bounding_box(_shark, SHARK_SIZE);
         
         if(_shark_hit_box.intersects(minnow.minnow_hit_box)){
             shark_collision = true;
         }
-
-
     }
 }

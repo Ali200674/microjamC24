@@ -6,14 +6,12 @@
 
 
 namespace bnc {
-
     /**
  * bnc is a class representing a microgame where the player must leave the screen.
  * 
  * Like all microgames, it is a public subclass of mj::game
  */
     class bnc_fish_escape : public mj::game {
-
         public:
          /**
          * Constructor for an instance of an bnc_fish_escape
@@ -74,7 +72,6 @@ namespace bnc {
         private:
         // The character that the player can move
         Minnow _minnow;
-
         //enemy player tries to avoid
         Shark _shark;
 
