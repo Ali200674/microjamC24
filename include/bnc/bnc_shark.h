@@ -10,31 +10,20 @@
 #include <bn_random.h>
 #include <bn_fixed.h>
 
-
-
-
 namespace bnc {
+    static constexpr bn::size SHARK_SIZE = {8, 8};
+    static constexpr bn::fixed SHARK_SPEED = 0.5;
+    static constexpr int MAX_SHARKS = 4;
 
-static constexpr bn::size SHARK_SIZE = {8, 8};
+    static constexpr int MAX_X = bn::display::width() / 2;
+    static constexpr int MIN_X = - bn::display::width() / 2;
+    static constexpr int MAX_Y = bn::display::height() / 2;
+    static constexpr int MIN_Y = - bn::display::height() / 2;
 
-static constexpr bn::fixed SHARK_SPEED = 0.5;
-
-//Starting position of the player
-// static constexpr int SHARK_X_START = 90;
-// static constexpr int SHARK_Y_START = 0;
-static constexpr int MAX_SHARKS = 4;
-
- static constexpr int MAX_X = bn::display::width() / 2;
-        static constexpr int MIN_X = - bn::display::width() / 2;
-        static constexpr int MAX_Y = bn::display::height() / 2;
-        static constexpr int MIN_Y = - bn::display::height() / 2;
-
-bn::rect create_bounding_box(bn::sprite_ptr sprite, bn::size box_size);
+    bn::rect create_bounding_box(bn::sprite_ptr sprite, bn::size box_size);
 
     class Shark {
-
         public:
-        // bn::random random;
         //constructor
         Shark(bn::fixed x, bn::fixed y, bn::fixed speed);
 
