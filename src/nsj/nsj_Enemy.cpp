@@ -9,6 +9,7 @@
 
 static constexpr bn::size ENEMY_SIZE = {8, 8};
 
+
 Enemy::Enemy(bn::fixed x_start, bn::fixed y_start,bn::fixed speed) : sprite(bn::sprite_items::nsj_hook.create_sprite(x_start, y_start)),
                                                    x_speed(speed), y_speed(speed),
                                                    size(ENEMY_SIZE)
@@ -18,25 +19,18 @@ Enemy::Enemy(bn::fixed x_start, bn::fixed y_start,bn::fixed speed) : sprite(bn::
 
    
 
-    void Enemy:: update(nsj::player& player){
-        if (player.get_sprite().x() +20 > sprite.x())
-        {
+    void Enemy:: update([[maybe_unused]]nsj::player& player){
+    
             sprite.set_x(sprite.x() + x_speed);
-        }
-       if (player.get_sprite().x() -20 < sprite.x())
+    
+       if (sprite.x() >=MAX_X)
         {
-            sprite.set_x(sprite.x() - x_speed);
+            x_speed= -x_speed;
              
         }
-        // TODO: Add logic for up and down
-        if (player.get_sprite().y()+20> sprite.y())
+        else if(sprite.x() <=MIN_X)
          {
-            sprite.set_y(sprite.y()  + y_speed) ;
-         }
-
-         if (player.get_sprite().y() -20 < sprite.y())
-         {
-             sprite.set_y(sprite.y() - y_speed);
+            x_speed= -x_speed;
          }
 
        bounding_box = create_bounding_box(sprite, size);

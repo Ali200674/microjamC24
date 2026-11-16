@@ -9,6 +9,9 @@
 
 
 class Enemy{
+    static constexpr int MAX_X = bn::display::width() / 2;
+    static constexpr int MIN_X = -bn::display::width() / 2;
+
     public:
      bn::sprite_ptr sprite;
      bn::fixed x_speed;
