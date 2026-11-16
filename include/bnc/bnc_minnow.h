@@ -8,19 +8,19 @@
 
 namespace bnc {
 
-// Width and height of the the player bounding box
-static constexpr bn::size PLAYER_SIZE = {8, 8};
+  // Width and height of the the player bounding box
+  static constexpr bn::size PLAYER_SIZE = {8, 8};
 
-//Starting position of the player
-static constexpr int X_START = -90;
-static constexpr int Y_START = 0;
+  //Starting position of the player
+  static constexpr int X_START = -90;
+  static constexpr int Y_START = 0;
 
-//Speed of the player
-static constexpr bn::fixed SPEED = 1;
+  //Speed of the player
+  static constexpr bn::fixed SPEED = 1;
 
-bn::rect create_bounding_box(bn::sprite_ptr sprite, bn::size box_size);
+  bn::rect create_bounding_box(bn::sprite_ptr sprite, bn::size box_size);
 
-class Minnow {
+  class Minnow {
 
     static constexpr int MIN_Y = -bn::display::height() / 2;
     static constexpr int MAX_Y = bn::display::height() / 2;
@@ -38,26 +38,23 @@ class Minnow {
     void update();
 
     // bn::rect minnow_hit_box();
-      bn::rect minnow_hit_box;
+    bn::rect minnow_hit_box;
 
     bool out_of_bounds() const;
 
     private:
 
-  
     bn::fixed _speed;
-
 
     //direction number
     int direction;
 
-
     //if statemenst for the minnows direction goes here
 
     /**
-     * Reads from the d-pad and moves the player by one frame accordingly.
-     */
+    * Reads from the d-pad and moves the player by one frame accordingly.
+    */
     void _update_position();
 
-};
+  };
 }
