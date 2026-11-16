@@ -10,7 +10,5 @@ namespace ugb {
             FoodManager();
 
             int collect_food(bn::vector<Food, constants::MAX_ENTITIES>& food, const bn::rect& player_box);
-        private:
-            bn::vector<Food, constants::MAX_ENTITIES> _food;
     };
 }
