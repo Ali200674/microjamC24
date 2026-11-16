@@ -4,14 +4,15 @@
 #include <bn_display.h>
 #include <bn_rect.h>
 //#include <bn_sprite_animate_actions.h>
-
+#include <bn_random.h>
 #include "nsj_player.h"
 
 
 class Enemy{
     static constexpr int MAX_X = bn::display::width() / 2;
     static constexpr int MIN_X = -bn::display::width() / 2;
-
+    static constexpr int MAX_Y = bn::display::height() / 2;
+    static constexpr int MIN_Y = -bn::display::height() / 2;
     public:
      bn::sprite_ptr sprite;
      bn::fixed x_speed;
@@ -24,16 +25,6 @@ class Enemy{
 
           void update(nsj::player& player);
 
-    // private:
-    //     // The sprite to display the player
-    //     bn::sprite_ptr _sprite;
-    //     bn::sprite_animate_action<4> _sprite_action;
-       
-    //     // The pixels/frame the player moves in each dimension
-    //     bn::fixed _speed;
-
-    //     /**
-    //      * Reads from the d-pad and moves the player by one frame accordingly.
-    //      */
-    //     void _update_position();
+     private:
+    bn::random rng;
 };
