@@ -39,7 +39,7 @@ namespace cia
 {
     cia_oceandive::cia_oceandive([[maybe_unused]] int completed_game, const mj::game_data &data) : mj::game("cia"),
                                                                                                    _player(player({0, 20}, 1)),
-                                                                                                   _shark(shark({130, 20}, shark_speed(recommended_difficulty_level(completed_game, data)))),
+                                                                                                   _shark(shark(data.random, shark_speed(recommended_difficulty_level(completed_game, data)))),
                                                                                                    _hit(false)
     {
     }

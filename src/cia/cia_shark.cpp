@@ -3,12 +3,24 @@
 
 #include "bn_sprite_items_cia_shark.h"
 
+#include <bn_random.h>
+#include <bn_fixed_point.h>
+
 namespace cia
 {
     static constexpr bn::fixed_size SHARK_SIZE(24, 12);
 
-    shark::shark(bn::fixed_point starting_position, bn::fixed speed) : _sprite(bn::sprite_items::cia_shark.create_sprite(starting_position)),
-                                                                       _speed(speed)
+    bn::fixed_point shark::getRandomStartPos(bn::random &random) const
+    {
+        // Get a random number between 0 and 3
+        bn::fixed randomPos = random.get_int(4);
+
+        // TODO: Return a position based on that number
+        return {0, 0};
+    }
+
+    shark::shark(bn::random &rng, bn::fixed speed) : _sprite(bn::sprite_items::cia_shark.create_sprite(getRandomStartPos(rng))),
+                                                     _speed(speed)
     {
         _sprite.set_horizontal_flip(true);
     }
