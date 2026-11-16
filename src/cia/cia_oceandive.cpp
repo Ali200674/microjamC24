@@ -2,11 +2,10 @@
 #include "mj/mj_game_list.h"
 #include "cia/cia_shark.h"
 
-
 namespace
 {
-    constexpr bn::string_view code_credits[] = {"Ali & Alex"};
-    constexpr bn::string_view graphics_credits[] = {"BOOM"};
+    constexpr bn::string_view code_credits[] = {"Ali", "Alex"};
+    constexpr bn::string_view graphics_credits[] = {""};
     constexpr bn::string_view sfx_credits[] = {""};
     constexpr bn::string_view music_credits[] = {""};
 }
@@ -28,7 +27,7 @@ namespace cia
 
     bn::string<16> cia_oceandive::title() const
     {
-        return "Shark Attack!";
+        return "Avoid The Shark!";
     }
 
     int cia_oceandive::total_frames() const
@@ -39,9 +38,10 @@ namespace cia
     mj::game_result cia_oceandive::play(const mj::game_data &)
     {
         _player.update();
-         _shark.update();
-        // If the player goes out of bounds, they loose
-        if(_player.is_out_of_bounds() || _player.rect().intersects(_shark.rect()))
+        _shark.update();
+
+        // If the player intersects with the shark, the player loses.
+        if (_player.rect().intersects(_shark.rect()))
         {
             _hit = true;
         }

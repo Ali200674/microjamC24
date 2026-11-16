@@ -9,6 +9,8 @@
 // Namespace with code contained to cia game
 namespace cia
 {
+    static constexpr bn::fixed_size PLAYER_SIZE(32, 32);
+
     /**
      * Constructor for player. Takes a starting position as a bn::fixed_point and a speed as bn::fixed
      */
@@ -23,7 +25,7 @@ namespace cia
      */
     bn::fixed_rect player::rect() const
     {
-        return bn::fixed_rect(_sprite.position(), bn::fixed_size(32, 32));
+        return bn::fixed_rect(_sprite.position(), PLAYER_SIZE);
     }
 
     /**
@@ -49,16 +51,5 @@ namespace cia
         {
             _sprite.set_y(_sprite.y() + _speed);
         }
-    }
-
-    /**
-     * Returns if the player is out of bounds based on the screen
-     */
-    bool player::is_out_of_bounds() const
-    {
-        return _sprite.x() > MAX_X ||
-               _sprite.x() < MIN_X ||
-               _sprite.y() > MAX_Y ||
-               _sprite.y() < MIN_Y;
     }
 }

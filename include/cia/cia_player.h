@@ -42,13 +42,6 @@ namespace cia
          */
         bn::fixed_rect rect() const;
 
-        /**
-         * Returns a boolean value based on if the player is out of the screen. Uses the MIN MAX values.
-         *
-         * @return A boolean if the player is out of the screen.
-         */
-        bool is_out_of_bounds() const;
-
     private:
         // The player sprite
         bn::sprite_ptr _sprite;
