@@ -17,13 +17,13 @@ namespace gam {
        * 
        * @param size number of grid areas ship occupies
        */
-      void gam_grid::new_ship(int size) {
+      void gam_grid::new_ship(int size, bn::random& rng) {
         if (ships.size() < MAX_SHIPS) {
           ships.push_back(
             gam::gam_ship(size,
-            random.get_bool(),
-            random.get_int(columns()),
-            random.get_int(rows()))
+            rng.get_bool(),
+            rng.get_int(columns()),
+            rng.get_int(rows()))
           );
         }
       }

@@ -6,16 +6,12 @@
 namespace {
     constexpr bn::string_view code_credits[] = {"Garrett Fiorito", "Samuel Hyrych Zherzdyev"};
     constexpr bn::string_view graphics_credits[] = {"Garrett Fiorito", "Samuel Hyrych Zherzdyev"};
-    constexpr bn::string_view sfx_credits[] = {"Garrett Fiorito", "Samuel Hyrych Zherzdyev"};
-    constexpr bn::string_view music_credits[] = {"Garrett Fiorito", "Samuel Hyrych Zherzdyev"};
 }
 
 MJ_GAME_LIST_ADD(gam::gam_battleships)
 
 MJ_GAME_LIST_ADD_CODE_CREDITS(code_credits)
 MJ_GAME_LIST_ADD_GRAPHICS_CREDITS(graphics_credits)
-MJ_GAME_LIST_ADD_MUSIC_CREDITS(music_credits)
-MJ_GAME_LIST_ADD_SFX_CREDITS(sfx_credits)
 
 namespace gam {
 
@@ -29,15 +25,15 @@ namespace gam {
    */
   gam_battleships::gam_battleships(
     [[maybe_unused]] int completed_games, 
-    [[maybe_unused]] const mj::game_data& data) : 
+    const mj::game_data& data) : 
     mj::game("gam"),
     game_grid(5, 5),
     game_selector(0, 0),
     game_background(bn::regular_bg_items::grid.create_bg(0, 0))
   {
-    game_grid.new_ship(2);
-    game_grid.new_ship(3);
-    game_grid.new_ship(4);
+    game_grid.new_ship(2, data.random);
+    game_grid.new_ship(3, data.random);
+    game_grid.new_ship(4, data.random);
   }
 
   /**
@@ -70,11 +66,6 @@ namespace gam {
    */
   mj::game_result gam_battleships::play([[maybe_unused]] const mj::game_data& data)
   {
-
-      // Creates a game result indicating whether the game is finished and whether the title should be hidden early
-      // For this game the game should end early if the player has won (if victory returns true)
-      // The title is not hidden early (false is passed), so the title disappears at the default time
-
       game_selector.update(game_grid.columns(), game_grid.rows());
 
       if(bn::keypad::a_pressed()) {

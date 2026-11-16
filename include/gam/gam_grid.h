@@ -22,7 +22,7 @@ namespace gam {
        * 
        * @param size number of grid areas ship occupies
        */
-      void new_ship(int size);
+      void new_ship(int size, bn::random& rng);
 
       /**
        * @return number of ships that are not sunk
@@ -44,6 +44,5 @@ namespace gam {
       int grid_columns;
       int grid_rows;
       bn::vector<gam::gam_ship, MAX_SHIPS> ships;
-      bn::random random;
   };
 }
