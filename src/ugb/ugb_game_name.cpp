@@ -63,7 +63,13 @@ namespace ugb {
     }
 
     bool ugb_game_name::victory() const {
-        return _state.score == 3;
+        if (_state.hit_hook) {
+            return false;
+        }
+        if (_state.score == 3) {
+            return true;
+        }
+        return false;
     }
 
     mj::game_result ugb_game_name::play([[maybe_unused]] const mj::game_data& data) {
@@ -72,6 +78,13 @@ namespace ugb {
         _player.update();
         
         bn::rect player_bounding_box = _player.bounding_box();
+
+        for (Hook& hook : _state.hooks) {
+            if (player_bounding_box.intersects(hook.bounding_box())) {
+                _state.hit_hook = true;
+                return mj::game_result(true, false);
+            }
+        }
 
         int points = _state.food_manager.collect_food(_state.food, player_bounding_box);
 

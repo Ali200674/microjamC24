@@ -20,7 +20,7 @@ namespace ugb {
             bn::vector<bn::sprite_ptr, constants::MAX_SCORE_CHARS> score_sprites;
             int score = 0;
             FoodManager food_manager;
-
+            bool hit_hook = false;
     };
 
 }
