@@ -27,8 +27,12 @@ namespace ugb {
     ugb_game_name::ugb_game_name([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data& data) : 
     mj::game("ugb"), _player(constants::player::INITIAL_X, constants::player::INITIAL_Y, constants::player::SPEED) 
     {
-        //set difficulty
-        _state.set_difficulty(recommended_difficulty_level(completed_games, data));
+        // Get recommended difficulty level
+        mj::difficulty_level difficulty = recommended_difficulty_level(completed_games, data);
+        // Convert it to an int for array indexing
+        int difficulty_ind = static_cast<int>(difficulty);
+        _state.required_score = constants::difficulty::REQUIRED_SCORE[difficulty_ind];
+        _state.hook_count = constants::difficulty::HOOK_SPAWNS[difficulty_ind];
 
         // Initialize score
         update_score(data.text_generator);

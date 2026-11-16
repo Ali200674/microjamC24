@@ -14,6 +14,13 @@ namespace ugb {
         static constexpr int MAX_Y = bn::display::height() / 2;
         static constexpr int MIN_X = -bn::display::width() / 2;
         static constexpr int MAX_X = bn::display::width() / 2;
+        
+        // Things that can change with difficulty
+        // Array values are in the order [easy, normal, hard]
+        namespace difficulty {
+            static constexpr int REQUIRED_SCORE[] = {3, 5, 5};
+            static constexpr int HOOK_SPAWNS[] = {2, 4, 6};
+        }
 
         namespace spawn {
             static constexpr int MAX_ATTEMPTS = 10;
@@ -24,9 +31,6 @@ namespace ugb {
             static constexpr int MAX_Y = constants::MAX_Y - PADDING;
             static constexpr int MIN_X = constants::MIN_X + PADDING;
             static constexpr int MAX_X = constants::MAX_X - PADDING;
-
-            // static constexpr int HOOKS = 2;
-            // static constexpr int FOOD = 3;
         }
 
         namespace score {
