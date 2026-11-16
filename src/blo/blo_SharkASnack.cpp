@@ -58,7 +58,7 @@ namespace blo
      * @param data shared information, such as a rng and number of frames left in the microgame
      * @return the mj::game result indicating whether the game has finished and whether the title should be hidden
      */
-    mj::game_result blo_SharkASnack::play(const mj::game_data &data)
+    mj::game_result blo_SharkASnack::play([[maybe_unused]] const mj::game_data &data)
     {
         _player.update(_shark);
         _shark.update();
@@ -81,7 +81,7 @@ namespace blo
      *
      * @param data shared information, such as a rng and number of frames left in the microgame
      */
-    void blo_SharkASnack::fade_in(const mj::game_data &data) {
+    void blo_SharkASnack::fade_in([[maybe_unused]] const mj::game_data &data) {
 
     };
 
@@ -90,7 +90,7 @@ namespace blo
      *
      * @param data shared information, such as a rng and number of frames left in the microgame
      */
-    void blo_SharkASnack::fade_out(const mj::game_data &data) {
+    void blo_SharkASnack::fade_out([[maybe_unused]] const mj::game_data &data) {
 
     };
 }
