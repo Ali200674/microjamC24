@@ -33,10 +33,8 @@ namespace bnc
  * @param data shared information, such as a rng and number of frames left in the microgame
  */
     bnc_fish_escape::bnc_fish_escape([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data& data) :
-    mj::game("bnc"), 
-    _minnow(bn::fixed_point(X_START, Y_START), SPEED) 
-    {
-        while(_shark_vector.size() < _shark_increase(recommended_difficulty_level(completed_games * 9, data))) {
+    mj::game("bnc"), _minnow(bn::fixed_point(X_START, Y_START), SPEED) {
+        while(_shark_vector.size() < _shark_vector.max_size()) {
             //add more sharks and randomly spawn them on the screen
         }
     }
@@ -74,12 +72,22 @@ mj::game_result bnc_fish_escape::play([[maybe_unused]] const mj::game_data& data
         // update the player position
         _minnow.update();
 
-        _shark.update(_minnow);
+        //boolean for individual shark
+        bool _caught_minnow = false;
+
+        //loop over enemies and check for collision
+        for(int i = 0; i < _shark_vector.size(); i++) {
+            _shark_vector[i].update(_minnow);
+            //If minnow collides with shark, end the game
+            if(_shark_vector[i]._shark_collision() == true) {
+                _caught_minnow = true;
+            }
+        }
 
         // Creates a game result indicating whether the game is finished and whether the title should be hidden early
         // For this game the game should end early if the player has won (if victory returns true)
         // The title is not hidden early (false is passed), so the title disappears at the default time
-        mj::game_result result(victory() || _shark._shark_collision(), false);
+        mj::game_result result(victory() || _caught_minnow, false);
         return result;
     }
 

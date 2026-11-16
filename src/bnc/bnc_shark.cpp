@@ -14,6 +14,9 @@ namespace bnc{
     _shark_size(SHARK_SIZE)
     {}
 
+    bool Shark::_shark_collision() const {
+        return shark_collision;
+    }
     void Shark::update(Minnow& minnow) {
 
         if(_shark.x() < minnow._sprite.x()){

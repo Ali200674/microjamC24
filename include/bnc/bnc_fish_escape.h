@@ -73,16 +73,9 @@ namespace bnc {
         // The character that the player can move
         Minnow _minnow;
         //enemy player tries to avoid
-        Shark _shark;
-
         static constexpr int MAX_SHARKS = 9;
 
         //shark vector
         bn::vector<Shark, MAX_SHARKS> _shark_vector = {};
-
-        int _shark_increase(mj::difficulty_level difficulty);
-
-
-
     };
 }
