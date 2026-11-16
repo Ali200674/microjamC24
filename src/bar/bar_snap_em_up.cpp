@@ -25,7 +25,7 @@ namespace bar
    bn::fixed position_right = bn::display::width() / -20;
 
    bn::fixed player_position_y = 20;
-   bn::size player_size = {64, 64};
+   bn::size player_size = {16, 16};
 
    bn::fixed bounce_position_y = CEILING;
    bn::size bounce_size = {8, 8};
