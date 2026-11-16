@@ -22,7 +22,7 @@ namespace nsj{
      nsj_hook_escape::nsj_hook_escape([[maybe_unused]]int completed_games,[[maybe_unused]] const mj::game_data& data):
          mj::game("nsj"),
          _player({0,0},2),
-         _enemy(30,-30,1)
+         _enemy(30,-30, _recommended_hook_speed(recommended_difficulty_level(completed_games, data)))
         {
 
         }
@@ -30,6 +30,22 @@ namespace nsj{
      bn::string<16> nsj_hook_escape:: title() const{
         return "Hook Escape";
      }
+
+
+     bn::fixed nsj_hook_escape::_recommended_hook_speed(mj::difficulty_level difficulty){
+     if(difficulty == mj::difficulty_level::EASY){
+      return 2;
+     }else if(difficulty == mj::difficulty_level::NORMAL){
+      return 4;
+     }
+     return 5;
+    }
+
+
+
+
+
+
 
        int nsj_hook_escape::total_frames() const{
         return 600;

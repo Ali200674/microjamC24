@@ -76,5 +76,6 @@ namespace nsj
         player _player;
         Enemy _enemy;
         bool _hooked=false;
+        bn::fixed _recommended_hook_speed(mj::difficulty_level difficulty);
     };
 }
