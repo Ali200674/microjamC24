@@ -34,7 +34,7 @@ namespace bar
         }
 
         bn::fixed get_speed() const {
-            return _horizontal_speed;
+            return _vertical_speed;
         }
 
         bn::size get_size() const {
@@ -73,7 +73,7 @@ namespace bar
         static constexpr int MIN_Y = -bn::display::height() / 2;
 
         bn::sprite_ptr _sprite;
-        bn::fixed _horizontal_speed;
+        bn::fixed _vertical_speed;
         bn::size _size;
         bn::rect _bounding_box;
         bool _hit;

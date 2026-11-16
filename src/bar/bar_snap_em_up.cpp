@@ -36,11 +36,12 @@ namespace bar
 
    int TARGET_COUNT = 5;
 
-
    int game_timer = 0;
    int bouncer_spawned_count = 0;
    int bouncer_hit_count = 0;
    int completed_games_global;
+
+   bn::random rng_spawn;
 
    bool bouncer_target_reached = false;
 
@@ -48,11 +49,12 @@ namespace bar
                                                                                                                       _player_arms(),
                                                                                                                       _bouncers()
    {
-      
+
       game_timer = 0;
       bouncer_hit_count = 0;
       bouncer_spawned_count = 1;
       bouncer_target_reached = false;
+      rng_spawn = data.random;
       completed_games_global = completed_games;
 
       _player_arms.push_back(bar_player(position_left, player_position_y, player_size));
@@ -86,6 +88,19 @@ namespace bar
       return 3;
    }
 
+   bn::fixed bar_snap_em_up::_recommended_spawn_speed(mj::difficulty_level difficulty)
+   {
+      if (difficulty == mj::difficulty_level::EASY)
+      {
+         return 60;
+      }
+      else if (difficulty == mj::difficulty_level::NORMAL)
+      {
+         return 45;
+      }
+      return 30;
+   }
+
    mj::game_result bar_snap_em_up::play([[maybe_unused]] const mj::game_data &data)
    {
       for (bar_bouncer &bouncer : _bouncers)
@@ -104,11 +119,16 @@ namespace bar
          }
       }
 
-      if (game_timer >= 60 && bouncer_spawned_count < TARGET_COUNT)
+      if (game_timer >= _recommended_spawn_speed(recommended_difficulty_level(completed_games_global, data)) && bouncer_spawned_count < TARGET_COUNT)
       {
          game_timer = 0;
-         bar_spawn_bouncer(_bouncers, position_right, bounce_position_y, _recommended_bounce_speed(recommended_difficulty_level(completed_games_global, data)), bounce_size);
+         if (rng_spawn.get_unbiased_int(0, 2) == 0)
+            bar_spawn_bouncer(_bouncers, position_left, bounce_position_y, _recommended_bounce_speed(recommended_difficulty_level(completed_games_global, data)), bounce_size);
+         else
+            bar_spawn_bouncer(_bouncers, position_right, bounce_position_y, _recommended_bounce_speed(recommended_difficulty_level(completed_games_global, data)), bounce_size);
          bouncer_spawned_count++;
+         rng_spawn = data.random;
+         BN_LOG("Difficulty speed is ", _recommended_bounce_speed(recommended_difficulty_level(completed_games_global, data)));
       }
 
       if (bouncer_hit_count == TARGET_COUNT)
