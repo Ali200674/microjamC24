@@ -9,20 +9,21 @@ namespace
     constexpr bn::string_view sfx_credits[] = {""};
     constexpr bn::string_view music_credits[] = {""};
 
-
-    bn::fixed shark_speed(mj::difficulty_level level) {
-        //create a if statement for an easy mode
-        if(level == mj::difficulty_level::EASY) {
+    bn::fixed shark_speed(mj::difficulty_level level)
+    {
+        // create a if statement for an easy mode
+        if (level == mj::difficulty_level::EASY)
+        {
             return 1;
         }
-
-        //make a medium mode
-        if(level == mj::difficulty_level::NORMAL) {
+        // make a medium mode
+        else if (level == mj::difficulty_level::NORMAL)
+        {
             return 2;
         }
-
-        //make a hard mode
-        if(level == mj::difficulty_level::HARD) {
+        // Assuming that we didn't go into the other if statements (This is for hard mode)
+        else
+        {
             return 3;
         }
     }
@@ -37,9 +38,9 @@ MJ_GAME_LIST_ADD_SFX_CREDITS(sfx_credits)
 namespace cia
 {
     cia_oceandive::cia_oceandive([[maybe_unused]] int completed_game, const mj::game_data &data) : mj::game("cia"),
-                                                                                                                    _player(player({0, 20}, 1)),
-                                                                                                                    _shark(shark({130, 20}, shark_speed(recommended_difficulty_level(completed_game,data)))),
-                                                                                                                    _hit(false)
+                                                                                                   _player(player({0, 20}, 1)),
+                                                                                                   _shark(shark({130, 20}, shark_speed(recommended_difficulty_level(completed_game, data)))),
+                                                                                                   _hit(false)
     {
     }
 
