@@ -14,22 +14,26 @@ namespace cia
     {
 
         int randomPos = random.get_int(4);
-        //off of the screen on left side
-        if(randomPos == 0) {
-            return {-140,0};
+        // off of the screen on left side
+        if (randomPos == 0)
+        {
+            return {-140, 0};
         }
 
-        //or the top of the screen
-        else if(randomPos == 1) {
-            return {0,-100};
+        // or the top of the screen
+        else if (randomPos == 1)
+        {
+            return {0, -100};
         }
 
-        //right side of the screen
-        else if(randomPos == 2) {
-            return {140,0};
+        // right side of the screen
+        else if (randomPos == 2)
+        {
+            return {140, 0};
         }
-        //bottom of the screen
-        else if(randomPos == 3) {
+        // bottom of the screen
+        else
+        {
             return {0, 100};
         }
     }
