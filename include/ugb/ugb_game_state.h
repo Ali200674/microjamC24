@@ -9,6 +9,8 @@
 
 #include "ugb/ugb_food_manager.h"
 
+#include "mj/mj_difficulty_level.h"
+
 namespace ugb {
 
     class GameState {
@@ -21,6 +23,24 @@ namespace ugb {
             int score = 0;
             FoodManager food_manager;
             bool hit_hook = false;
+
+            int required_score = 0;
+            int hook_count = 0;
+
+            void set_difficulty(mj::difficulty_level difficulty) {
+                if (difficulty == mj::difficulty_level::EASY) {
+                    required_score = 3;
+                    hook_count = 2;
+                }
+                else if (difficulty == mj::difficulty_level::HARD) {
+                    required_score = 5;
+                    hook_count = 6;
+                }
+                else {
+                    required_score = 5;
+                    hook_count = 4;
+                }
+            }
     };
 
 }

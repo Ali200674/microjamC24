@@ -10,7 +10,6 @@ namespace ugb {
             void update() override;
 
         private:
-            bn::fixed _spawn_y;
             bool _going_down;
     };
     

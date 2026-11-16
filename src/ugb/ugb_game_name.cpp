@@ -27,11 +27,14 @@ namespace ugb {
     ugb_game_name::ugb_game_name([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data& data) : 
     mj::game("ugb"), _player(constants::player::INITIAL_X, constants::player::INITIAL_Y, constants::player::SPEED) 
     {
+        //set difficulty
+        _state.set_difficulty(recommended_difficulty_level(completed_games, data));
+
         // Initialize score
         update_score(data.text_generator);
         bn::fixed_point spawn_location;
         // Spawn food
-        for (int i = 0; i < constants::spawn::FOOD; i++) {
+        for (int i = 0; i < _state.required_score; i++) {
             spawn_location = get_safe_spawn_loc(data.random, _state);
             if (spawn_location.x() == constants::MAX_X) {
                 continue; // Couldn't find a safe location
@@ -39,12 +42,14 @@ namespace ugb {
             _state.food.emplace_back(spawn_location);
         }
         // Spawn hooks
-        for (int i = 0; i < constants::spawn::HOOKS; i++) {
-            spawn_location = get_safe_spawn_loc(data.random, _state);
-            if (spawn_location.x() == constants::MAX_X) {
-                continue; // Couldn't find a safe location
-            }
-            _state.hooks.emplace_back(spawn_location);
+        // Add one hook on each side before adding the next pair
+        const int hook_x_positions[] = {-72, 72, -100, 100, -44, 44};
+
+        for (int i = 0; i < _state.hook_count; i++) {
+            bn::fixed start_y = data.random.get_unbiased_int(-64, 64);
+
+            bn::fixed_point hook_position(hook_x_positions[i], start_y);
+            _state.hooks.emplace_back(hook_position);
         }
     }
 
@@ -66,7 +71,7 @@ namespace ugb {
         if (_state.hit_hook) {
             return false;
         }
-        if (_state.score == 3) {
+        if (_state.score >= _state.required_score) {
             return true;
         }
         return false;

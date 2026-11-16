@@ -25,8 +25,8 @@ namespace ugb {
             static constexpr int MIN_X = constants::MIN_X + PADDING;
             static constexpr int MAX_X = constants::MAX_X - PADDING;
 
-            static constexpr int HOOKS = 2;
-            static constexpr int FOOD = 3;
+            // static constexpr int HOOKS = 2;
+            // static constexpr int FOOD = 3;
         }
 
         namespace score {
@@ -36,9 +36,9 @@ namespace ugb {
         }
 
         namespace player {
-            static constexpr int INITIAL_X = 40;
-            static constexpr int INITIAL_Y = 40;
-            static constexpr int SPEED = 1;
+            static constexpr int INITIAL_X = 0;
+            static constexpr int INITIAL_Y = 0;
+            static constexpr int SPEED = 2;
         }
     }
 

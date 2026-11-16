@@ -5,15 +5,15 @@
 namespace ugb {
 
     Hook::Hook(bn::fixed_point spawn_position) : 
-        Entity::Entity(bn::sprite_items::ugb_hook, spawn_position, 0.5), _spawn_y(spawn_position.y()), _going_down(true) {
+        Entity::Entity(bn::sprite_items::ugb_hook, spawn_position, 2), _going_down(true) {
         };
 
     void Hook::update() {
         bn::fixed current_y = _sprite.y();
 
-        if (current_y >= _spawn_y + 32) {
+        if (current_y >= 64) {
             _going_down = false;
-        } else if (current_y <= _spawn_y) {
+        } else if (current_y <= -64) {
             _going_down = true;
         }
 
