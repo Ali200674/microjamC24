@@ -36,6 +36,11 @@ namespace bnc
     mj::game("bnc"), _minnow(bn::fixed_point(X_START, Y_START), SPEED) {
         while(_shark_vector.size() < _shark_vector.max_size()) {
             //add more sharks and randomly spawn them on the screen
+            _shark_vector.push_back(Shark(
+            data.random.get_unbiased_fixed(MIN_X, MAX_X),
+            data.random.get_unbiased_fixed(MIN_Y, MAX_Y),
+            SHARK_SPEED));
+
         }
     }
 
