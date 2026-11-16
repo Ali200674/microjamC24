@@ -5,7 +5,7 @@
 
 #define FLOOR (80 - 16)
 #define CEILING (-72 - 8)
-#define TARGET_COUNT (3)
+#define TARGET_COUNT (5)
 
 namespace
 {
@@ -27,7 +27,7 @@ namespace bar
    bn::fixed position_left = bn::display::width() / 20;
    bn::fixed position_right = bn::display::width() / -20;
 
-   bn::fixed player_position_y = FLOOR;
+   bn::fixed player_position_y = 20;
    bn::size player_size = {64, 64};
 
    bn::fixed bounce_position_y = CEILING;
@@ -36,6 +36,7 @@ namespace bar
    // bn::vector<bar_bouncer, bar_player::get_max_bouncers()> bouncer = {};
 
    int game_timer = 0;
+   int bouncer_spawned_count = 0;
    int bouncer_hit_count = 0;
    int completed_games_global;
 
@@ -47,6 +48,7 @@ namespace bar
    {
       game_timer = 0;
       bouncer_hit_count = 0;
+      bouncer_spawned_count = 1;
       bouncer_target_reached = false;
       completed_games_global = completed_games;
 
@@ -97,10 +99,11 @@ namespace bar
          }
       }
 
-      if (game_timer >= 60)
+      if (game_timer >= 60 && bouncer_spawned_count < TARGET_COUNT)
       {
          game_timer = 0;
          bar_spawn_bouncer(_bouncers, position_right, bounce_position_y, _recommended_bounce_speed(recommended_difficulty_level(completed_games_global, data)), bounce_size);
+         bouncer_spawned_count++;
       }
 
       if (bouncer_hit_count == TARGET_COUNT)
