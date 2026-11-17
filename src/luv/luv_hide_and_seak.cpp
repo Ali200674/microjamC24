@@ -45,12 +45,12 @@ namespace luv
 
     mj::game_result luv_hide_and_seak::play([[maybe_unused]] const mj::game_data &data)
     {
+         
         mj::game_result result(victory(), false);
         _player.update();
         for(luv_trap _trap_single : _traps){
             if (get_player().get_bounding_box().intersects(_trap_single.get_bounding_box()))
             {
-                BN_LOG("Trapped!");
                 _player.set_speed(0.5);
             }
         }
