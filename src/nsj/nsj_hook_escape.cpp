@@ -31,7 +31,7 @@ namespace nsj{
         }
 
      bn::string<16> nsj_hook_escape:: title() const{
-        return "Hook Escape";
+        return "Escape! ";
      }
 
 
