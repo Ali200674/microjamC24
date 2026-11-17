@@ -14,17 +14,17 @@ namespace
         // create a if statement for an easy mode
         if (level == mj::difficulty_level::EASY)
         {
-            return 1;
+            return .5;
         }
         // make a medium mode
         else if (level == mj::difficulty_level::NORMAL)
         {
-            return 2;
+            return .7;
         }
         // Assuming that we didn't go into the other if statements (This is for hard mode)
         else
         {
-            return 3;
+            return .8 ;
         }
     }
 }

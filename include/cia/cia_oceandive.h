@@ -4,8 +4,6 @@
 #include "cia/cia_player.h"
 #include "cia/cia_shark.h"
 
-#include <bn_vector.h>
-
 namespace cia
 {
 
