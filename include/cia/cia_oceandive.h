@@ -4,6 +4,7 @@
 #include "cia/cia_player.h"
 #include "cia/cia_shark.h"
 
+#include <bn_vector.h>
 namespace cia
 {
 
@@ -24,6 +25,9 @@ namespace cia
         // Sprites
         player _player;
         shark _shark;
+
+        // Vector to hold all sharks
+        bn::vector<shark, 16> sharkPool;
 
         // True once the shark hits the player
         bool _hit;
