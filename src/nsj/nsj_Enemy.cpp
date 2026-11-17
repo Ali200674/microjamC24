@@ -6,34 +6,28 @@
 #include <bn_keypad.h>
 #include "nsj_boundingBox.h"
 
-
 static constexpr bn::size ENEMY_SIZE = {8, 8};
 
+Enemy::Enemy(bn::fixed x_start, bn::fixed y_start, bn::fixed speed) : _sprite(bn::sprite_items::nsj_hook.create_sprite(x_start, y_start)),
+                                                                      _x_speed(speed), _y_speed(speed),
+                                                                      _size(ENEMY_SIZE)
+{
+    _bounding_box = create_bounding_box(_sprite, _size);
+}
 
-Enemy::Enemy(bn::fixed x_start, bn::fixed y_start,bn::fixed speed) : sprite(bn::sprite_items::nsj_hook.create_sprite(x_start, y_start)),
-                                                   x_speed(speed), y_speed(speed),
-                                                   size(ENEMY_SIZE)
+void Enemy::update()
+{
+
+    _sprite.set_x(_sprite.x() + _x_speed);
+
+    if (_sprite.x() >= MAX_X)
     {
-        bounding_box=create_bounding_box(sprite, size);
+        _x_speed = -_x_speed;
+    }
+    else if (_sprite.x() <= MIN_X)
+    {
+        _x_speed = -_x_speed;
     }
 
-   
-
-    void Enemy:: update([[maybe_unused]]nsj::player& player){
-    
-            sprite.set_x(sprite.x() + x_speed);
-    
-       if (sprite.x() >=MAX_X)
-        {
-            x_speed= -x_speed;
-             
-        }
-        else if(sprite.x() <=MIN_X)
-         {
-            x_speed= -x_speed;
-         }
-
-       bounding_box = create_bounding_box(sprite, size);
-
-       
-    }
+    _bounding_box = create_bounding_box(_sprite, _size);
+}
