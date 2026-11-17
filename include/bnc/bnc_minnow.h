@@ -25,8 +25,6 @@ namespace bnc {
     static constexpr int MIN_X = -bn::display::width() / 2;
     static constexpr int MAX_X = bn::display::width() / 2;
     public:
-    // The sprite to display the player
-    bn::sprite_ptr _sprite;
 
     //constructor
     Minnow(bn::fixed_point starting_position, bn::fixed speed);
@@ -36,8 +34,9 @@ namespace bnc {
     bool out_of_bounds() const;
 
     private:
+    // The sprite to display the player
+    bn::sprite_ptr _sprite;
     bn::fixed _speed;
-
     //direction number
     int direction;
 
