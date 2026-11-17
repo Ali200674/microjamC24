@@ -11,13 +11,20 @@ namespace blo
      */
     shark::shark(bn::fixed_point starting_position) : _sprite(bn::sprite_items::blo_shark.create_sprite(starting_position))
     {
+        _sprite.set_visible(false);
     }
 
-    void shark::update(){
+    void shark::update()
+    {
         _frames++;
+        if (isEmerged())
+        {
+            _sprite.set_visible(true);
+        }
     }
 
-    void shark::punch(){
+    void shark::punch()
+    {
         _punched = true;
     }
 
