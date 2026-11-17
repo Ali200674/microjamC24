@@ -42,6 +42,7 @@ namespace cia
                                                                                                    _shark(shark(data.random, shark_speed(recommended_difficulty_level(completed_game, data)))),
                                                                                                    _hit(false)
     {
+        _completedGames = completed_game;
     }
 
     bn::string<16> cia_oceandive::title() const
@@ -54,16 +55,27 @@ namespace cia
         return 300;
     }
 
-    mj::game_result cia_oceandive::play(const mj::game_data &)
+    void cia_oceandive::addNewShark(const mj::game_data &data) {
+        if (!sharkPool.full()) {
+            sharkPool.push_back(shark(data.random, shark_speed(recommended_difficulty_level(_completedGames, data))));
+        }
+    }
+
+    mj::game_result cia_oceandive::play(const mj::game_data &data)
     {
         _player.update();
-        _shark.update(_player);
 
-        // If the player intersects with the shark, the player loses.
-        if (_player.rect().intersects(_shark.rect()))
-        {
-            _hit = true;
+        for (shark& s : sharkPool) {
+            s.update(_player);
+
+            // If the player intersects with the shark, the player loses.
+            if (_player.rect().intersects(_shark.rect()))
+            {
+                _hit = true;
+            }
         }
+
+        addNewShark(data);
 
         return mj::game_result(_hit, false);
     }

@@ -21,16 +21,21 @@ namespace cia
         void fade_in(const mj::game_data &data) override;
         void fade_out(const mj::game_data &data) override;
 
+        void addNewShark(const mj::game_data &data);
+
     private:
         // Sprites
         player _player;
         shark _shark;
 
         // Vector to hold all sharks
-        bn::vector<shark, 16> sharkPool;
+        bn::vector<shark, 16> sharkPool = {};
 
         // True once the shark hits the player
         bool _hit;
+
+        // How much games have been completed
+        int _completedGames;
     };
 
 }
