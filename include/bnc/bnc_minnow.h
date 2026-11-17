@@ -29,13 +29,17 @@ namespace bnc {
     //constructor
     Minnow(bn::fixed_point starting_position, bn::fixed speed);
 
+    //getter functions
+    bn::sprite_ptr get_sprite();
+    bn::rect get_minnow_hit_box();
     void update();
-    bn::rect minnow_hit_box;
     bool out_of_bounds() const;
+    
 
     private:
     // The sprite to display the player
     bn::sprite_ptr _sprite;
+    bn::rect _minnow_hit_box;
     bn::fixed _speed;
     //direction number
     int direction;

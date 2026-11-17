@@ -19,21 +19,21 @@ namespace bnc{
     }
     void Shark::update(Minnow& minnow) {
 
-        if(_shark.x() < minnow._sprite.x()){
+        if(_shark.x() < minnow.get_sprite().x()){
             _shark.set_x(_shark.x() + _shark_speed);
         }
-        if(_shark.x() > minnow._sprite.x()){
+        if(_shark.x() > minnow.get_sprite().x()){
             _shark.set_x(_shark.x() - _shark_speed);
         }
-        if(_shark.y() > minnow._sprite.y()){
+        if(_shark.y() > minnow.get_sprite().y()){
             _shark.set_y(_shark.y() - _shark_speed);
         }
-        if(_shark.y() < minnow._sprite.y()){
+        if(_shark.y() < minnow.get_sprite().y()){
             _shark.set_y(_shark.y() + _shark_speed);
         }
         _shark_hit_box = create_bounding_box(_shark, SHARK_SIZE);
         
-        if(_shark_hit_box.intersects(minnow.minnow_hit_box)){
+        if(_shark_hit_box.intersects(minnow.get_minnow_hit_box())){
             shark_collision = true;
         }
     }

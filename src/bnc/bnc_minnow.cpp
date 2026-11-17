@@ -19,6 +19,14 @@ namespace bnc {
                 box_size.height());
     }
 
+    bn::sprite_ptr Minnow::get_sprite() {
+        return _sprite;
+    }
+
+    bn::rect Minnow::get_minnow_hit_box() {
+        return _minnow_hit_box;
+    }
+
     void Minnow::update(){
         _update_position();
         //If player tries to go out of bounds, prevent player from going out of bounds
@@ -38,7 +46,7 @@ namespace bnc {
         if(_sprite.y() < MIN_Y) {
             _sprite.set_y(MIN_Y);
         }
-        minnow_hit_box = create_bounding_box(_sprite, PLAYER_SIZE);
+        _minnow_hit_box = create_bounding_box(_sprite, PLAYER_SIZE);
     }
 
     bool Minnow::out_of_bounds() const{
