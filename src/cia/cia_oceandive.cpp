@@ -69,7 +69,7 @@ namespace cia
             s.update(_player);
 
             // If the player intersects with the shark, the player loses.
-            if (_player.rect().intersects(_shark.rect()))
+            if (_player.rect().intersects(s.rect()))
             {
                 _hit = true;
             }

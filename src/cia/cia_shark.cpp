@@ -17,24 +17,24 @@ namespace cia
         // off of the screen on left side
         if (randomPos == 0)
         {
-            return {-140, 0};
+            return {-140, random.get_int(MIN_Y, MAX_Y)};
         }
 
         // or the top of the screen
         else if (randomPos == 1)
         {
-            return {0, -100};
+            return {random.get_int(MIN_X, MAX_X), -100};
         }
 
         // right side of the screen
         else if (randomPos == 2)
         {
-            return {140, 0};
+            return {140, random.get_int(MIN_Y, MAX_Y)};
         }
         // bottom of the screen
         else
         {
-            return {0, 100};
+            return {random.get_int(MIN_X, MAX_X), 100};
         }
     }
 
