@@ -9,9 +9,9 @@
 namespace
 {
    constexpr bn::string_view code_credits[] = {"TheArticWinter, crex424"};
-   constexpr bn::string_view graphics_credits[] = {"To Be Announced"};
-   constexpr bn::string_view sfx_credits[] = {"To Be Announced"};
-   constexpr bn::string_view music_credits[] = {"To Be Announced"};
+   constexpr bn::string_view graphics_credits[] = {""};
+   constexpr bn::string_view sfx_credits[] = {""};
+   constexpr bn::string_view music_credits[] = {""};
 }
 
 // Macros used to add game to game list
@@ -31,7 +31,7 @@ namespace bar
    bn::fixed bounce_position_y = CEILING;
    bn::size bounce_size = {8, 8};
 
-   bn::vector<bar_bouncer, bar_player::MAX_BOUNCERS> bouncer = {};
+   bn::vector<bar_bouncer, bar_player::get_max_bouncers()> bouncer = {};
 
    int game_timer = 0;
 
@@ -66,22 +66,12 @@ namespace bar
 
    mj::game_result bar_snap_em_up::play([[maybe_unused]] const mj::game_data &data)
    {
-      // for (bar_bouncer &bouncers : bouncer)
       _bouncer.update();
       _player.update(_bouncer);
-
-      BN_LOG("Hit! | ", _bouncer._is_hit);
-
-      /*for (int i = bouncer.size() - 1; i >= 0; i--)
-      {
-         if (bouncer[i]._is_collided)
-            bouncer.erase(bouncer.begin() + i);
-      }*/
 
       if (game_timer >= 60)
       {
          game_timer = 0;
-         // bouncer.push_back(_bouncer);
       }
 
       game_timer++;
@@ -91,7 +81,7 @@ namespace bar
 
    bool bar_snap_em_up::victory() const
    {
-      return _bouncer._is_collided;
+      return _bouncer.is_collided();
    }
 
    void bar_snap_em_up::fade_in([[maybe_unused]] const mj::game_data &data)

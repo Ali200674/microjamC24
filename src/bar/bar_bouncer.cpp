@@ -10,11 +10,11 @@ namespace bar
 
     void bar_bouncer::update()
     {
-        bn::fixed y = _sprite.y();
+        bn::fixed y = get_sprite().y();
 
-        _is_collided = false;
+        set_collided(false);
 
-        if (!_is_hit)
+        if (!is_hit())
         {
             y += _horizontal_speed;
         }
@@ -25,11 +25,11 @@ namespace bar
 
         if (y <= MIN_Y)
         {
-            _is_hit = false;
+            set_hit(false);
         }
 
-        _sprite.set_y(y);
+        get_sprite().set_y(y);
 
-        _bounding_box = bar_create_bounding_box(_sprite, _size);
+        set_bounding_box(_sprite, _size);
     }
 }

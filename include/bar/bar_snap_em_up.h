@@ -28,6 +28,5 @@ namespace bar
             bar_player _player;
             bar_bouncer _bouncer;
             bn::fixed _recommended_bounce_speed(mj::difficulty_level difficulty);
-
     };
 }
