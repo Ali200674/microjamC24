@@ -1,8 +1,8 @@
 #pragma once
+
+#include "blo_shark.h"
+
 namespace blo {
-
-    class shark;
-
 
     class player {
         public:

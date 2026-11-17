@@ -1,6 +1,6 @@
 #include "blo/blo_shark.h"
 
-#include "bn_sprite_items_shark.h"
+#include "bn_sprite_items_blo_shark.h"
 
 namespace blo
 {
@@ -9,7 +9,7 @@ namespace blo
      *
      * @param starting_position the location to start the shark at
      */
-    shark::shark(bn::fixed_point starting_position) : _sprite(bn::sprite_items::shark.create_sprite(starting_position))
+    shark::shark(bn::fixed_point starting_position) : _sprite(bn::sprite_items::blo_shark.create_sprite(starting_position))
     {
     }
 
