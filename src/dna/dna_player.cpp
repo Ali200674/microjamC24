@@ -9,6 +9,7 @@ namespace dna {
     Player::Player(bn::fixed_point starting_pos, bn::fixed speed, bn::size size) :
     _sprite(bn::sprite_items::dna_dot.create_sprite(starting_pos)),
     _speed(speed),
+    _size(size), 
     _hitbox(create_hitbox(_sprite, size)) {}
     
     void Player::update() {
@@ -16,6 +17,7 @@ namespace dna {
     }
 
     void Player::_update_position() {
+        // Player Movement
         if (bn::keypad::left_held()) {
             _sprite.set_x(_sprite.x() - _speed);
         } 
@@ -28,9 +30,25 @@ namespace dna {
         if (bn::keypad::down_held()) {
             _sprite.set_y(_sprite.y() + _speed);
         }
+
+        // Screen Border
+        if (_sprite.x() > MAX_X - 4) {
+        _sprite.set_x(MAX_X - 4);
+        }
+        if(_sprite.x() < MIN_X + 4){
+            _sprite.set_x(MIN_X + 4);
+        }
+        if(_sprite.y() > MAX_Y - 4) {
+            _sprite.set_y(MAX_Y - 4);
+        }
+        if(_sprite.y() < MIN_Y + 4){
+            _sprite.set_y(MIN_Y + 4);
+        }
+
+        _hitbox = create_hitbox(_sprite, _size);
     }
 
-    void Player::player_hit() {
-        
-    } 
+    bn::rect Player::get_hitbox() {
+        return _hitbox;
+    }
 }

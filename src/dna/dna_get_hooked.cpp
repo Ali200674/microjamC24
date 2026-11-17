@@ -9,6 +9,13 @@ namespace
     constexpr bn::string_view graphics_credits[] = { "" };
     constexpr bn::string_view sfx_credits[] = {""};
     constexpr bn::string_view music_credits[] = {""};
+
+    bn::fixed enemy_speed(mj::difficulty_level difficulty) {
+        if (difficulty == mj::difficulty_level::EASY) return 3;
+        if (difficulty == mj::difficulty_level::NORMAL) return 6;
+        
+        return 8;
+    }
 }
 
 MJ_GAME_LIST_ADD(dna::dna_get_hooked) 
@@ -17,14 +24,17 @@ MJ_GAME_LIST_ADD_GRAPHICS_CREDITS(graphics_credits)
 MJ_GAME_LIST_ADD_MUSIC_CREDITS(music_credits)
 MJ_GAME_LIST_ADD_SFX_CREDITS(sfx_credits)
 
-namespace dna
-{
+namespace dna {
     dna_get_hooked::dna_get_hooked([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data& data) :
     mj::game("dna"), 
-    _player(Player({20, 0}, 2, PLAYER_SIZE)) {}
+    _player(Player({-100, 0}, 2, PLAYER_SIZE)),
+    _timer(0), 
+    _hit(false), 
+    _enemies(),
+    _enemy_speed(enemy_speed(recommended_difficulty_level(completed_games, data))) {}
 
     bn::string<16> dna_get_hooked::title() const {
-        return "Harvest Fish!";
+        return "Swim!";
     }
 
     int dna_get_hooked::total_frames() const {
@@ -32,14 +42,28 @@ namespace dna
     }
 
     mj::game_result dna_get_hooked::play([[maybe_unused]] const mj::game_data& data) {
-        _player.update(); 
+        _player.update();
+        _timer--; 
+
+        if (_timer <= 0 && !_enemies.full()) {
+            _timer = 10; 
+            _enemies.emplace_back(data.random, _enemy_speed, ENEMY_SIZE);
+        }
+
+        for (AquaticLife& e : _enemies) {
+            if (e.update(_player)) {
+                _hit = true; 
+            }
+        } 
+
+        bn::erase_if(_enemies, [](const AquaticLife& e) { return e.is_offscreen(); });
         
-        mj::game_result result(victory(), false); 
+        mj::game_result result(_hit, false); 
         return result; 
     }
 
     bool dna_get_hooked::victory() const {
-        return false; 
+        return !_hit;
     }
 
     void dna_get_hooked::fade_in([[maybe_unused]] const mj::game_data& data)

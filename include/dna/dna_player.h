@@ -18,16 +18,17 @@ namespace dna {
         static constexpr int MIN_Y = - bn::display::height() / 2;
 
         public:
+
             Player(bn::fixed_point starting_pos, bn::fixed speed, bn::size size);
             void update(); 
-            void player_hit();           
+
+            bn::rect get_hitbox(); 
 
         private: 
             bn::sprite_ptr _sprite; 
             bn::fixed _speed; 
-            bn::rect _hitbox; 
-
-            bool _hit = false; 
+            bn::size _size; 
+            bn::rect _hitbox;
 
             void _update_position(); 
     };

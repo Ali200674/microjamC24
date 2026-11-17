@@ -16,13 +16,15 @@ namespace dna {
         public: 
             AquaticLife(bn::random &random, bn::fixed speed, bn::size size); 
             
-            void update();
+            bool update(Player &player);
+            bool is_offscreen() const; 
         
             bn::fixed_point getStartPosition(bn::random &random); 
         private: 
             bn::sprite_ptr _sprite;  
             bn::fixed _speed; 
             bn::rect _hitbox;
+            bn::size _size;
     };
 }
 
