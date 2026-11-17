@@ -1,7 +1,7 @@
 #include "aab_game.h"
 
 #include "mj/mj_game_list.h"
-#include "bn_regular_bg_items_oceanbg.h"
+#include "bn_regular_bg_items_aab_oceanbg.h"
 
 #include "bn_camera_ptr.h"
 
@@ -36,7 +36,7 @@ namespace aab
                                                                                                            dolphin(Dolphin({-100, -20})), // dolphin racing right ward
                                                                                                            swimmer(Swimmer({-120, 30})),
                                                                                                            obstacle(Obstacle({0, 35})),
-                                                                                                           background(bn::regular_bg_items::oceanbg.create_bg()),
+                                                                                                           background(bn::regular_bg_items::aab_oceanbg.create_bg()),
                                                                                                            slow_timer(0)
     {
         // play_sound(bn::sound_items::aub_tower, completed_games, data);
