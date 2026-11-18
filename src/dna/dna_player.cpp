@@ -8,7 +8,7 @@
 
 namespace dna {
     Player::Player(bn::fixed_point starting_pos, bn::fixed speed, bn::size size) :
-    _sprite(bn::sprite_items::dna_dot.create_sprite(starting_pos)),
+    _sprite(bn::sprite_items::dna_player.create_sprite(starting_pos)),
     _speed(speed),
     _size(size), 
     _hitbox(create_hitbox(_sprite, size)) {}

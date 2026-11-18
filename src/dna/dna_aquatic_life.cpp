@@ -3,6 +3,7 @@
 #include "dna_player.h"
 #include "dna_aquatic_life.h"
 #include "dna_hitbox.h"
+#include "bn_sprite_items_dna_shark.h"
             
 namespace dna {
 
