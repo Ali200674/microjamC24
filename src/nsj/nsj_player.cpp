@@ -24,7 +24,6 @@ namespace nsj
     void player::update()
     {
         _update_position();
-        //_update_animation();
     }
 
     bn::sprite_ptr nsj::player::get_sprite()
