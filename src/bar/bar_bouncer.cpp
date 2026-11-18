@@ -15,21 +15,6 @@ namespace bar
         _bounding_box = bar_create_bounding_box(_sprite, _size);
     }
 
-    bn::sprite_ptr bar_bouncer::get_sprite() const
-    {
-        return _sprite;
-    }
-
-    bn::fixed bar_bouncer::get_speed() const
-    {
-        return _vertical_speed;
-    }
-
-    bn::size bar_bouncer::get_size() const
-    {
-        return _size;
-    }
-
     bn::rect bar_bouncer::get_bounding_box() const
     {
         return _bounding_box;
