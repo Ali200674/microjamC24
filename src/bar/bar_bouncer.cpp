@@ -10,26 +10,38 @@ namespace bar
 
     void bar_bouncer::update()
     {
-        bn::fixed y = get_sprite().y();
+        _collided = false;
+        _sprite.set_y(_sprite.y() + _vertical_speed);
+        _bounding_box = bar_create_bounding_box(_sprite, _size);
+    }
 
-        set_collided(false);
+    bn::sprite_ptr bar_bouncer::get_sprite() const
+    {
+        return _sprite;
+    }
 
-        if (!is_hit())
-        {
-            y += _vertical_speed;
-        }
-        else
-        {
-            y -= _vertical_speed;
-        }
+    bn::fixed bar_bouncer::get_speed() const
+    {
+        return _vertical_speed;
+    }
 
-        if (y <= MIN_Y)
-        {
-            set_hit(false);
-        }
+    bn::size bar_bouncer::get_size() const
+    {
+        return _size;
+    }
 
-        set_hit(false);
-        get_sprite().set_y(y);
-        set_bounding_box(_sprite, _size);
+    bn::rect bar_bouncer::get_bounding_box() const
+    {
+        return _bounding_box;
+    }
+
+    bool bar_bouncer::is_collided() const
+    {
+        return _collided;
+    }
+
+    void bar_bouncer::set_collided(bool set_status)
+    {
+        _collided = set_status;
     }
 }
