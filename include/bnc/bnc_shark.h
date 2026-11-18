@@ -28,11 +28,10 @@ namespace bnc {
 
         void update(Minnow& minnow);
         bool collide(Minnow& minnow);
-
-        bool _shark_collision() const; //a get for the private bool
+        bool get_shark_collision() const; //a get for the private bool
 
         private:
-        bool shark_collision = false;
+        bool _shark_collision = false;
         bn::sprite_ptr _shark;
         bn::rect _shark_hit_box;
         bn::fixed _shark_speed;

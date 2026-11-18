@@ -42,7 +42,7 @@ namespace bnc {
     bn::rect _minnow_hit_box;
     bn::fixed _speed;
     //direction number
-    int direction;
+    int _direction;
 
     /**
     * Reads from the d-pad and moves the player by one frame accordingly.

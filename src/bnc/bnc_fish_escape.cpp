@@ -84,7 +84,7 @@ mj::game_result bnc_fish_escape::play([[maybe_unused]] const mj::game_data& data
         for(int i = 0; i < _shark_vector.size(); i++) {
             _shark_vector[i].update(_minnow);
             //If minnow collides with shark, end the game
-            if(_shark_vector[i]._shark_collision() == true) {
+            if(_shark_vector[i].get_shark_collision() == true) {
                 _caught_minnow = true;
             }
         }

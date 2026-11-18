@@ -62,30 +62,30 @@ namespace bnc {
      */
     void bnc::Minnow::_update_position() {
         if(bn::keypad::left_held()) {
-            if (direction != 1){
+            if (_direction != 1){
                 _sprite = bn::sprite_items::bnc_minnow_left.create_sprite(_sprite.x(), _sprite.y());
-                direction = 1;
+                _direction = 1;
             }
             _sprite.set_x(_sprite.x() - _speed);
         }
         if(bn::keypad::right_held()) {
-            if (direction != 0){
+            if (_direction != 0){
                 _sprite = bn::sprite_items::bnc_minnow_right.create_sprite(_sprite.x(), _sprite.y());
-                direction = 0;
+                _direction = 0;
             }
             _sprite.set_x(_sprite.x() + _speed);
         }
         if(bn::keypad::up_held()) {
-            if (direction != 2){
+            if (_direction != 2){
                 _sprite = bn::sprite_items::bnc_minnow_up.create_sprite(_sprite.x(), _sprite.y());
-                direction = 2;
+                _direction = 2;
             }
             _sprite.set_y(_sprite.y() - _speed);
         }
         if(bn::keypad::down_held()) {
-            if (direction != 4){
+            if (_direction != 4){
                 _sprite = bn::sprite_items::bnc_minnow_down.create_sprite(_sprite.x(), _sprite.y());
-                direction = 4;
+                _direction = 4;
             }
             _sprite.set_y(_sprite.y() + _speed);
         }

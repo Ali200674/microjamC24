@@ -14,8 +14,8 @@ namespace bnc{
     _shark_size(SHARK_SIZE)
     {}
 
-    bool Shark::_shark_collision() const {
-        return shark_collision;
+    bool Shark::get_shark_collision() const {
+        return _shark_collision;
     }
     void Shark::update(Minnow& minnow) {
 
@@ -34,7 +34,7 @@ namespace bnc{
         _shark_hit_box = create_bounding_box(_shark, SHARK_SIZE);
         
         if(_shark_hit_box.intersects(minnow.get_minnow_hit_box())){
-            shark_collision = true;
+            _shark_collision = true;
         }
     }
 }
