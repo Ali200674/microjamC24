@@ -47,7 +47,6 @@ namespace bar
         bn::fixed _vertical_speed;
         bn::size _size;
         bn::rect _bounding_box;
-        bool _hit;
         bool _collided;
     };
 }
