@@ -59,7 +59,7 @@ namespace bnc
  * GBA runs at approx 60 frames per second.
  */
     int bnc_fish_escape::total_frames() const {
-        return 600; // 300 frames at 60fps = 5 seconds
+        return 600; 
     }
 
  /**
