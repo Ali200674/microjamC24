@@ -73,7 +73,7 @@ namespace aab
         Swimmer swimmer;
         Obstacle obstacle;
         bn::regular_bg_ptr background;
-        int slow_timer;
         bn::camera_ptr camera;
+        int slow_timer;
     };
 }
