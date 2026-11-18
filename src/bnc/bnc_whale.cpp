@@ -18,8 +18,8 @@ namespace bnc{
     {}
 
 
-    bool Whale::_whale_collision() const {
-        return whale_collision;
+    bool Whale::get_whale_collision() const {
+        return _whale_collision;
     }
 
 
@@ -43,7 +43,7 @@ namespace bnc{
         _whale_hit_box = create_bounding_box(_whale, WHALE_SIZE);
         
         if(_whale_hit_box.intersects(squid.get_squid_hit_box())){
-            whale_collision = true;
+            _whale_collision = true;
         }
 
 

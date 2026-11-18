@@ -44,7 +44,7 @@ namespace bnc {
         bn::fixed _speed;
 
         //direction number
-        int direction;
+        int _direction;
 
         //if statemenst for the squids direction goes here
         /**

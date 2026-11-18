@@ -77,7 +77,7 @@ int bnc_fish_escape::_whale_increase(mj::difficulty_level difficulty) {
  * GBA runs at approx 60 frames per second.
  */
 int bnc_fish_escape::total_frames() const {
-    return 600; // 300 frames at 60fps = 5 seconds
+    return 600;
 }
 
 /**
@@ -104,7 +104,7 @@ mj::game_result bnc_fish_escape::play([[maybe_unused]] const mj::game_data& data
         _whale_vector[i].update(_squid);
 
         // Reset the current score and player position if the player collides with enemy
-        if(_whale_vector[i]._whale_collision() == true) {
+        if(_whale_vector[i].get_whale_collision()) {
 
             _caught_squid = true;
         }
