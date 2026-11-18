@@ -5,26 +5,26 @@
 #include <bn_display.h>
 #include <bn_sprite_animate_actions.h>
 
+// All game functions/classes/variables/constants scoped to the namespace
+namespace nsj
+{
 
-
-//All game functions/classes/variables/constants scoped to the namespace
-namespace nsj {
-
-/**
- * A character controlled with the d-pad.
- */
-class player {
+    /**
+     * A character controlled with the d-pad.
+     */
+    class player
+    {
         // The bounds of the screen
         static constexpr int MAX_X = bn::display::width() / 2;
-        static constexpr int MIN_X = - bn::display::width() / 2;
+        static constexpr int MIN_X = -bn::display::width() / 2;
         static constexpr int MAX_Y = bn::display::height() / 2;
-        static constexpr int MIN_Y = - bn::display::height() / 2;
+        static constexpr int MIN_Y = -bn::display::height() / 2;
 
     public:
      bn::rect bounding_box;
         /**
          * player constructor
-         * 
+         *
          * @param starting_position the location to start the player at
          * @param speed the pixels/frame the player moves at in each dimension
          */
@@ -37,16 +37,18 @@ class player {
 
         /**
          * Returns whether the player has left the screen
-         * 
+         *
          * @return true if the player has left the screen, false if it is still on the screen
          */
         bool out_of_bounds() const;
-    
+
+        bn::sprite_ptr get_sprite();
+
     private:
         // The sprite to display the player
         bn::sprite_ptr _sprite;
         bn::sprite_animate_action<4> _sprite_action;
-       
+
         // The pixels/frame the player moves in each dimension
         bn::fixed _speed;
 
@@ -54,12 +56,6 @@ class player {
          * Reads from the d-pad and moves the player by one frame accordingly.
          */
         void _update_position();
-
-    public:
-    bn::sprite_ptr get_sprite();
-      
-        
-};
+    };
 
 }
-

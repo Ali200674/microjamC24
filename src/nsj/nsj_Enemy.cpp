@@ -5,47 +5,46 @@
 #include "bn_sprite_items_nsj_hook.h"
 #include <bn_keypad.h>
 #include "nsj_boundingBox.h"
-
+#include "bn_rect.h"
 
 static constexpr bn::size ENEMY_SIZE = {16, 16};
 
-Enemy::Enemy(bn::fixed x_start, bn::fixed y_start,bn::fixed speed) : sprite(bn::sprite_items::nsj_hook.create_sprite(x_start, y_start)),
-                                                   x_speed(speed), y_speed(speed),
-                                                   size(ENEMY_SIZE)
-    {
-        bounding_box=create_bounding_box(sprite, size);
-    }
+Enemy::Enemy(bn::fixed x_start, bn::fixed y_start, bn::fixed speed) : _sprite(bn::sprite_items::nsj_hook.create_sprite(x_start, y_start)),
+                                                                      _x_speed(speed), _y_speed(speed),
+                                                                      _size(ENEMY_SIZE)
+{
+    _bounding_box = create_bounding_box(_sprite, _size);
+}
 
+ bn::rect nsj::Enemy::get_bounding_box()
+    {
+        return _bounding_box;
+    }
    
 
-    void Enemy:: update([[maybe_unused]]nsj::player& player){
-    
-             sprite.set_x(sprite.x() + x_speed);
-    
-    //    if (sprite.x() >=MAX_X)
-    //     {
-    //         x_speed= -x_speed;
-             
-    //     }
-    //     else if(sprite.x() <=MIN_X)
-    //      {
-    //         x_speed= -x_speed;
-    //      }
 
-    if (sprite.x() >= MAX_X)
+    void Enemy:: update(){
+    
+             _sprite.set_x(_sprite.x() + _x_speed);
+    
+  
+    if (_sprite.x() >= MAX_X)
     {
-        sprite.set_x(MIN_X);
-        sprite.set_y(rng.get_int(-60, 40));
+        _sprite.set_x(MIN_X);
+        _sprite.set_y(rng.get_int(-60, 40));
     }
 
-    else if (sprite.x() <= MIN_X)
+    else if (_sprite.x() <= MIN_X)
     {
-        sprite.set_x(MAX_X);
-        sprite.set_y(rng.get_int(-60, 40));
+        _sprite.set_x(MAX_X);
+        _sprite.set_y(rng.get_int(-60, 40));
     }
        
 
-       bounding_box = create_bounding_box(sprite, size);
+       _bounding_box = create_bounding_box(_sprite, _size);
 
        
     }
+     
+   
+

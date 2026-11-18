@@ -3,28 +3,28 @@
 #include <bn_sprite_ptr.h>
 #include <bn_display.h>
 #include <bn_rect.h>
-//#include <bn_sprite_animate_actions.h>
 #include <bn_random.h>
 #include "nsj_player.h"
 
-
-class Enemy{
+class Enemy
+{
     static constexpr int MAX_X = bn::display::width() / 2;
     static constexpr int MIN_X = -bn::display::width() / 2;
     static constexpr int MAX_Y = bn::display::height() / 2;
     static constexpr int MIN_Y = -bn::display::height() / 2;
-    public:
-     bn::sprite_ptr sprite;
-     bn::fixed x_speed;
-     bn::fixed y_speed;
-     bn::size size;
-     //bn::random rng;
-     bn::rect bounding_box;
-  
+    private:
+     bn::sprite_ptr _sprite;
+     bn::fixed _x_speed;
+     bn::fixed _y_speed;
+     bn::size _size;
+     bn::rect _bounding_box;
+    bn::random rng;
+  public:
          Enemy(bn::fixed x_start, bn::fixed y_start,bn::fixed speed);
 
-          void update(nsj::player& player);
+          void update();
+          bn::rect get_bounding_box();
 
-     private:
-    bn::random rng;
+     
+   
 };
