@@ -3,8 +3,6 @@
 #include "mj/mj_game_list.h"
 #include "bn_regular_bg_items_aab_oceanbg.h"
 
-#include "bn_camera_ptr.h"
-
 // String arrays for the credits can go in an anonymous namespace
 namespace
 {
@@ -37,9 +35,15 @@ namespace aab
                                                                                                            swimmer(Swimmer({-120, 30})),
                                                                                                            obstacle(Obstacle({0, 35})),
                                                                                                            background(bn::regular_bg_items::aab_oceanbg.create_bg()),
+                                                                                                           camera(bn::camera_ptr::create(0, 0)),
                                                                                                            slow_timer(0)
     {
         // play_sound(bn::sound_items::aub_tower, completed_games, data);
+        //Attach camera to spites once upon creation
+        dolphin.sprite.set_camera(camera);
+        swimmer.sprite.set_camera(camera);
+        background.set_camera(camera);
+        obstacle.sprite.set_camera(camera);
     }
 
     /**
@@ -74,11 +78,6 @@ namespace aab
      */
     mj::game_result aab_game::play([[maybe_unused]] const mj::game_data &data)
     {
-        // testing camera
-        bn::camera_ptr camera = bn::camera_ptr::create(0, 0);
-        swimmer.sprite.set_camera(camera);
-        background.set_camera(camera);
-        obstacle.sprite.set_camera(camera);
 
         // add in dolphin
         dolphin.update();

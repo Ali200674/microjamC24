@@ -1,6 +1,7 @@
 #pragma once
 
 #include <bn_regular_bg_ptr.h>
+#include <bn_camera_ptr.h>
 
 #include "mj/mj_game.h"
 #include "aab/aab_dolphin.h"
@@ -73,5 +74,6 @@ namespace aab
         Obstacle obstacle;
         bn::regular_bg_ptr background;
         int slow_timer;
+        bn::camera_ptr camera;
     };
 }
