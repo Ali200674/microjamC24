@@ -8,7 +8,7 @@
 namespace dna {
 
     AquaticLife::AquaticLife(bn::random &random, bn::fixed speed, bn::size size) :
-    _sprite(bn::sprite_items::dna_dot.create_sprite(getStartPosition(random))), 
+    _sprite(bn::sprite_items::dna_shark.create_sprite(getStartPosition(random))), 
     _speed(speed), 
     _hitbox(create_hitbox(_sprite, size)), 
     _size(size) {}
