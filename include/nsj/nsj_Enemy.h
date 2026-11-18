@@ -5,7 +5,7 @@
 #include <bn_rect.h>
 #include <bn_random.h>
 #include "nsj_player.h"
-
+namespace nsj{
 class Enemy
 {
     static constexpr int MAX_X = bn::display::width() / 2;
@@ -28,3 +28,4 @@ class Enemy
      
    
 };
+}

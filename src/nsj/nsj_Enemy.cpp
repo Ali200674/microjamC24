@@ -6,7 +6,7 @@
 #include <bn_keypad.h>
 #include "nsj_boundingBox.h"
 #include "bn_rect.h"
-
+namespace nsj{
 static constexpr bn::size ENEMY_SIZE = {16, 16};
 
 Enemy::Enemy(bn::fixed x_start, bn::fixed y_start, bn::fixed speed) : _sprite(bn::sprite_items::nsj_hook.create_sprite(x_start, y_start)),
@@ -45,6 +45,6 @@ Enemy::Enemy(bn::fixed x_start, bn::fixed y_start, bn::fixed speed) : _sprite(bn
 
        
     }
-     
+}   
    
 
