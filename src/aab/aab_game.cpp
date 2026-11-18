@@ -53,7 +53,7 @@ namespace aab
      */
     bn::string<16> aab_game::title() const
     {
-        return "Race the Dolphin";
+        return "Mash A to Swim!";
     }
 
     /**
