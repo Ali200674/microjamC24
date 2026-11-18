@@ -29,12 +29,6 @@ namespace bar
          */
         void update();
 
-        bn::sprite_ptr get_sprite() const;
-
-        bn::fixed get_speed() const;
-
-        bn::size get_size() const;
-
         bn::rect get_bounding_box() const;
 
         bool is_collided() const;
