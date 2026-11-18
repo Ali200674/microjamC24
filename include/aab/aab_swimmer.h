@@ -21,6 +21,7 @@ namespace aab
          */
 
         Swimmer(bn::fixed_point starting_position);
+        void slow_down();
         void update();
 
     private:
@@ -30,9 +31,12 @@ namespace aab
         static constexpr float forward_speed = 10;
         static constexpr float move_up = -5;
         static constexpr float move_down = 5;
+        static constexpr bn::fixed slow_drag = 0.5;
+        static constexpr int slow_duration = 45;
 
         static constexpr int debounce = 20;
         int counter = 0;
         bool buffer = false;
+        int slow_timer = 0;
     };
 }

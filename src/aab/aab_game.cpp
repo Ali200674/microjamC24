@@ -92,24 +92,9 @@ namespace aab
             swimmer.sprite.x() > obstacle.sprite.x() - 12 && swimmer.sprite.x() < obstacle.sprite.x() + 12 &&
             swimmer.sprite.y() > obstacle.sprite.y() - 12 && swimmer.sprite.y() < obstacle.sprite.y() + 12)
         {
-            // Knock back swimmer slightly if they hit an obstacle
-            swimmer.sprite.set_x(obstacle.sprite.x() - 16);
-
-            // trigger slow effect for 45 frames (0.75 secs),overpowering the boost button
-            slow_timer = 45;
-        }
-
-        // apply slow-down drag if timer is active
-        if (slow_timer > 0)
-        {
-            slow_timer--;
-
-            // counter forward movement so swimmer crawls forward even if boosting
-            swimmer.sprite.set_x(swimmer.sprite.x() - 0.7);
+            swimmer.slow_down();
         }
         // Creates a game result indicating whether the game is finished and whether the title should be hidden early
-        // For this game the game should end early if the player has won (if victory returns true)
-        // The title is not hidden early (false is passed), so the title disappears at the default time
         mj::game_result result(victory(), false);
         return result;
     }
