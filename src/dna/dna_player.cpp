@@ -4,6 +4,7 @@
 #include <bn_keypad.h>
 
 #include "bn_sprite_items_dna_dot.h"
+#include "bn_sprite_items_dna_player.h"
 
 namespace dna {
     Player::Player(bn::fixed_point starting_pos, bn::fixed speed, bn::size size) :
