@@ -2,6 +2,7 @@
 
 #include <bn_sprite_ptr.h>
 #include <bn_fixed.h>
+#include <bn_fixed_point.h>
 #include <bn_size.h>
 #include <bn_rect.h>
 #include <bn_display.h>
@@ -44,7 +45,7 @@ namespace bnc {
         bn::fixed _speed;
 
         //direction number
-        int direction;
+        int _direction;
 
         //if statemenst for the squids direction goes here
         /**

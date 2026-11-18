@@ -7,7 +7,6 @@
 #include <bn_display.h>
 #include <bn_rect.h>
 #include <bn_size.h>
-#include <bn_random.h>
 #include <bn_fixed.h>
 #include <bn_vector.h>
 
@@ -35,10 +34,10 @@ namespace bnc {
         //getter functions
         void update(Squid& squid);
         bool collide(Squid& squid);
-        bool _whale_collision() const;
+        bool get_whale_collision() const;
 
         private:
-        bool whale_collision = false;
+        bool _whale_collision = false;
         bn::sprite_ptr _whale;
         bn::rect _whale_hit_box;
         bn::fixed _whale_speed;
