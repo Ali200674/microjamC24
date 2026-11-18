@@ -33,6 +33,7 @@ namespace bar
 
         bool is_collided() const;
 
+        // This is the only instance variable that needs to change outside this class
         void set_collided(bool set_status);
 
     private:
@@ -46,6 +47,7 @@ namespace bar
         bn::fixed _vertical_speed;
         bn::size _size;
         bn::rect _bounding_box;
+        bool _hit;
         bool _collided;
     };
 }
