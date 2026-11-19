@@ -12,8 +12,6 @@ namespace aab
     class Swimmer
     {
     public:
-        bn::sprite_ptr sprite;
-
         /**
          * player's swimmer constructor
          *
@@ -23,8 +21,12 @@ namespace aab
         Swimmer(bn::fixed_point starting_position);
         void slow_down();
         void update();
+        void set_camera(const bn::camera_ptr& camera);
+        bn::fixed x() const;
+        bn::fixed y() const;
 
     private:
+        bn::sprite_ptr sprite;
         bn::sprite_animate_action<4> _animate;
         static constexpr int _swimmer_min_height = 10;
         static constexpr int _swimmer_max_height = 60;

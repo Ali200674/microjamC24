@@ -1,6 +1,7 @@
 #include "aab/aab_swimmer.h"
 #include <bn_keypad.h>
 #include "bn_sprite_items_aab_swimmer.h"
+#include <bn_camera_ptr.h>
 
 namespace aab
 {
@@ -62,5 +63,17 @@ namespace aab
         {
             _slow_timer = _slow_duration;
         }
+    }
+
+    void Swimmer::set_camera(const bn::camera_ptr& camera){
+        sprite.set_camera(camera);
+    }
+
+    bn::fixed Swimmer::x() const{
+        return sprite.x();
+    }
+
+    bn::fixed Swimmer::y() const{
+        return sprite.y();
     }
 }

@@ -40,7 +40,7 @@ namespace aab
     {
         //Attach camera to spites once upon creation
         _dolphin.set_camera(_camera);
-        _swimmer.sprite.set_camera(_camera);
+        _swimmer.set_camera(_camera);
         _background.set_camera(_camera);
         _obstacle.set_camera(_camera);
     }
@@ -85,12 +85,12 @@ namespace aab
         _obstacle.update();
 
         // updating camera
-        _camera.set_position(_swimmer.sprite.x(), 0);
+        _camera.set_position(_swimmer.x(), 0);
 
         // Simple Obstacle Collion Check
         if (_slow_timer == 0 &&
-            _swimmer.sprite.x() > _obstacle.x() - 12 && _swimmer.sprite.x() < _obstacle.x() + 12 &&
-            _swimmer.sprite.y() > _obstacle.y() - 12 && _swimmer.sprite.y() < _obstacle.y() + 12)
+            _swimmer.x() > _obstacle.x() - 12 && _swimmer.x() < _obstacle.x() + 12 &&
+            _swimmer.y() > _obstacle.y() - 12 && _swimmer.y() < _obstacle.y() + 12)
         {
             _swimmer.slow_down();
         }
@@ -106,7 +106,7 @@ namespace aab
      */
     bool aab_game::victory() const
     {
-        return _swimmer.sprite.x() > _dolphin.x() && (_swimmer.sprite.x() > 0);
+        return _swimmer.x() > _dolphin.x() && (_swimmer.x() > 0);
     }
 
     /**
