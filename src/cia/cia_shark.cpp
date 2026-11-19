@@ -28,25 +28,25 @@ namespace cia
     void shark::update(cia::player &player)
     {
         // If the shark is to the right of the player, go left
-        if (_sprite.x() < player.getPlayerXPos())
+        if (_sprite.x() < player.get_x())
         {
             _sprite.set_x(_sprite.x() + _speed);
         }
 
         // If the player is to the left of the player, go right
-        if (_sprite.x() > player.getPlayerXPos())
+        if (_sprite.x() > player.get_x())
         {
             _sprite.set_x(_sprite.x() - _speed);
         }
 
         // If the player is below the shark, go down
-        if (_sprite.y() < player.getPlayerYPos())
+        if (_sprite.y() < player.get_y())
         {
             _sprite.set_y(_sprite.y() + _speed);
         }
 
         // If the player is above the shark, go up
-        if (_sprite.y() > player.getPlayerYPos())
+        if (_sprite.y() > player.get_y())
         {
             _sprite.set_y(_sprite.y() - _speed);
         }
