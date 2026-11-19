@@ -1,5 +1,6 @@
 #include "aab/aab_dolphin.h"
 #include "bn_sprite_items_aab_dolphin.h"
+#include <bn_camera_ptr.h>
 
 namespace aab
 {
@@ -23,5 +24,17 @@ namespace aab
     void Dolphin::update_position(bn::fixed dolphin_speed)
     {
         sprite.set_x(sprite.x() + dolphin_speed);
+    }
+
+    void Dolphin::set_camera(const bn::camera_ptr& camera){
+        sprite.set_camera(camera);
+    }
+
+    bn::fixed Dolphin::x() const{
+        return sprite.x();
+    }
+
+    bn::fixed Dolphin::y() const{
+        return sprite.y();
     }
 }

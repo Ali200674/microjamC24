@@ -39,7 +39,7 @@ namespace aab
                                                                                                            _slow_timer(0)
     {
         //Attach camera to spites once upon creation
-        _dolphin.sprite.set_camera(_camera);
+        _dolphin.set_camera(_camera);
         _swimmer.sprite.set_camera(_camera);
         _background.set_camera(_camera);
         _obstacle.sprite.set_camera(_camera);
@@ -106,7 +106,7 @@ namespace aab
      */
     bool aab_game::victory() const
     {
-        return _swimmer.sprite.x() > _dolphin.sprite.x() && (_swimmer.sprite.x() > 0);
+        return _swimmer.sprite.x() > _dolphin.x() && (_swimmer.sprite.x() > 0);
     }
 
     /**
