@@ -42,7 +42,7 @@ namespace aab
         _dolphin.set_camera(_camera);
         _swimmer.sprite.set_camera(_camera);
         _background.set_camera(_camera);
-        _obstacle.sprite.set_camera(_camera);
+        _obstacle.set_camera(_camera);
     }
 
     /**
@@ -89,8 +89,8 @@ namespace aab
 
         // Simple Obstacle Collion Check
         if (_slow_timer == 0 &&
-            _swimmer.sprite.x() > _obstacle.sprite.x() - 12 && _swimmer.sprite.x() < _obstacle.sprite.x() + 12 &&
-            _swimmer.sprite.y() > _obstacle.sprite.y() - 12 && _swimmer.sprite.y() < _obstacle.sprite.y() + 12)
+            _swimmer.sprite.x() > _obstacle.x() - 12 && _swimmer.sprite.x() < _obstacle.x() + 12 &&
+            _swimmer.sprite.y() > _obstacle.y() - 12 && _swimmer.sprite.y() < _obstacle.y() + 12)
         {
             _swimmer.slow_down();
         }

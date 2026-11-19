@@ -8,9 +8,13 @@ namespace aab
     class Obstacle
     {
         public:
-        bn::sprite_ptr sprite;
-
         Obstacle(bn::fixed_point starting_position);
         void update();
+        void set_camera(const bn::camera_ptr& camera);
+        bn::fixed x() const;
+        bn::fixed y() const;
+
+        private:
+        bn::sprite_ptr sprite;
     };
 }

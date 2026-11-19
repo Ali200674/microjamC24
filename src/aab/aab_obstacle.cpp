@@ -1,5 +1,6 @@
 #include "aab/aab_obstacle.h"
 #include "bn_sprite_items_aab_log.h"
+#include <bn_camera_ptr.h>
 
 namespace aab
 {
@@ -12,4 +13,17 @@ namespace aab
     {
         // You can leave it static or add movement here if desired
     }
+
+    void Obstacle::set_camera(const bn::camera_ptr& camera){
+        sprite.set_camera(camera);
+    }
+
+    bn::fixed Obstacle::x() const{
+        return sprite.x();
+    }
+
+    bn::fixed Obstacle::y() const{
+        return sprite.y();
+    }
+
 }
