@@ -6,7 +6,7 @@
 namespace vct {
 
 //Basic player constructor, all inital values go here
-player::player(bn ::fixed_point starting_position, bn::fixed speed) :
+player::player(bn ::fixed_point starting_position, [[maybe_unused]] bn::fixed speed) :
     _sprite(bn::sprite_items::vct_angler.create_sprite(starting_position))
 {}
 
