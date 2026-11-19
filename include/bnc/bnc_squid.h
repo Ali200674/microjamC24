@@ -18,15 +18,14 @@ namespace bnc {
     //Speed of the player
     static constexpr bn::fixed SPEED = 1;
 
+    static constexpr int MIN_Y = -bn::display::height() / 2;
+    static constexpr int MAX_Y = bn::display::height() / 2;
+    static constexpr int MIN_X = -bn::display::width() / 2;        
+    static constexpr int MAX_X = bn::display::width() / 2;
+
     bn::rect create_bounding_box(bn::sprite_ptr sprite, bn::size box_size);
 
     class Squid {
-
-        static constexpr int MIN_Y = -bn::display::height() / 2;
-        static constexpr int MAX_Y = bn::display::height() / 2;
-        static constexpr int MIN_X = -bn::display::width() / 2;
-        static constexpr int MAX_X = bn::display::width() / 2;
-
         public:
         //constructor
         Squid(bn::fixed_point starting_position, bn::fixed speed);

@@ -3,6 +3,7 @@
 #include "bn_sprite_items_bnc_whale.h"
 #include "mj/mj_game_data.h"
 #include "bnc/bnc_squid.h"
+
 #include <bn_vector.h>
 #include <bn_rect.h>
 
