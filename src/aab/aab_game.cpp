@@ -38,7 +38,6 @@ namespace aab
                                                                                                            _camera(bn::camera_ptr::create(0, 0)),
                                                                                                            _slow_timer(0)
     {
-        // play_sound(bn::sound_items::aub_tower, completed_games, data);
         //Attach camera to spites once upon creation
         _dolphin.sprite.set_camera(_camera);
         _swimmer.sprite.set_camera(_camera);
