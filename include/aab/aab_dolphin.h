@@ -18,7 +18,7 @@ namespace aab
 
     private:
         // bn::sprite_ptr sprite;
-        bn::sprite_animate_action<6> animate;
-        bn::fixed speed = 0.5;
+        bn::sprite_animate_action<6> _animate;
+        bn::fixed _speed = 0.5;
     };
 }
