@@ -56,10 +56,10 @@ namespace cia
     /**
      * Method that returns the x position of the player as a bn::fixed variable
      */
-    bn::fixed player::getPlayerXPos() const { return _sprite.x(); }
+    bn::fixed player::get_x() const { return _sprite.x(); }
 
     /**
      * Method that returns the y position of the player as a bn::fixed variable
      */
-    bn::fixed player::getPlayerYPos() const { return _sprite.y(); }
+    bn::fixed player::get_y() const { return _sprite.y(); }
 }
