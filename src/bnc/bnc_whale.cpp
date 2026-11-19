@@ -22,19 +22,19 @@ namespace bnc{
 
 
     void Whale::update(Squid& squid) {
-        if(_whale.x() < squid.get_sprite().x()){
+        if(_whale.x() < squid.get_position().x()){
             _whale.set_x(_whale.x() + _whale_speed);
         }
 
-        if(_whale.x() > squid.get_sprite().x()){
+        if(_whale.x() > squid.get_position().x()){
             _whale.set_x(_whale.x() - _whale_speed);
         }
 
-        if(_whale.y() > squid.get_sprite().y()){
+        if(_whale.y() > squid.get_position().y()){
             _whale.set_y(_whale.y() - _whale_speed);
         }
 
-        if(_whale.y() < squid.get_sprite().y()){
+        if(_whale.y() < squid.get_position().y()){
             _whale.set_y(_whale.y() + _whale_speed);
         }
 

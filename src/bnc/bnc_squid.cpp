@@ -13,8 +13,8 @@ namespace bnc {
         {}
 
     //returns squid's sprite pointer
-    bn::sprite_ptr Squid::get_sprite() {
-        return _sprite;
+    bn::fixed_point Squid::get_position() {
+        return bn::fixed_point(_sprite.x(), _sprite.y());
     }
 
     //returns squid's hit box

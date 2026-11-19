@@ -32,7 +32,7 @@ namespace bnc {
         Squid(bn::fixed_point starting_position, bn::fixed speed);
 
         //getter functions
-        bn::sprite_ptr get_sprite();
+        bn::fixed_point get_position();
         bn::rect get_squid_hit_box();
 
         void update();
@@ -48,7 +48,6 @@ namespace bnc {
         // depending on what keypad is pushed
         int _direction;
 
-        //if statemenst for the squids direction goes here
         /**
          * Reads from the d-pad and moves the player by one frame accordingly.
          */
