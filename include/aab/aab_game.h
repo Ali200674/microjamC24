@@ -75,5 +75,6 @@ namespace aab
         bn::regular_bg_ptr _background;
         bn::camera_ptr _camera;
         int _slow_timer;
+        static constexpr int collison_radius = 12;
     };
 }
