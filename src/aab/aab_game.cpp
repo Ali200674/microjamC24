@@ -31,19 +31,19 @@ namespace aab
      * @param data shared information, such as a rng and number of frames left in the microgame
      */
     aab_game::aab_game([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data &data) : mj::game("aab"),
-                                                                                                           dolphin(Dolphin({-100, -20})), // dolphin racing right ward
-                                                                                                           swimmer(Swimmer({-120, 30})),
-                                                                                                           obstacle(Obstacle({0, 35})),
-                                                                                                           background(bn::regular_bg_items::aab_oceanbg.create_bg()),
-                                                                                                           camera(bn::camera_ptr::create(0, 0)),
-                                                                                                           slow_timer(0)
+                                                                                                           _dolphin(Dolphin({-100, -20})), // dolphin racing right ward
+                                                                                                           _swimmer(Swimmer({-120, 30})),
+                                                                                                           _obstacle(Obstacle({0, 35})),
+                                                                                                           _background(bn::regular_bg_items::aab_oceanbg.create_bg()),
+                                                                                                           _camera(bn::camera_ptr::create(0, 0)),
+                                                                                                           _slow_timer(0)
     {
         // play_sound(bn::sound_items::aub_tower, completed_games, data);
         //Attach camera to spites once upon creation
-        dolphin.sprite.set_camera(camera);
-        swimmer.sprite.set_camera(camera);
-        background.set_camera(camera);
-        obstacle.sprite.set_camera(camera);
+        _dolphin.sprite.set_camera(_camera);
+        _swimmer.sprite.set_camera(_camera);
+        _background.set_camera(_camera);
+        _obstacle.sprite.set_camera(_camera);
     }
 
     /**
@@ -80,19 +80,19 @@ namespace aab
     {
 
         // add in dolphin
-        dolphin.update();
-        swimmer.update();
-        obstacle.update();
+        _dolphin.update();
+        _swimmer.update();
+        _obstacle.update();
 
         // updating camera
-        camera.set_position(swimmer.sprite.x(), 0);
+        _camera.set_position(_swimmer.sprite.x(), 0);
 
         // Simple Obstacle Collion Check
-        if (slow_timer == 0 &&
-            swimmer.sprite.x() > obstacle.sprite.x() - 12 && swimmer.sprite.x() < obstacle.sprite.x() + 12 &&
-            swimmer.sprite.y() > obstacle.sprite.y() - 12 && swimmer.sprite.y() < obstacle.sprite.y() + 12)
+        if (_slow_timer == 0 &&
+            _swimmer.sprite.x() > _obstacle.sprite.x() - 12 && _swimmer.sprite.x() < _obstacle.sprite.x() + 12 &&
+            _swimmer.sprite.y() > _obstacle.sprite.y() - 12 && _swimmer.sprite.y() < _obstacle.sprite.y() + 12)
         {
-            swimmer.slow_down();
+            _swimmer.slow_down();
         }
         // Creates a game result indicating whether the game is finished and whether the title should be hidden early
         mj::game_result result(victory(), false);
@@ -106,7 +106,7 @@ namespace aab
      */
     bool aab_game::victory() const
     {
-        return swimmer.sprite.x() > dolphin.sprite.x() && (swimmer.sprite.x() > 0);
+        return _swimmer.sprite.x() > _dolphin.sprite.x() && (_swimmer.sprite.x() > 0);
     }
 
     /**

@@ -69,11 +69,11 @@ namespace aab
         void fade_out(const mj::game_data &data) override;
 
     private:
-        Dolphin dolphin;
-        Swimmer swimmer;
-        Obstacle obstacle;
-        bn::regular_bg_ptr background;
-        bn::camera_ptr camera;
-        int slow_timer;
+        Dolphin _dolphin;
+        Swimmer _swimmer;
+        Obstacle _obstacle;
+        bn::regular_bg_ptr _background;
+        bn::camera_ptr _camera;
+        int _slow_timer;
     };
 }
