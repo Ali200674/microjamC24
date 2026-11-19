@@ -44,7 +44,8 @@ namespace bnc {
         bn::rect _squid_hit_box;    
         bn::fixed _speed;
 
-        //direction number
+        //direction number for the squid sprite to change
+        // depending on what keypad is pushed
         int _direction;
 
         //if statemenst for the squids direction goes here

@@ -34,16 +34,16 @@ namespace bnc
  * @param data shared information, such as a rng and number of frames left in the microgame
  */
     bnc_squid_escape::bnc_squid_escape(
-        [[maybe_unused]] int completed_games,
-        [[maybe_unused]] const mj::game_data& data) : mj::game("bnc"), 
+        int completed_games,
+        const mj::game_data& data) : mj::game("bnc"), 
         _squid(bn::fixed_point(X_START, Y_START), SPEED)
     {
 
-        while(_whale_vector.size() < _whale_increase(recommended_difficulty_level(completed_games * 9, data))) {
+        while(_whale_vector.size() < _whale_increase(recommended_difficulty_level(completed_games, data))) {
 
             _whale_vector.push_back(Whale(
-            data.random.get_unbiased_fixed(MIN_X, MAX_X),
-            data.random.get_unbiased_fixed(MIN_Y, MAX_Y),
+            data.random.get_unbiased_fixed(WHALE_MIN_X, WHALE_MAX_X),
+            data.random.get_unbiased_fixed(WHALE_MIN_Y, WHALE_MAX_Y),
             WHALE_SPEED));
 
         }
@@ -99,16 +99,12 @@ mj::game_result bnc_squid_escape::play([[maybe_unused]] const mj::game_data& dat
         //update the vector to the players location using the index
         _whale_vector[i].update(_squid);
 
-        // Reset the current score and player position if the player collides with enemy
-        if(_whale_vector[i].get_whale_collision() == true) {
+        if(_whale_vector[i].get_whale_collision()) {
 
             _caught_squid = true;
         }
     }
 
-    // Creates a game result indicating whether the game is finished and whether the title should be hidden early
-    // For this game the game should end early if the player has won (if victory returns true)
-    // The title is not hidden early (false is passed), so the title disappears at the default time
     mj::game_result result(victory() || _caught_squid, false);
     return result;
 }
