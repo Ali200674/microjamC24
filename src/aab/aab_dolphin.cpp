@@ -18,10 +18,10 @@ namespace aab
     {
         // animates dolphin sprite
         _animate.update();
-        update_position(_speed);
+        _update_position(_speed);
     }
 
-    void Dolphin::update_position(bn::fixed dolphin_speed)
+    void Dolphin::_update_position(bn::fixed dolphin_speed)
     {
         sprite.set_x(sprite.x() + dolphin_speed);
     }
