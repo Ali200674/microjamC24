@@ -5,38 +5,19 @@
 
 #include <bn_random.h>
 #include <bn_fixed_point.h>
+#include <bn_array.h>
 
 namespace cia
 {
     static constexpr bn::fixed_size SHARK_SIZE(24, 12);
+    static constexpr bn::array<bn::fixed_point, 4> randomSpawnPos = {
+        bn::fixed_point(-140, 0),
+        bn::fixed_point(0, -100),
+        bn::fixed_point(140, 0),
+        bn::fixed_point(0, 100)
+    };
 
-    bn::fixed_point shark::getRandomStartPos(bn::random &random) const
-    {
-
-        int randomPos = random.get_int(4);
-        // off of the screen on left side
-        if (randomPos == 0)
-        {
-            return {-140, 0};
-        }
-
-        // or the top of the screen
-        else if (randomPos == 1)
-        {
-            return {0, -100};
-        }
-
-        // right side of the screen
-        else if (randomPos == 2)
-        {
-            return {140, 0};
-        }
-        // bottom of the screen
-        else
-        {
-            return {0, 100};
-        }
-    }
+    bn::fixed_point shark::getRandomStartPos(bn::random &random) const { return randomSpawnPos.at(random.get_int(4)); }
 
     shark::shark(bn::random &rng, bn::fixed speed) : _sprite(bn::sprite_items::cia_shark.create_sprite(getRandomStartPos(rng))),
                                                      _speed(speed)
