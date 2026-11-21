@@ -20,17 +20,19 @@ MJ_GAME_LIST_ADD_SFX_CREDITS(sfx_credits)
 namespace nsj
 {
 
-   nsj_hook_escape::nsj_hook_escape([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data &data):mj::game("nsj"),
-       _player({0, 0}, 2),
-       _enemy(30, -30, _recommended_hook_speed(recommended_difficulty_level(completed_games, data)),data.random),
-       _enemy2(-100, 30, _recommended_hook_speed(recommended_difficulty_level(completed_games, data))+0.5,data.random),
-       _Shark(-80, -40, _recommended_shark_speed(recommended_difficulty_level(completed_games, data)))
+   nsj_hook_escape::nsj_hook_escape([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data &data) : mj::game("nsj"),
+                                                                                                                        _player({0, 0}, 2),
+                                                                                                                        _Shark(-80, -40, _recommended_shark_speed(recommended_difficulty_level(completed_games, data)))
    {
+      bn::fixed speed = _recommended_hook_speed(recommended_difficulty_level(completed_games, data));
+
+      _enemies.push_back(Enemy(30, -30, speed, data.random));
+      _enemies.push_back(Enemy(-100, 30, speed + 0.5, data.random));
    }
 
    bn::string<16> nsj_hook_escape::title() const
    {
-      return "Avoid the hook";
+      return "Don't Get Caught";
    }
 
    bn::fixed nsj_hook_escape::_recommended_hook_speed(mj::difficulty_level difficulty)
@@ -64,15 +66,22 @@ namespace nsj
       return 600;
    }
 
-   mj::game_result nsj_hook_escape::play([[maybe_unused]] const mj::game_data& data)
+   mj::game_result nsj_hook_escape::play([[maybe_unused]] const mj::game_data &data)
    {
 
       _player.update();
-      _enemy.update();
-      _enemy2.update();
+      for (int i = 0; i < _enemies.size(); i++)
+      {
+         _enemies[i].update();
+
+         if (_enemies[i].get_bounding_box().intersects(_player.get_bounding_box()))
+         {
+            _hooked = true;
+         }
+      }
       _Shark.update(_player);
-      if (_enemy.get_bounding_box().intersects(_player.get_bounding_box()) ||
-          _enemy2.get_bounding_box().intersects(_player.get_bounding_box()) ||
+
+      if (
           _Shark.get_bounding_box().intersects(_player.get_bounding_box()))
       {
          _hooked = true;
@@ -86,18 +95,16 @@ namespace nsj
    }
 
    bool nsj_hook_escape::victory() const
-   
-      {
-         return !_hooked;
-      }
 
-   
-      void nsj_hook_escape::fade_in([[maybe_unused]] const mj::game_data &data)
-      {
-      }
-
-      void nsj_hook_escape::fade_out([[maybe_unused]] const mj::game_data &data)
-      {
-      }
+   {
+      return !_hooked;
    }
 
+   void nsj_hook_escape::fade_in([[maybe_unused]] const mj::game_data &data)
+   {
+   }
+
+   void nsj_hook_escape::fade_out([[maybe_unused]] const mj::game_data &data)
+   {
+   }
+}

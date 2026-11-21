@@ -2,7 +2,7 @@
 #include "nsj_boundingBox.h"
 #include "bn_sprite_items_nsj_shark.h"
 namespace nsj{
-static constexpr bn::size SHARK_SIZE = {16, 16};
+static constexpr bn::size SHARK_SIZE = {8, 8};
 
 Shark::Shark(bn::fixed x_start, bn::fixed y_start,bn::fixed speed) : _sprite(bn::sprite_items::nsj_shark.create_sprite(x_start, y_start)),
                                                    _x_speed(speed), _y_speed(speed),

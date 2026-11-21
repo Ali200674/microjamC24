@@ -9,7 +9,7 @@
 
 namespace nsj
 {
-    static constexpr bn::size PLAYER_SIZE = {16, 16};
+    static constexpr bn::size PLAYER_SIZE = {8, 8};
 
     /**
      * player constructor
@@ -19,9 +19,12 @@ namespace nsj
      */
     player::player(bn::fixed_point starting_position, bn::fixed speed) : _sprite(bn::sprite_items::nsj_fish.create_sprite(starting_position)),
                                                                          _sprite_action(bn::create_sprite_animate_action_forever(_sprite, 16, bn::sprite_items::nsj_fish.tiles_item(), 0, 1, 2, 3)),
+                                                                         _size(PLAYER_SIZE),
                                                                          _speed(speed)
     {
-        _bounding_box = create_bounding_box(_sprite, PLAYER_SIZE);
+                                                            
+                                                                         
+        _bounding_box = create_bounding_box(_sprite,_size);
     }
 
     bn::rect nsj::player::get_bounding_box()
@@ -79,7 +82,7 @@ namespace nsj
         {
             _sprite.set_y(MAX_Y);
         }
-        _bounding_box = create_bounding_box(_sprite,PLAYER_SIZE);
+        _bounding_box = create_bounding_box(_sprite,_size);
     }
 
 }
