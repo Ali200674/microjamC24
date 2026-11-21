@@ -20,6 +20,8 @@ namespace cia
     bn::fixed_point shark::getRandomStartPos(bn::random &random) const { return randomSpawnPos.at(random.get_int(4)); }
 
     shark::shark(bn::random &rng, bn::fixed speed) : _sprite(bn::sprite_items::cia_shark.create_sprite(getRandomStartPos(rng))),
+                                                     _action(bn::create_sprite_animate_action_forever(
+                                                         _sprite, 8, bn::sprite_items::cia_shark.tiles_item(), 0, 1, 2, 3)),
                                                      _speed(speed)
     {
         _sprite.set_horizontal_flip(true);
@@ -27,6 +29,7 @@ namespace cia
 
     void shark::update(cia::player &player)
     {
+        _action.update();
         // If the shark is to the right of the player, go left
         if (_sprite.x() < player.get_x())
         {
