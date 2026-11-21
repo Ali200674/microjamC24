@@ -1,7 +1,8 @@
 #include "cia_oceandive.h"
 #include "mj/mj_game_list.h"
 #include "cia/cia_shark.h"
-
+#include <bn_regular_bg_ptr.h>
+#include <bn_regular_bg_items_cia_ocean_bg.h>
 namespace
 {
     constexpr bn::string_view code_credits[] = {"Ali", "Alex"};
