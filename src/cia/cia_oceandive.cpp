@@ -23,20 +23,20 @@ namespace cia
         // create a if statement for an easy mode
         if (level == mj::difficulty_level::EASY)
         {
-            _frameDecrement = 1.2;
-            _sharksSpeed = 0.35;
+            _frameDecrement = 1.22;
+            _sharksSpeed = 0.41;
         }
         // make a medium mode
         else if (level == mj::difficulty_level::NORMAL)
         {
-            _frameDecrement = 1.3;
-            _sharksSpeed = 0.4;
+            _frameDecrement = 1.32;
+            _sharksSpeed = 0.45;
         }
         // Assuming that we didn't go into the other if statements (This is for hard mode)
         else
         {
-            _frameDecrement = 1.4;
-            _sharksSpeed = 0.44;
+            _frameDecrement = 1.55;
+            _sharksSpeed = 0.5;
         }
     }
 
