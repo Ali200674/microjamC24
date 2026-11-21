@@ -3,7 +3,7 @@
 #include "mj/mj_game.h"
 #include "cia/cia_player.h"
 #include "cia/cia_shark.h"
-
+#include <bn_regular_bg_ptr.h>
 #include <bn_vector.h>
 namespace cia
 {
@@ -26,6 +26,7 @@ namespace cia
         void set_up_game(mj::difficulty_level level);
 
     private:
+        bn::regular_bg_ptr _bg;
         // Sprites
         player _player;
 

@@ -48,8 +48,9 @@ namespace cia
 
 
     cia_oceandive::cia_oceandive([[maybe_unused]] int completed_game, [[maybe_unused]] const mj::game_data &data) : mj::game("cia"),
-                                                                                                   _player(player({0, 20}, 1)),
-                                                                                                   _hit(false)
+                                                                                                _bg(bn::regular_bg_items::cia_ocean_bg.create_bg(0, 0)),
+                                                                                                _player(player({0, 20}, 1)),
+                                                                                                _hit(false)
     {
         set_up_game(recommended_difficulty_level(completed_game, data));
         _completedGames = completed_game;
