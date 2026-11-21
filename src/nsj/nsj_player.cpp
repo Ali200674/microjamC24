@@ -20,16 +20,22 @@ namespace nsj
                                                                          _sprite_action(bn::create_sprite_animate_action_forever(_sprite, 16, bn::sprite_items::nsj_fish.tiles_item(), 0, 1, 2, 3)),
                                                                          _speed(speed)
     {
-        bounding_box = create_bounding_box(_sprite, {16, 16});
+        _bounding_box = create_bounding_box(_sprite, {16, 16});
     }
+
+    bn::rect nsj::player::get_bounding_box()
+    {
+        return _bounding_box;
+    } 
+
     void player::update()
     {
         _update_position();
     }
 
-    bn::sprite_ptr nsj::player::get_sprite()
+    bn::fixed_point nsj::player::get_position()
     {
-        return _sprite;
+        return _sprite.position();
     }
 
     /**
@@ -72,7 +78,7 @@ namespace nsj
         {
             _sprite.set_y(MAX_Y);
         }
-        bounding_box = create_bounding_box(_sprite, {16, 16});
+        _bounding_box = create_bounding_box(_sprite, {16, 16});
     }
 
 }

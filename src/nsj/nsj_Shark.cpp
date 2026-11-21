@@ -13,22 +13,22 @@ Shark::Shark(bn::fixed x_start, bn::fixed y_start,bn::fixed speed) : sprite(bn::
 
 
     void Shark:: update([[maybe_unused]]nsj::player& player){
-         if (player.get_sprite().x() > sprite.x())
+         if (player.get_position().x() > sprite.x())
         {
             sprite.set_x(sprite.x() + x_speed);
             sprite.set_horizontal_flip(true);
         }
-       else if (player.get_sprite().x() < sprite.x())
+       else if (player.get_position().x() < sprite.x())
         {
             sprite.set_x(sprite.x() - x_speed);
              sprite.set_horizontal_flip(false);
         }
-        if (player.get_sprite().y()> sprite.y())
+        if (player.get_position().y()> sprite.y())
          {
             sprite.set_y(sprite.y()  + y_speed) ;
          }
 
-         else if (player.get_sprite().y() < sprite.y())
+         else if (player.get_position().y() < sprite.y())
          {
              sprite.set_y(sprite.y() - y_speed);
          }

@@ -21,7 +21,7 @@ namespace nsj
         static constexpr int MIN_Y = -bn::display::height() / 2;
 
     public:
-     bn::rect bounding_box;
+    
         /**
          * player constructor
          *
@@ -42,7 +42,8 @@ namespace nsj
          */
         bool out_of_bounds() const;
 
-        bn::sprite_ptr get_sprite();
+        bn::fixed_point get_position();
+         bn::rect get_bounding_box();
 
     private:
         // The sprite to display the player
@@ -51,6 +52,7 @@ namespace nsj
 
         // The pixels/frame the player moves in each dimension
         bn::fixed _speed;
+        bn::rect _bounding_box;
 
         /**
          * Reads from the d-pad and moves the player by one frame accordingly.

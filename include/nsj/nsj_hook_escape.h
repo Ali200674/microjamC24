@@ -5,7 +5,7 @@
 #include "nsj_player.h"
 #include "nsj_Enemy.h"
 #include "nsj_Shark.h"
-// static constexpr int MAX_ENEMIES = 10;
+
 
 namespace nsj
 {
