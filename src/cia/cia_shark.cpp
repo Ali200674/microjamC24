@@ -24,7 +24,6 @@ namespace cia
                                                          _sprite, 8, bn::sprite_items::cia_shark.tiles_item(), 0, 1, 2, 3)),
                                                      _speed(speed)
     {
-        _sprite.set_horizontal_flip(true);
     }
 
     void shark::update(cia::player &player)
@@ -33,12 +32,14 @@ namespace cia
         // If the shark is to the right of the player, go left
         if (_sprite.x() < player.get_x())
         {
+            _sprite.set_horizontal_flip(false);
             _sprite.set_x(_sprite.x() + _speed);
         }
 
         // If the player is to the left of the player, go right
         if (_sprite.x() > player.get_x())
         {
+            _sprite.set_horizontal_flip(true);
             _sprite.set_x(_sprite.x() - _speed);
         }
 
