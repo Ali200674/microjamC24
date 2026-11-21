@@ -73,7 +73,7 @@ namespace nsj
       _Shark.update(_player);
       if (_enemy.get_bounding_box().intersects(_player.get_bounding_box()) ||
           _enemy2.get_bounding_box().intersects(_player.get_bounding_box()) ||
-          _Shark.bounding_box.intersects(_player.get_bounding_box()))
+          _Shark.get_bounding_box().intersects(_player.get_bounding_box()))
       {
          _hooked = true;
       }
