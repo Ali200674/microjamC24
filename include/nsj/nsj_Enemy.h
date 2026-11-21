@@ -3,7 +3,7 @@
 #include <bn_sprite_ptr.h>
 #include <bn_display.h>
 #include <bn_rect.h>
-#include <bn_random.h>
+#include "bn_random.h"
 #include "nsj_player.h"
 namespace nsj{
 class Enemy
@@ -18,9 +18,9 @@ class Enemy
      bn::fixed _y_speed;
      bn::size _size;
      bn::rect _bounding_box;
-    bn::random rng;
+    bn::random& _rng;
   public:
-         Enemy(bn::fixed x_start, bn::fixed y_start,bn::fixed speed);
+         Enemy(bn::fixed x_start, bn::fixed y_start,bn::fixed speed, bn::random& rng);
 
           void update();
           bn::rect get_bounding_box();
