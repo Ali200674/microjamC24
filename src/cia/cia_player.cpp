@@ -16,6 +16,8 @@ namespace cia
      */
     player::player(bn::fixed_point starting_position, bn::fixed speed)
         : _sprite(bn::sprite_items::cia_scuba_player.create_sprite(starting_position)),
+          _action(bn::create_sprite_animate_action_forever(
+              _sprite, 6, bn::sprite_items::cia_scuba_player.tiles_item(), 0, 1, 2, 3)),
           _speed(speed)
     {
     }
@@ -33,6 +35,8 @@ namespace cia
      */
     void player::update()
     {
+
+        _action.update();
         if (bn::keypad::left_held())
         {
             _sprite.set_horizontal_flip(true);
