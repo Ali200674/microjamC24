@@ -9,7 +9,7 @@
 // Namespace with code contained to cia game
 namespace cia
 {
-    static constexpr bn::fixed_size PLAYER_SIZE(32, 32);
+    static constexpr bn::fixed_size PLAYER_SIZE(32, 18);
 
     /**
      * Constructor for player. Takes a starting position as a bn::fixed_point and a speed as bn::fixed
