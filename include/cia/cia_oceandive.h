@@ -39,6 +39,9 @@ namespace cia
         // True once the shark hits the player
         bool _hit;
 
+        // The sharks speed
+        bn::fixed _sharksSpeed;
+
         // How much games have been completed
         int _completedGames;
     };

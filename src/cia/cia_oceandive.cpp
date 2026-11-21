@@ -8,25 +8,6 @@ namespace
     constexpr bn::string_view graphics_credits[] = {""};
     constexpr bn::string_view sfx_credits[] = {""};
     constexpr bn::string_view music_credits[] = {""};
-
-    bn::fixed shark_speed(mj::difficulty_level level)
-    {
-        // create a if statement for an easy mode
-        if (level == mj::difficulty_level::EASY)
-        {
-            return .5;
-        }
-        // make a medium mode
-        else if (level == mj::difficulty_level::NORMAL)
-        {
-            return .7;
-        }
-        // Assuming that we didn't go into the other if statements (This is for hard mode)
-        else
-        {
-            return .8 ;
-        }
-    }
 }
 
 MJ_GAME_LIST_ADD(cia::cia_oceandive)
@@ -42,18 +23,28 @@ namespace cia
         if (level == mj::difficulty_level::EASY)
         {
             frameDecrement = 1.2;
+            _sharksSpeed = 0.5;
         }
         // make a medium mode
         else if (level == mj::difficulty_level::NORMAL)
         {
             frameDecrement = 1.6;
+            _sharksSpeed = 0.7;
         }
         // Assuming that we didn't go into the other if statements (This is for hard mode)
         else
         {
             frameDecrement = 2;
+            _sharksSpeed = 0.8;
         }
     }
+
+    void cia_oceandive::addNewShark(const mj::game_data &data) {
+        if (!sharkPool.full()) {
+            sharkPool.push_back(shark(data.random, _sharksSpeed));
+        }
+    }
+
 
     cia_oceandive::cia_oceandive([[maybe_unused]] int completed_game, [[maybe_unused]] const mj::game_data &data) : mj::game("cia"),
                                                                                                    _player(player({0, 20}, 1)),
@@ -71,12 +62,6 @@ namespace cia
     int cia_oceandive::total_frames() const
     {
         return 300;
-    }
-
-    void cia_oceandive::addNewShark(const mj::game_data &data) {
-        if (!sharkPool.full()) {
-            sharkPool.push_back(shark(data.random, shark_speed(recommended_difficulty_level(_completedGames, data))));
-        }
     }
 
     mj::game_result cia_oceandive::play(const mj::game_data &data)
