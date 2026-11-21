@@ -22,15 +22,13 @@ namespace nsj
                                                                          _size(PLAYER_SIZE),
                                                                          _speed(speed)
     {
-                                                            
-                                                                         
-        _bounding_box = create_bounding_box(_sprite,_size);
+        _bounding_box = create_bounding_box(_sprite, _size);
     }
 
     bn::rect nsj::player::get_bounding_box()
     {
         return _bounding_box;
-    } 
+    }
 
     void player::update()
     {
@@ -82,7 +80,7 @@ namespace nsj
         {
             _sprite.set_y(MAX_Y);
         }
-        _bounding_box = create_bounding_box(_sprite,_size);
+        _bounding_box = create_bounding_box(_sprite, _size);
     }
 
 }

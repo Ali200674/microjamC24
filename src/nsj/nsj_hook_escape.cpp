@@ -19,7 +19,6 @@ MJ_GAME_LIST_ADD_SFX_CREDITS(sfx_credits)
 
 namespace nsj
 {
-
    nsj_hook_escape::nsj_hook_escape([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data &data) : mj::game("nsj"),
                                                                                                                         _player({0, 0}, 2),
                                                                                                                         _Shark(-80, -40, _recommended_shark_speed(recommended_difficulty_level(completed_games, data)))
@@ -68,7 +67,6 @@ namespace nsj
 
    mj::game_result nsj_hook_escape::play([[maybe_unused]] const mj::game_data &data)
    {
-
       _player.update();
       for (int i = 0; i < _enemies.size(); i++)
       {

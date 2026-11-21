@@ -39,9 +39,5 @@ Shark::Shark(bn::fixed x_start, bn::fixed y_start,bn::fixed speed) : _sprite(bn:
          }
 
        _bounding_box = create_bounding_box(_sprite, _size);
-
-
-
-
     }
 }

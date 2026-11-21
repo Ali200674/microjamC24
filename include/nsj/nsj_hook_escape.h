@@ -7,7 +7,6 @@
 #include "nsj_Enemy.h"
 #include "nsj_Shark.h"
 
-
 namespace nsj
 {
     class nsj_hook_escape : public mj::game
@@ -73,7 +72,7 @@ namespace nsj
         // The character that the player can move
         player _player;
         static constexpr int MAX_ENEMIES = 2;
-        bn::vector<Enemy,MAX_ENEMIES>_enemies;
+        bn::vector<Enemy, MAX_ENEMIES> _enemies;
         bool _hooked = false;
         Shark _Shark;
         bn::fixed _recommended_hook_speed(mj::difficulty_level difficulty);

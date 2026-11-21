@@ -4,23 +4,22 @@
 #include "bn_size.h"
 #include "bn_rect.h"
 
-namespace nsj{
-
-    
-class Shark{
+namespace nsj
+{
+    class Shark
+    {
     private:
-    bn::sprite_ptr _sprite;
-     bn::fixed _x_speed;
-     bn::fixed _y_speed;
-     bn::size _size;
-     bn::rect _bounding_box;
+        bn::sprite_ptr _sprite;
+        bn::fixed _x_speed;
+        bn::fixed _y_speed;
+        bn::size _size;
+        bn::rect _bounding_box;
 
     public:
-     Shark(bn::fixed x_start, bn::fixed y_start,bn::fixed speed);
+        Shark(bn::fixed x_start, bn::fixed y_start, bn::fixed speed);
 
-          void update(nsj::player& player);
+        void update(nsj::player &player);
 
-    bn::rect get_bounding_box();
-
-};
+        bn::rect get_bounding_box();
+    };
 }
