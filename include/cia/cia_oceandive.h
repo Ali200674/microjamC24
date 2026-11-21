@@ -22,14 +22,19 @@ namespace cia
         void fade_out(const mj::game_data &data) override;
 
         void addNewShark(const mj::game_data &data);
+        void set_up_game(mj::difficulty_level level);
 
     private:
         // Sprites
         player _player;
-        shark _shark;
 
         // Vector to hold all sharks
         bn::vector<shark, 16> sharkPool = {};
+
+        // Frame per seconds and decrementing variable for it
+        bn::fixed frames = 60;
+        bn::fixed frameDecrement;
+
 
         // True once the shark hits the player
         bool _hit;

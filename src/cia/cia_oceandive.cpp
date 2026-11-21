@@ -37,11 +37,29 @@ MJ_GAME_LIST_ADD_SFX_CREDITS(sfx_credits)
 
 namespace cia
 {
-    cia_oceandive::cia_oceandive([[maybe_unused]] int completed_game, const mj::game_data &data) : mj::game("cia"),
+    void cia_oceandive::set_up_game(mj::difficulty_level level) {
+        // create a if statement for an easy mode
+        if (level == mj::difficulty_level::EASY)
+        {
+            frameDecrement = 1.2;
+        }
+        // make a medium mode
+        else if (level == mj::difficulty_level::NORMAL)
+        {
+            frameDecrement = 1.6;
+        }
+        // Assuming that we didn't go into the other if statements (This is for hard mode)
+        else
+        {
+            frameDecrement = 2;
+        }
+    }
+
+    cia_oceandive::cia_oceandive([[maybe_unused]] int completed_game, [[maybe_unused]] const mj::game_data &data) : mj::game("cia"),
                                                                                                    _player(player({0, 20}, 1)),
-                                                                                                   _shark(shark(data.random, shark_speed(recommended_difficulty_level(completed_game, data)))),
                                                                                                    _hit(false)
     {
+        set_up_game(recommended_difficulty_level(completed_game, data));
         _completedGames = completed_game;
     }
 
@@ -75,7 +93,12 @@ namespace cia
             }
         }
 
-        addNewShark(data);
+        frames -= frameDecrement;
+
+        if (frames < 0) {
+            addNewShark(data);
+            frames = 60;
+        }   
 
         return mj::game_result(_hit, false);
     }
