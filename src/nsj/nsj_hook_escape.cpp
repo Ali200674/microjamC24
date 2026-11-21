@@ -23,7 +23,7 @@ namespace nsj
    nsj_hook_escape::nsj_hook_escape([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data &data):mj::game("nsj"),
        _player({0, 0}, 2),
        _enemy(30, -30, _recommended_hook_speed(recommended_difficulty_level(completed_games, data)),data.random),
-       _enemy2(-30, 30, _recommended_hook_speed(recommended_difficulty_level(completed_games, data)),data.random),
+       _enemy2(-100, 30, _recommended_hook_speed(recommended_difficulty_level(completed_games, data))+0.5,data.random),
        _Shark(-80, -40, _recommended_shark_speed(recommended_difficulty_level(completed_games, data)))
    {
    }
