@@ -7,6 +7,7 @@
 #include <bn_vector.h>
 namespace cia
 {
+    static constexpr int sharkPoolSize = 16;
 
     class cia_oceandive : public mj::game
     {
@@ -29,11 +30,11 @@ namespace cia
         player _player;
 
         // Vector to hold all sharks
-        bn::vector<shark, 16> sharkPool = {};
+        bn::vector<shark, sharkPoolSize> _sharkPool = {};
 
         // Frame per seconds and decrementing variable for it
-        bn::fixed frames = 60;
-        bn::fixed frameDecrement;
+        bn::fixed _frames = 60;
+        bn::fixed _frameDecrement;
 
 
         // True once the shark hits the player

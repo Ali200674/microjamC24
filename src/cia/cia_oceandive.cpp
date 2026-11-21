@@ -22,26 +22,26 @@ namespace cia
         // create a if statement for an easy mode
         if (level == mj::difficulty_level::EASY)
         {
-            frameDecrement = 1.2;
+            _frameDecrement = 1.2;
             _sharksSpeed = 0.5;
         }
         // make a medium mode
         else if (level == mj::difficulty_level::NORMAL)
         {
-            frameDecrement = 1.6;
+            _frameDecrement = 1.6;
             _sharksSpeed = 0.7;
         }
         // Assuming that we didn't go into the other if statements (This is for hard mode)
         else
         {
-            frameDecrement = 2;
+            _frameDecrement = 2;
             _sharksSpeed = 0.8;
         }
     }
 
     void cia_oceandive::addNewShark(const mj::game_data &data) {
-        if (!sharkPool.full()) {
-            sharkPool.push_back(shark(data.random, _sharksSpeed));
+        if (!_sharkPool.full()) {
+            _sharkPool.push_back(shark(data.random, _sharksSpeed));
         }
     }
 
@@ -68,7 +68,7 @@ namespace cia
     {
         _player.update();
 
-        for (shark& s : sharkPool) {
+        for (shark& s : _sharkPool) {
             s.update(_player);
 
             // If the player intersects with the shark, the player loses.
@@ -78,11 +78,11 @@ namespace cia
             }
         }
 
-        frames -= frameDecrement;
+        _frames -= _frameDecrement;
 
-        if (frames < 0) {
+        if (_frames < 0) {
             addNewShark(data);
-            frames = 60;
+            _frames = 60;
         }   
 
         return mj::game_result(_hit, false);
