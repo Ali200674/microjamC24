@@ -9,8 +9,8 @@ namespace aab
      *
      * @param starting_position the location the dolphin starts at
      */
-    Dolphin::Dolphin(bn::fixed_point starting_position) : sprite(bn::sprite_items::aab_dolphin.create_sprite(starting_position)),
-                                                          _animate(bn::create_sprite_animate_action_forever(sprite, 10, bn::sprite_items::aab_dolphin.tiles_item(), 0, 1, 2, 3, 4, 5))
+    Dolphin::Dolphin(bn::fixed_point starting_position) : _sprite(bn::sprite_items::aab_dolphin.create_sprite(starting_position)),
+                                                          _animate(bn::create_sprite_animate_action_forever(_sprite, 10, bn::sprite_items::aab_dolphin.tiles_item(), 0, 1, 2, 3, 4, 5))
     {
     }
 
@@ -23,18 +23,18 @@ namespace aab
 
     void Dolphin::_update_position(bn::fixed dolphin_speed)
     {
-        sprite.set_x(sprite.x() + dolphin_speed);
+        _sprite.set_x(_sprite.x() + dolphin_speed);
     }
 
     void Dolphin::set_camera(const bn::camera_ptr& camera){
-        sprite.set_camera(camera);
+        _sprite.set_camera(camera);
     }
 
     bn::fixed Dolphin::x() const{
-        return sprite.x();
+        return _sprite.x();
     }
 
     bn::fixed Dolphin::y() const{
-        return sprite.y();
+        return _sprite.y();
     }
 }

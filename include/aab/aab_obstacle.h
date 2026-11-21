@@ -15,6 +15,6 @@ namespace aab
         bn::fixed y() const;
 
         private:
-        bn::sprite_ptr sprite;
+        bn::sprite_ptr _sprite;
     };
 }

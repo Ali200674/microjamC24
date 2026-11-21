@@ -5,7 +5,7 @@
 namespace aab
 {
     Obstacle::Obstacle(bn::fixed_point starting_position) : 
-        sprite(bn::sprite_items::aab_log.create_sprite(starting_position))
+        _sprite(bn::sprite_items::aab_log.create_sprite(starting_position))
     {
     }
 
@@ -15,15 +15,15 @@ namespace aab
     }
 
     void Obstacle::set_camera(const bn::camera_ptr& camera){
-        sprite.set_camera(camera);
+        _sprite.set_camera(camera);
     }
 
     bn::fixed Obstacle::x() const{
-        return sprite.x();
+        return _sprite.x();
     }
 
     bn::fixed Obstacle::y() const{
-        return sprite.y();
+        return _sprite.y();
     }
 
 }
