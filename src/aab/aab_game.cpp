@@ -94,8 +94,8 @@ namespace aab
 
         // Simple Obstacle Collion Check
         if (_slow_timer == 0 &&
-            _swimmer.x() > _obstacle.x() - collison_radius && _swimmer.x() < _obstacle.x() + collison_radius &&
-            _swimmer.y() > _obstacle.y() - collison_radius && _swimmer.y() < _obstacle.y() + collison_radius)
+            _swimmer.x() > _obstacle.x() - _collison_radius && _swimmer.x() < _obstacle.x() + _collison_radius &&
+            _swimmer.y() > _obstacle.y() - _collison_radius && _swimmer.y() < _obstacle.y() + _collison_radius)
         {
             _swimmer.slow_down();
         }
