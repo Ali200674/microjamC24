@@ -18,7 +18,7 @@ void player::update(bn::random& random, const bn::sprite_text_generator& text_ge
 //Win condition
 bool player::qte_complete() const
 {
-    return _pressed >= 7;
+    return _pressed >= _length;
 }
 
 //This handles the games actual QTE event
@@ -34,10 +34,10 @@ void player::sequence(bn::random& random, const bn::sprite_text_generator& text_
     //Then the x of each letter will be sitting in the border between each section (7 borders)
     //So the button starts at the left of the screen, Min_x, and increments every 8th of the screen
     //for each new button.
-    int size = (MAX_X - MIN_X) / 8;
+    int size = (MAX_X - MIN_X) / (_length + 1); //since it start at 0
     int x = MIN_X + size;
 
-    for(int i = 0; i < 7; i++)
+    for(int i = 0; i < _length; i++)
     {
         //Assigns index i of the max letters vector a random number, which then gets assigned
         //as a button
@@ -78,7 +78,7 @@ void player::qte(bn::random& random, const bn::sprite_text_generator& text_gener
     }
 
     //If the amount of pressed buttons meets the required amount, return to end early
-    if(_pressed >= 7)
+    if(_pressed >= _length)
     {
         return;
     }
@@ -112,13 +112,5 @@ void player::qte(bn::random& random, const bn::sprite_text_generator& text_gener
             _pressed++;
         }
     }
-}
-
-//Checks if the player moves out of bounds (wins or loses)
-//And returns a true or false based on that
-//bool player::out_of_bounds() const {
-    //return _sprite.x() > MAX_X || _sprite.x() < MIN_X ||
-           //_sprite.y() > MAX_Y || _sprite.y() < MIN_Y;
-//}
-
+ }
 }

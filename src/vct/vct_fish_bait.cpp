@@ -28,10 +28,10 @@ namespace vct
     {
     }
 
-    //Game title/ the instructions to give to the player
+    //Game title/ the instructions to give to the player, weird instructions keeping it 16 letters
     bn::string<16> vct_fish_bait::title() const 
     {
-        return "Fish Bait";
+        return "Hit the buttons!";
     }
 
     //How long the game lasts for
