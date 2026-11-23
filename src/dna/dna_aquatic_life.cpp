@@ -7,6 +7,8 @@
             
 namespace dna {
 
+    static constexpr int SPAWN_OFFSET = 5;
+
     AquaticLife::AquaticLife(bn::random &random, bn::fixed speed, bn::size size) :
     _sprite(bn::sprite_items::dna_shark.create_sprite(getStartPosition(random))), 
     _speed(speed), 
@@ -14,8 +16,8 @@ namespace dna {
     _size(size) {}
 
     bn::fixed_point AquaticLife::getStartPosition(bn::random &random) {
-        bn::fixed randY = random.get_fixed(MIN_Y + 5, MAX_Y - 5); 
-        bn::fixed startX = MAX_X - 5; 
+        bn::fixed randY = random.get_fixed(MIN_Y + SPAWN_OFFSET, MAX_Y - SPAWN_OFFSET); 
+        bn::fixed startX = MAX_X - SPAWN_OFFSET; 
 
         return bn::fixed_point(startX, randY); 
     }
@@ -29,6 +31,6 @@ namespace dna {
     }
 
     bool AquaticLife::is_offscreen() const {
-        return _sprite.x() < MIN_X - 8;
+        return _sprite.x() < MIN_X - _size.width();
     }
 }

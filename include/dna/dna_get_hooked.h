@@ -1,5 +1,4 @@
-#ifndef DNA_GET_HOOKED_H
-#define DNA_GET_HOOKED_H
+#pragma once
 
 #include <bn_vector.h>
 
@@ -28,15 +27,9 @@ namespace dna {
             void fade_out(const mj::game_data& data) override; 
         private: 
             Player _player;
-
             int _timer; 
-
             bool _hit; 
-            
             bn::vector<AquaticLife, MAX_ENEMY_COUNT> _enemies; 
-
             bn::fixed _enemy_speed; 
     };
 }
-
-#endif

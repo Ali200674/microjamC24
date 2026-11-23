@@ -1,5 +1,4 @@
-#ifndef DNA_PLAYER_H
-#define DNA_PLAYER_H
+#pragma once
 
 #include <bn_display.h>
 #include <bn_rect.h>
@@ -33,5 +32,3 @@ namespace dna {
             void _update_position(); 
     };
 }
-
-#endif

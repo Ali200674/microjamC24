@@ -3,10 +3,11 @@
 
 #include <bn_keypad.h>
 
-#include "bn_sprite_items_dna_dot.h"
 #include "bn_sprite_items_dna_player.h"
 
 namespace dna {
+    static constexpr int PLAYER_BORDER = 4; 
+
     Player::Player(bn::fixed_point starting_pos, bn::fixed speed, bn::size size) :
     _sprite(bn::sprite_items::dna_player.create_sprite(starting_pos)),
     _speed(speed),
@@ -33,17 +34,17 @@ namespace dna {
         }
 
         // Screen Border
-        if (_sprite.x() > MAX_X - 4) {
-        _sprite.set_x(MAX_X - 4);
+        if (_sprite.x() > MAX_X - PLAYER_BORDER) {
+        _sprite.set_x(MAX_X - PLAYER_BORDER);
         }
-        if(_sprite.x() < MIN_X + 4){
-            _sprite.set_x(MIN_X + 4);
+        if(_sprite.x() < MIN_X + PLAYER_BORDER){
+            _sprite.set_x(MIN_X + PLAYER_BORDER);
         }
-        if(_sprite.y() > MAX_Y - 4) {
-            _sprite.set_y(MAX_Y - 4);
+        if(_sprite.y() > MAX_Y - PLAYER_BORDER) {
+            _sprite.set_y(MAX_Y - PLAYER_BORDER);
         }
-        if(_sprite.y() < MIN_Y + 4){
-            _sprite.set_y(MIN_Y + 4);
+        if(_sprite.y() < MIN_Y + PLAYER_BORDER){
+            _sprite.set_y(MIN_Y + PLAYER_BORDER);
         }
 
         _hitbox = create_hitbox(_sprite, _size);

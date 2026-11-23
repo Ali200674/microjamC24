@@ -1,5 +1,4 @@
-#ifndef DNA_AQUATIC_LIFE_H
-#define DNA_AQUATIC_LIFE_H
+#pragma once
 
 #include "dna/dna_player.h"
 
@@ -27,5 +26,3 @@ namespace dna {
             bn::size _size;
     };
 }
-
-#endif

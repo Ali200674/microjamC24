@@ -25,16 +25,21 @@ MJ_GAME_LIST_ADD_MUSIC_CREDITS(music_credits)
 MJ_GAME_LIST_ADD_SFX_CREDITS(sfx_credits)
 
 namespace dna {
+    static constexpr bn::point PLAYER_START = {-100, 0};
+
+    static constexpr int INITIAL_TIMER = 0; 
+    static constexpr int TIMER_OFFSET = 10;
+
     dna_get_hooked::dna_get_hooked([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data& data) :
     mj::game("dna"), 
-    _player(Player({-100, 0}, 2, PLAYER_SIZE)),
-    _timer(0), 
+    _player(Player(PLAYER_START, 2, PLAYER_SIZE)),
+    _timer(INITIAL_TIMER), 
     _hit(false), 
     _enemies(),
     _enemy_speed(enemy_speed(recommended_difficulty_level(completed_games, data))) {}
 
     bn::string<16> dna_get_hooked::title() const {
-        return "Swim!";
+        return "DODGE!";
     }
 
     int dna_get_hooked::total_frames() const {
@@ -46,7 +51,7 @@ namespace dna {
         _timer--; 
 
         if (_timer <= 0 && !_enemies.full()) {
-            _timer = 10; 
+            _timer = TIMER_OFFSET; 
             _enemies.emplace_back(data.random, _enemy_speed, ENEMY_SIZE);
         }
 
