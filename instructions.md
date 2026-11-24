@@ -340,6 +340,7 @@ Commit/add/push
 
 Please make sure your game is in a state you are proud of.
 
+- Incorporate new feedback from classmates, and any improvements you would like.
 - Make sure there are no warnings
 - Make sure you have a separate license file for each sound/music
 - Make sure there are no bugs.
