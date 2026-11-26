@@ -13,8 +13,10 @@ namespace cia
     /**
      * Values used for finding the sides of the gba screen
      */
+    // right edge and left edge of the screen (0 is the middle)
     static constexpr int MAX_X = bn::display::width() / 2;
     static constexpr int MIN_X = -bn::display::width() / 2;
+    // bottom edge and top edge of the screen
     static constexpr int MAX_Y = bn::display::height() / 2;
     static constexpr int MIN_Y = -bn::display::height() / 2;
 
@@ -62,6 +64,7 @@ namespace cia
         // The player sprite
         bn::sprite_ptr _sprite;
 
+        // the swimming animation (4 frames)
         bn::sprite_animate_action<4> _action;
 
         // The speed of the player
