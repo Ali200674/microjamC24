@@ -3,6 +3,7 @@
 #include "cia/cia_shark.h"
 #include <bn_regular_bg_ptr.h>
 #include <bn_regular_bg_items_cia_ocean_bg.h>
+#include "bn_sound_items.h"
 namespace
 {
     // names that show up in the credits for each part of the game
@@ -63,6 +64,8 @@ namespace cia
         // the game gives us a recommended difficulty based on how many games were beat
         set_up_game(recommended_difficulty_level(completed_game, data));
         _completedGames = completed_game;
+        // start the wave sound
+        play_sound(bn::sound_items::cia_wave, completed_game, data);
     }
 
     // the name shown on screen before the game starts
@@ -80,6 +83,14 @@ namespace cia
     // runs every frame while the game is going
     mj::game_result cia_oceandive::play(const mj::game_data &data)
     {
+        // replay the wave sound every 3 seconds so it keeps looping
+        _waveTimer++;
+        if (_waveTimer >= 180)
+        {
+            play_sound(bn::sound_items::cia_wave, _completedGames, data);
+            _waveTimer = 0;
+        }
+
         // move the player with the d-pad
         _player.update();
 

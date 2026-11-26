@@ -57,6 +57,8 @@ namespace cia
 
         // How much games have been completed
         int _completedGames;
+        //for the wave sound effects
+        int _waveTimer = 0;
     };
 
 }
