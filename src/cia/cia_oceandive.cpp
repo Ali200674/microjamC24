@@ -66,6 +66,7 @@ namespace cia
         _completedGames = completed_game;
         // start the wave sound
         play_sound(bn::sound_items::cia_wave, completed_game, data);
+        play_sound(bn::sound_items::cia_background_music, completed_game, data);
     }
 
     // the name shown on screen before the game starts
