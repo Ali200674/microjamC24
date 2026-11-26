@@ -64,7 +64,7 @@ namespace cia
         // the game gives us a recommended difficulty based on how many games were beat
         set_up_game(recommended_difficulty_level(completed_game, data));
         _completedGames = completed_game;
-        
+
         // start the wave sound
         play_sound(bn::sound_items::cia_wave, completed_game, data);
         play_sound(bn::sound_items::cia_background_music, completed_game, data);
@@ -103,6 +103,7 @@ namespace cia
             // If the player intersects with the shark, the player loses.
             if (_player.rect().intersects(s.rect()))
             {
+                play_sound(bn::sound_items::cia_shark_bite, _completedGames, data);
                 _hit = true;
             }
         }
